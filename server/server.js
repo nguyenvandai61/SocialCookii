@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const indexRouter = require('./routes/index.routes');
 const apiRouter = require('./routes/api/index.routes');
 const { createUser } = require('./controller/user.controller');
-
+const config = require('./config');
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -17,7 +17,7 @@ app.use('/api', apiRouter);
 
 
 // set up mongoose
-mongoose.connect("mongodb://localhost:27017/cookii", {
+mongoose.connect(config.mongoose.uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
@@ -59,3 +59,5 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 app.use(function (req, res, next) {
     next(createError(404));
 });
+
+module.exports = app;
