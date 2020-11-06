@@ -24,14 +24,6 @@ mongoose.connect(config.mongoose.uri, {
 })
     .then(() => {
         console.log('Database connected');
-        // let req = {};
-        // req.body = {
-        //     "username": "ad",
-        //     "password": "123",
-        //     "role": "admin"
-        // };
-        // let res = {};
-        // createUser(req, res);
     })
     .catch((error) => {
         console.log(error);

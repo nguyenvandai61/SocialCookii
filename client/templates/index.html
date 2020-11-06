@@ -1,0 +1,114 @@
+<style>
+    header {
+        display: grid;
+        grid-template-columns: 60px auto auto 500px 200px 100px;
+        grid-column-gap: 10px;
+        overflow: hidden;
+        
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: large;
+    }
+    header>div {
+        margin: auto 0;
+        display: inline-grid;
+        padding: 5px;
+    }
+    .hover-effect {
+        background: #262730;
+        color: #fff;
+        border-radius: 25px;
+        text-align: center;
+    }
+    button:focus {outline:0;}
+
+    /* logo */
+    #logo-wrapper {
+    }
+    #logo-wrapper img {
+        width: 100%;
+    }
+    #home p {
+        margin: auto;
+        padding: 10px;
+        width: 90%;
+    }
+    #search-bar input{
+        font-size: 1.5em;
+        
+    }
+    #header-btns {
+        display: inline-block;
+    }
+    .header-btn {
+        display: inline-block;
+        overflow: hidden;
+    }
+    .header-btn button {
+        padding: 0;
+        border-radius: 25px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+        overflow: hidden;
+    }
+    #avatar {
+        background-size:cover;
+        width: inherit;
+        height: inherit;
+    }
+    #options ul {
+        display: none;
+    }
+    #options button {
+        
+        font-size: 1.5em;
+    }
+
+</style>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<header>
+    <div id="logo-wrapper">
+        <img  src="../src/logo.png"/>
+    </div>
+    <div id="home">
+        <p class="hover-effect">
+            Trang chủ
+        </p>
+    </div>
+    <div>
+        <p>Người bạn theo dõi</p>
+    </div>
+    <div id="search-bar">
+        <input type="text">
+    </div>
+    <div id="header-btns">
+        <div class="header-btn">
+            <button><i class="fas fa-bell"></i></button>
+        </div>
+        <div class="header-btn">
+            <button><i class="fas fa-comment-dots"></i></button>
+        </div>
+        <div class="header-btn">
+            <button>
+                <img id="avatar" src="../src/avatar.jpg"/>
+            </button>
+        </div>
+    </div>
+    <div id="options">
+        <button><i class="fas fa-bars"></i></button>
+        <ul>
+            <li>
+                Thêm tài khoản khác
+            </li>
+            <li>
+                Cài đặt
+            </li>
+            <li>
+                Nhận trợ giúp
+            </li>
+            <li>
+                Đăng xuất
+            </li>
+        </ul>
+    </div>
+</header>
