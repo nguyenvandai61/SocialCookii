@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Arvo');
+
+header {
+    display: grid;
+    grid-template-columns: 60px auto auto 500px 200px 100px;
+    grid-column-gap: 10px;
+    overflow: hidden;
+    
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-family: 'Arvo', monospace;
+    font-size: large;
+}
+header>div {
+    margin: auto 0;
+    display: inline-grid;
+    padding: 5px;
+}
+.hover-effect {
+    background: #262730;
+    color: #fff;
+    border-radius: 25px;
+}
+button:focus {outline:0;}
+button {
+    border: none;
+}
+/* logo */
+#logo-wrapper {
+}
+#logo-wrapper img {
+    width: 100%;
+}
+#home p {
+    margin: auto;
+    padding: 10px;
+    width: 90%;
+}
+#search-bar input{
+    font-size: 1.5em;
+    
+}
+#header-btns {
+    display: inline-block;
+}
+.header-btn {
+    display: inline-block;
+    overflow: hidden;
+}
+.header-btn button {
+    padding: 0;
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5em;
+    overflow: hidden;
+}
+#avatar {
+    background-size:cover;
+    width: inherit;
+    height: inherit;
+}
+#options ul {
+    display: none;
+}
+#options button {
+    
+    font-size: 1.5em;
+}
