@@ -23,17 +23,14 @@ const PostSchema = new mongoose.Schema({
     type: Date,
   },
   thumbnail: {
-    type: mongoose.Schema.Types.ObjectId,
-      ref: "Image"
+    type: Object
   },
-  album: [{
-    type: mongoose.Schema.Types.ObjectId,
-      ref: "Image"
-  }],
-  videos: [{
-    type: mongoose.Schema.Types.ObjectId,
-      ref: "Video"
-  }],
+  album: {
+    type: []
+  },
+  videos: {
+    type: []
+  },
   comments: [{
     type: mongoose.Schema.Types.ObjectId,
       ref: "User"
