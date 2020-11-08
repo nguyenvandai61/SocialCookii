@@ -10,38 +10,45 @@ const PostSchema = new mongoose.Schema({
     type: String,
   },
   authorId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
   },
   createdAt: {
-    type: String,
+    type: Date,
   },
   deletedAt: {
-    type: String,
+    type: Date,
   },
   editedAt: {
-    type: String,
+    type: Date,
   },
   thumbnail: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+      ref: "Image"
   },
-  album: {
-    type: String,
-  },
-  videos: {
-    type: String,
-  },
-  comments: {
-    type: String,
-  },
-  likeUserIds: {
-    type: String,
-  },
+  album: [{
+    type: mongoose.Schema.Types.ObjectId,
+      ref: "Image"
+  }],
+  videos: [{
+    type: mongoose.Schema.Types.ObjectId,
+      ref: "Video"
+  }],
+  comments: [{
+    type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+  }],
+  likeUserIds: [{
+    type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+  }],
   state: {
     type: String,
   },
-  hashtagIds: {
-    type: String,
-  },
+  hashtagIds: [{
+    type: mongoose.Schema.Types.ObjectId,
+      ref: "Hashtag"
+  }],
 });
 
 
