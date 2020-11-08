@@ -9,6 +9,6 @@ router.post('/', (req, res)=> {
     return postController.createPost(req, res);
 })
 
-    
+router.put('/', (req, res)=> postController.updatePost) ;  
 
 module.exports = router
