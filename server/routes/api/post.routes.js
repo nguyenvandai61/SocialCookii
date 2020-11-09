@@ -8,7 +8,18 @@ router.post('/', (req, res)=> {
         return postController.createPost(req, res)
     return postController.createPost(req, res);
 })
+ router.get('/', (req, res) => {
+     return postController.getAllPost(req, res);
+ })
+
+ router.get('/:id', (req, res) => {
+     return postController.getPost(req, res);
+ })
+
+ router.get('/hashtag/:hashtagIds', (req, res) => {
+    return postController.getPostByHashTag(req, res);
+})
 
 router.put('/', (req, res)=> postController.updatePost) ;  
-
+ 
 module.exports = router
