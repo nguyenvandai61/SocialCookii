@@ -1,0 +1,117 @@
+<html>
+	<head>
+		<title>Personal</title>
+		<meta charset="UTF8">
+		<style>
+			@import url('https://fonts.googleapis.com/css?family=Arvo');
+			.avatar img{
+				border-radius: 50%;
+			}
+			
+			.masonry {
+				column-count: 4;
+				column-gap: 1em;
+				transition: all .5s ease-in-out;
+				column-fill: initial
+			}
+
+			.brick {
+				/* Masonry bricks or child elements */
+				background-color: #eee;
+				display: inline-block;
+				margin: 0 0 1em;
+				width: 100%;
+				background-repeat: no-repeat;
+				background-size: contain;
+			}
+
+			.masonry .brick:hover img {
+				transition: all .5s ease-in-out;
+				backface-visibility: hidden;
+			}
+
+			.brick img, video {
+				max-width: 100%;
+				width: 100%;
+				vertical-align: middle;
+			}
+			.edit{
+				padding-left: 30px;
+				
+			}
+			
+			
+		</style>
+		<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	</head>
+	<body>
+		<div align="center" class="avatar">
+			<img src="../src/avatar.jpg" alt="img" height="130px" width="130px">
+			<h2>Your name</h2>
+			<p>@gmail</p>
+			<p>Người theo dõi - Người đang theo dõi</p>
+		</div>
+		<div class="edit" style="height: 48px; width: 48px;">
+			<a href="edit_personalInfo.html"><i class="fas fa-pen"></i></a>
+		</div>
+		<h2 align="center">Bài viết lưu trữ</h2>
+		<div>
+			
+			<section class="section">
+				<div class="masonry">
+					<div class="brick">
+						<img src="../src/image/dishes/1.jpg" />
+						<div class="item__details">
+							jelly-o brownie sweet
+						</div>
+					</div>
+		
+					<div class="brick">
+						<img src="../src/image/dishes/2.jpg" />
+						<div class="item__details">
+							jelly-o brownie sweet
+						</div>
+					</div>
+		
+					<div class="brick">
+						<img src="../src/image/dishes/3.jpg" />
+						<div class="item__details">
+							jelly-o brownie sweet
+						</div>
+					</div>
+		
+					<div class="brick">
+						<img src="../src/image/dishes/4.jpg" />
+						<div class="item__details">
+							jelly-o brownie sweet
+						</div>
+					</div>
+					<div class="brick">
+						<img src="../src/image/dishes/5.jpg" />
+						<div class="item__details">
+							jelly-o brownie sweet
+						</div>
+					</div>
+					<div class="brick">
+						<img src="../src/image/dishes/6.jpg" />
+						<div class="item__details">
+							jelly-o brownie sweet
+						</div>
+					</div>
+					<div class="brick">
+						<img src="../src/image/dishes/1.jpg" />
+						<div class="item__details">
+							jelly-o brownie sweet
+						</div>
+					</div>
+					<div class="brick">
+						<img src="../src/image/dishes/2.jpg" />
+						<div class="item__details">
+							jelly-o brownie sweet
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</body>
+</html>

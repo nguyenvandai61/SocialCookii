@@ -1,0 +1,7 @@
+#avatar-frame{
+    display: inline-block;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #3f3636;
+    overflow: hidden;
+}
