@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <style>
+            .content{
+                margin-left: 400px;
+                margin-right: 200px;
+                display: grid;
+                grid-template-columns: auto auto ;
+ 
+                 padding: 10px;
+            }
+            .grid2{
+                display: grid;
+                grid-template-columns: auto auto ;
+            }
+            .grid3{
+                display: grid;
+                grid-template-columns: auto auto ;
+            }
+            .grid2 input{
+                border: 2px solid;
+                border-radius: 12px;
+                background-color:lightgrey;
+            }
+            img{
+                border-radius: 50%;
+            }
+        </style>
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    </head>
+    <body>
+        <div class="content">
+            <div class="grid-item">
+                <p><i class="fas fa-pen"></i></i>&ensp;<a href="">Chỉnh sửa cá nhân</a></p>
+                <p><i class="fas fa-user"></i>&ensp;<a href="">Cài đặt tài khỏan</a></p>
+                <p><i class="fas fa-globe"></i>&ensp;<a href="">Xác nhận quyền sở hữu</a></p>
+                <p><i class="fas fa-bell"></i>&ensp;<a href="">Thông báo</a></p>
+                <p><i class="fas fa-lock"></i>&ensp;<a href="">Quyền riêng tư và dữ liệu</a></p>
+                <p><i class="fas fa-shield-alt"></i>&ensp;<a href="">Bảo mật</a></p>
+                <p><i class="fas fa-th"></i>&ensp;<a href="">Ứng dụng</a></p>
+            </div>
+           
+            <div class="grid-item">
+                <div class="grid2">
+                    <div>
+                        <h1>Chỉnh sửa hồ sơ</h1>
+                        <p>Mọi người sẽ biết đến bạn qua thông tin bên dưới </p>
+                    </div>
+                    <div class="grid2">
+                        
+                        <input type="button" value="Hủy"/> &ensp;
+                        <input type="button" value="Đã xong"/>
+                    </div>
+                </div>
+                <div>
+                    <label>Ảnh</label> <br>
+                    <img src="../src/avatar.jpg" alt="" height="100px" width="100px" />
+                    <input type="button" value="Thay đổi" /> <br>
+                    <div class="grid3">
+                        <label>Tên</label><br>
+                        <input type="text" value="" />
+                    </div>
+                    <div class="grid3">
+                        <label>Họ</label><br>
+                        <input type="text" value="" /><br>
+                    </div>
+                    <label>Tên người dùng</label><br>
+                    <input type="text" value="" /><br>
+                    <label>Giới thiệu hồ sơ của bạn</label><br>
+                    <input type="text" value="" />
+                </div>
+                
+                
+                
+            </div>
+        </div>
+        
+    </body>
+</html>
