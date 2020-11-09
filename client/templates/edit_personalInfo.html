@@ -2,8 +2,8 @@
     <head>
         <style>
             .content{
-                margin-left: 400px;
-                margin-right: 200px;
+                margin-left: 300px;
+                margin-right: 300px;
                 display: grid;
                 grid-template-columns: auto auto ;
  
@@ -21,9 +21,23 @@
                 border: 2px solid;
                 border-radius: 12px;
                 background-color:lightgrey;
+                height: 30px;
+                text-align: center;
+                margin-top: 50px;
             }
             img{
                 border-radius: 50%;
+            }
+            .change{
+                border: 2px solid;
+                border-radius: 12px;
+                background-color:lightgrey;
+            }
+            .info input{
+                border: 1px solid;
+                border-radius: 12px;
+                height: 40px;
+                width: 500px;
             }
         </style>
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -48,26 +62,26 @@
                     </div>
                     <div class="grid2">
                         
-                        <input type="button" value="Hủy"/> &ensp;
+                        <input type="button" value="Hủy"/> 
                         <input type="button" value="Đã xong"/>
                     </div>
                 </div>
-                <div>
+                <div >
                     <label>Ảnh</label> <br>
-                    <img src="../src/avatar.jpg" alt="" height="100px" width="100px" />
-                    <input type="button" value="Thay đổi" /> <br>
-                    <div class="grid3">
+                    <img src="../src/avatar.jpg" alt="" height="100px" width="100px" /><br>
+                    <p><input type="button" value="Thay đổi" class="change"/></p> 
+                    <div class="info">
                         <label>Tên</label><br>
-                        <input type="text" value="" />
-                    </div>
-                    <div class="grid3">
+                        <p><input type="text" value="" /></p>
+                   
                         <label>Họ</label><br>
-                        <input type="text" value="" /><br>
-                    </div>
+                        <p><input type="text" value="" /></p>
+                    
                     <label>Tên người dùng</label><br>
-                    <input type="text" value="" /><br>
+                    <p><input type="text" value="" /></p>
                     <label>Giới thiệu hồ sơ của bạn</label><br>
-                    <input type="text" value="" />
+                    <p><input type="text" value="" /></p>
+                    </div>
                 </div>
                 
                 
