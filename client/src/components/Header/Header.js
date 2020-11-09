@@ -2,8 +2,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Logo from '../../logo.png';
 import Avatar from '../../avatar.jpg';
+import { Link } from 'react-router-dom';
 import './Header.css';
 class Header extends Component {
+    constructor(props) {
+        super(props);
+    }
+    homeClickHandler = () => {
+        this.props.setPage("home");
+    }
+    friendClickHandler = () => {
+        this.props.setPage("friend");
+    }
+    avatarClickHandler = (e) => {
+        this.props.setPage("personalInfo");
+    }
     mouseOverElement(e) {
         e.target.classList.add("hover-effect");
     }
@@ -29,34 +42,41 @@ class Header extends Component {
                     <img src={Logo} />
                 </div>
                 <div id="home">
-                    <p onMouseOver={this.mouseOverElement} onMouseOut={this.mouseOutElement}>
+                    <p onClick={this.homeClickHandler}
+                    onMouseOver={this.mouseOverElement} 
+                    onMouseOut={this.mouseOutElement}>
                         Trang chủ
                     </p>
                 </div>
                 <div >
-                    <p onMouseOver={this.mouseOverElement} onMouseOut={this.mouseOutElement}>Người bạn theo dõi</p>
+                    <p 
+                    onClick={this.friendClickHandler}
+                    onMouseOver={this.mouseOverElement} 
+                    onMouseOut={this.mouseOutElement}>
+                        Người bạn theo dõi
+                        </p>
                 </div>
                 <div id="search-bar">
                     <input type="text" />
                     <button id="search-btn">
-                        <i class="fas fa-search"></i>
+                        <i className="fas fa-search"></i>
                     </button>
                 </div>
                 <div id="header-btns">
                     <div className="header-btn" onMouseOver={this.mouseOverElement} onMouseOut={this.mouseOutElement}>
-                        <button><i class="fas fa-bell"></i></button>
+                        <button><i className="fas fa-bell"></i></button>
                     </div>
                     <div className="header-btn" onMouseOver={this.mouseOverElement} onMouseOut={this.mouseOutElement}>
-                        <button><i class="fas fa-comment-dots"></i></button>
+                        <button><i className="fas fa-comment-dots"></i></button>
                     </div>
                     <div className="header-btn" onMouseOver={this.mouseOverElement} onMouseOut={this.mouseOutElement}>
-                        <button>
+                        <button onClick={this.avatarClickHandler}>
                             <img id="avatar" src={Avatar} />
                         </button>
                     </div>
                 </div>
                 <div id="options">
-                    <button  onMouseOver={this.mouseOverElement} onMouseOut={this.mouseOutElement}><i className="fas fa-bars"></i></button>
+                    <button onMouseOver={this.mouseOverElement} onMouseOut={this.mouseOutElement}><i className="fas fa-bars"></i></button>
                     <ul>
                         <li>
                             Thêm tài khoản khác
