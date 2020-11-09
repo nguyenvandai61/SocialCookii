@@ -14,6 +14,9 @@ header>div {
     margin: auto 0;
     display: inline-grid;
     padding: 5px;
+    margin: auto;
+    padding: 10px;
+    width: 90%;
 }
 .hover-effect {
     background: #262730;
@@ -23,6 +26,7 @@ header>div {
 button:focus {outline:0;}
 button {
     border: none;
+    cursor: pointer;
 }
 /* logo */
 #logo-wrapper {
@@ -30,14 +34,31 @@ button {
 #logo-wrapper img {
     width: 100%;
 }
-#home p {
+header p {
     margin: auto;
     padding: 10px;
     width: 90%;
-}
-#search-bar input{
-    font-size: 1.5em;
     
+    cursor: pointer;
+}
+
+#search-bar input{
+    font-size: 1em;
+    border-radius: 15px;
+    padding: 10px;
+    padding-left: 50px;
+}
+#search-bar input:focus{
+    outline: none;
+}
+#search-btn {
+    position: absolute;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 3px;
+}
+#search-btn i {
+    font-size: 1.5em;
 }
 #header-btns {
     display: inline-block;

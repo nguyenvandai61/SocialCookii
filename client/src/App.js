@@ -1,12 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
-import Header from './components/Header/Header.js'
-import Masonry from './components/Masonry/Masonry';
+import HomePage from './components/Homepage/Homepage';
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <Masonry/>
+      <HomePage/>
     </div>
   );
 }
