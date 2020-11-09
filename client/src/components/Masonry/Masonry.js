@@ -43,8 +43,7 @@ class Masonry extends Component {
 
     render() {
         return (
-            <div>
-                <div>
+                <div style={{margin: "15px"}}>
                     <h1>Cookii Gallery</h1>
                     <section className="section">
                         <div className="masonry">
@@ -101,7 +100,6 @@ class Masonry extends Component {
                         </div>
                     </section>
                 </div>
-            </div>
         );
     }
 }
