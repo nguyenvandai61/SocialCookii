@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import PersonalInfo from '../PersonalInfo/PersonalInfo';
 import Friend from '../Friend/Friend';
+import AdditionalBtns from '../AdditonalBtns/AdditionalBtns';
 
 class Homepage extends Component {
     constructor(props) {
@@ -62,6 +63,7 @@ class Homepage extends Component {
             <div>
                 <Header id="header-wrapper" setPage={this.setPage}/>
                 {this.renderContent()}
+                <AdditionalBtns/>
             </div>
         );
     }
