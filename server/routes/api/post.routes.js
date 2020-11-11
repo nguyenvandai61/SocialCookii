@@ -12,6 +12,10 @@ router.post('/', (req, res)=> {
      return postController.getAllPost(req, res);
  })
 
+ router.put('/:id', (req, res) => {
+    return postController.updatePost(req, res);
+})
+
  router.get('/:id', (req, res) => {
      return postController.getPost(req, res);
  })

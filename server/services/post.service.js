@@ -32,14 +32,16 @@ const getPostByHashTag = (req, res) => {
         return res.json({"data" : data});
     })
 }
-const updatePost = (res, query, newData) => {
+const updatePost = (req, res) => {
     const content = req.body;
-    User.findOneAndUpdate(content.query, content.newData, function(err) {
+    console.log(content);
+    Post.findOneAndUpdate(req.params.id, content, {new: true},function(err, doc) {
       if (err) return res.status(500).send(err);
       const response = {
           message: "Post successfully updated"
       };
-      return res.status(200).send(response);
+      console.log(doc.description);
+      return res.json({"data" : doc});
     });
   }
 

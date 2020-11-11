@@ -5,8 +5,7 @@ const createPost = (req, res) => {
     return PostService.createPost(res, post);
 }
 const updatePost = (req, res) => {
-    let content = req.body;
-    return PostService.updatePost(res, content.query, content.newContent);
+    return PostService.updatePost(req, res);
 }
 const getPost = (req, res) => {
     return PostService.getPost(req, res);
