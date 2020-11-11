@@ -26,4 +26,7 @@ router.post('/', (req, res)=> {
 
 router.put('/', (req, res)=> postController.updatePost) ;  
  
+router.delete('/:id', (req, res) => {
+    return postController.deletePost(req, res);
+})
 module.exports = router

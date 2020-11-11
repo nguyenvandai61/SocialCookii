@@ -45,11 +45,21 @@ const updatePost = (req, res) => {
     });
   }
 
+const deletePost = (req, res) => {
+    Post.findByIdAndDelete(req.params.id, (err, doc) => {
+        if(err) return res.status(500).send(err);
+        const response = {
+            message: "Post successfully deleted"
+        };
+        return res.status(200).send(response);
+    })
+}
 module.exports = {
     createPost, 
     updatePost,
     getPost,
     getAllPost,
-    getPostByHashTag
+    getPostByHashTag,
+    deletePost
 }
 

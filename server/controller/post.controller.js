@@ -1,3 +1,4 @@
+const { response } = require('express');
 var PostService = require('../services/post.service');
 
 const createPost = (req, res) => {
@@ -16,10 +17,14 @@ const getAllPost = (req, res) => {
 const getPostByHashTag = (req, res) => {
     return PostService.getPostByHashTag(req, res);
 }
+const deletePost = (req, res) => {
+    return PostService.deletePost(req, res);
+}
 module.exports = {
     createPost, 
     updatePost,
     getPost,
     getAllPost,
-    getPostByHashTag
+    getPostByHashTag,
+    deletePost
 }
