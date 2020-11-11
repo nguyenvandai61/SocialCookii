@@ -11,7 +11,12 @@ class PersonalInfo extends Component {
     }
 
     componentWillMount() {
+        const script = document.createElement("script");
 
+        script.src = "https://kit.fontawesome.com/a076d05399.js";
+        script.async = true;
+
+        document.body.appendChild(script);
     }
 
     componentDidMount() {
@@ -49,8 +54,8 @@ class PersonalInfo extends Component {
                     <p>@gmail</p>
                     <p>Người theo dõi - Người đang theo dõi</p>
                 </div>
-                <div class="edit" style={{height: "48px", width: "48px"}}>
-                    <a href="edit_personalInfo.html"><i class="fas fa-pen"></i></a>
+                <div class="edit">
+                    <a href="/editPersonalInfo"><i class="fas fa-pen"></i></a>
                 </div>
                 <h2 align="center">Bài viết lưu trữ</h2>
                 <Masonry/>

@@ -1,0 +1,35 @@
+.content{
+    margin-left: 300px;
+    margin-right: 300px;
+    display: grid;
+    grid-template-columns: auto auto ;
+
+     padding: 10px;
+}
+.grid2{
+    display: grid;
+    grid-template-columns: auto auto ;
+}
+.grid3{
+    display: grid;
+    grid-template-columns: auto auto ;
+}
+.grid2 input{
+    border: 2px solid;
+    border-radius: 12px;
+    background-color:lightgrey;
+    height: 30px;
+    text-align: center;
+    margin-top: 50px;
+}
+.change{
+    border: 2px solid;
+    border-radius: 12px;
+    background-color:lightgrey;
+}
+.info input{
+    border: 1px solid;
+    border-radius: 12px;
+    height: 40px;
+    width: 500px;
+} 
