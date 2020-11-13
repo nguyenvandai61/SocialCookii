@@ -11,15 +11,7 @@ class Header extends Component {
             dropdown: false
         }
     }
-    homeClickHandler = () => {
-        this.props.setPage("home");
-    }
-    friendClickHandler = () => {
-        this.props.setPage("friend");
-    }
-    avatarClickHandler = (e) => {
-        this.props.setPage("personalInfo");
-    }
+   
     barsClickHandler = (e) => {
         let newState = !this.state.dropdown;
         this.setState({ 'dropdown': newState })
@@ -53,19 +45,22 @@ class Header extends Component {
                     <img src={Logo} />
                 </div>
                 <div id="home">
-                    <p onClick={this.homeClickHandler}
-                        onMouseOver={this.mouseOverElement}
-                        onMouseOut={this.mouseOutElement}>
-                        Trang chủ
-                    </p>
+                    <Link to="/">
+                        <p onClick={this.homeClickHandler}
+                            onMouseOver={this.mouseOverElement}
+                            onMouseOut={this.mouseOutElement}>
+                            Trang chủ
+                        </p>
+                    </Link>
                 </div>
                 <div >
-                    <p
-                        onClick={this.friendClickHandler}
-                        onMouseOver={this.mouseOverElement}
-                        onMouseOut={this.mouseOutElement}>
-                        Người bạn theo dõi
-                        </p>
+                    <Link to="/friends">
+                        <p
+                            onMouseOver={this.mouseOverElement}
+                            onMouseOut={this.mouseOutElement}>
+                            Người bạn theo dõi
+                            </p>
+                    </Link>
                 </div>
                 <div id="search-bar">
                     <input type="text" />
@@ -81,9 +76,11 @@ class Header extends Component {
                         <button><i className="fas fa-comment-dots"></i></button>
                     </div>
                     <div className="header-btn" onMouseOver={this.mouseOverElement} onMouseOut={this.mouseOutElement}>
-                        <button onClick={this.avatarClickHandler}>
+                            <Link to="/personalInfo">
+                        <button>
                             <img id="avatar" src={Avatar} />
                         </button>
+                            </Link>
                     </div>
                 </div>
                 <div id="options">
