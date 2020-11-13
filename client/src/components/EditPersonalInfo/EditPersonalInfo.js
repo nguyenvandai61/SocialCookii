@@ -39,8 +39,8 @@ class EditPersonalInfo extends Component {
 
     render() {
         return (
-            <div style = {Style}>
-                <a href="personalInfo.html" ><i class="far fa-arrow-alt-circle-left"></i></a>
+            <div className="edit-personal-info">
+                <a href="/personalInfo" ><i class="far fa-arrow-alt-circle-left"></i></a>
                 <div class="content">
                     <div class="grid-item">
                         <p><i class="fas fa-pen"></i>&ensp;<a href="">Chỉnh sửa cá nhân</a></p>
@@ -64,10 +64,15 @@ class EditPersonalInfo extends Component {
                                 <input type="button" value="Đã xong" />
                             </div>
                         </div>
-                        <div>
-                            <label>Ảnh</label> <br />
-                            <img src={Avatar} alt="" height="100px" width="100px" /><br />
-                            <p><input type="button" value="Thay đổi" class="change" /></p>
+                        <div >
+                            <div className="avatar-wrapper">
+                                <div className="avatar-img-wrapper">
+                                    <img src={Avatar} alt="" height="100px" width="100px" />
+                                </div>
+                                <p><button className="change">
+                                    <i className="fas fa-pen"></i>
+                                    </button></p>
+                            </div>
                         </div>
                         <div class="info">
                             <label>Tên</label><br />

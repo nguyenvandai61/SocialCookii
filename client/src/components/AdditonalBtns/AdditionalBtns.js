@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './AdditionalBtns.css';
+import Modal from '../Modal/Modal'
 import PropTypes from 'prop-types';
 
 class AdditionalBtns extends Component {
@@ -16,9 +17,19 @@ class AdditionalBtns extends Component {
 
         document.body.appendChild(script);
     }
-
+    initClickButtonHandler = (modalName, buttonName) => {
+        // Get the modal
+        let modal = document.getElementById(modalName);
+        // Get the button that opens the modal
+        let addBtn = document.getElementsByClassName(buttonName)[0];
+        // When the user clicks the button, open the modal 
+        addBtn.addEventListener('click', () => {
+            modal.style.display = "block";
+        })
+    }
     componentDidMount() {
-
+        this.initClickButtonHandler("add-modal", "add-btn"); 
+        this.initClickButtonHandler("question-modal", "question-btn");   
     }
 
     componentWillReceiveProps(nextProps) {
@@ -48,11 +59,14 @@ class AdditionalBtns extends Component {
                     <button class="add-btn">
                         <i class="fas fa-plus"></i>
                     </button>
-                    <button class="add-btn">
+                    <button class="question-btn">
                         <i class="fas fa-question"></i>
                     </button>
                 </div>
+                <Modal modalName="add-modal" buttonName="add-btn"/>
+                <Modal modalName="question-modal" buttonName="question-btn"/>
             </div>
+
         );
     }
 }

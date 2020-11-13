@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Masonry.css';
+import {
+    Link
+} from 'react-router-dom';
 import image1 from '../../image/dishes/1.jpg'
 import image2 from '../../image/dishes/2.jpg'
 import image3 from '../../image/dishes/3.jpg'
@@ -47,12 +50,14 @@ class Masonry extends Component {
                     <h1>Cookii Gallery</h1>
                     <section className="section">
                         <div className="masonry">
-                            <div className="brick">
-                                <img src={image1} />
-                                <div className="item__details">
-                                    jelly-o brownie sweet
+                            <Link to="/detailPost">
+                                <div className="brick">
+                                    <img src={image1} />
+                                    <div className="item__details">
+                                        jelly-o brownie sweet
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                             <div className="brick">
                                 <img src={image2} />
                                 <div className="item__details">
