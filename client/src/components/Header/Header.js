@@ -27,7 +27,6 @@ class Header extends Component {
             document.querySelector("#options ul").classList.add('show-element');
         else
             document.querySelector("#options ul").classList.remove('show-element');
-
     }
     mouseOverElement(e) {
         e.target.classList.add("hover-effect");
