@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Arvo');
+
+.masonry {
+    column-count: 4;
+    column-gap: 1em;
+    transition: all .5s ease-in-out;
+    column-fill: initial;
+    cursor: pointer;
+    
+}
+
+.brick {
+    /* Masonry bricks or child elements */
+    background-color: #eee;
+    display: inline-block;
+    margin: 0 0 1em;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.masonry .brick:hover img {
+    transition: all .5s ease-in-out;
+    backface-visibility: hidden;
+}
+
+.masonry img, video {
+    max-width: 100%;
+    width: 100%;
+    vertical-align: middle;
+}
