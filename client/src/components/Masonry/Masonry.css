@@ -4,7 +4,9 @@
     column-count: 4;
     column-gap: 1em;
     transition: all .5s ease-in-out;
-    column-fill: initial
+    column-fill: initial;
+    cursor: pointer;
+    
 }
 
 .brick {
