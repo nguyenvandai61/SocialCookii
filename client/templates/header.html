@@ -1,0 +1,189 @@
+<style>
+    header {
+        display: grid;
+        grid-template-columns: 60px auto auto 500px 200px 100px;
+        grid-column-gap: 10px;
+        overflow: hidden;
+        
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: large;
+    }
+    header>div {
+        margin: auto 0;
+        display: inline-grid;
+        padding: 5px;
+    }
+    .hover-effect {
+        background: #262730;
+        color: #fff;
+        border-radius: 25px;
+        text-align: center;
+    }
+    button:focus {outline:0;}
+
+    /* logo */
+    #logo-wrapper {
+    }
+    #logo-wrapper img {
+        width: 100%;
+    }
+    #home p {
+        margin: auto;
+        padding: 10px;
+        width: 90%;
+    }
+    #search-bar input{
+        font-size: 1.5em;
+        
+    }
+    #header-btns {
+        display: inline-block;
+    }
+    .header-btn {
+        display: inline-block;
+        overflow: hidden;
+    }
+    .header-btn button {
+        padding: 0;
+        border-radius: 25px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+        overflow: hidden;
+    }
+    #avatar {
+        background-size:cover;
+        width: inherit;
+        height: inherit;
+    }
+    #options ul {
+        display: none;
+    }
+    #options button {
+        
+        font-size: 1.5em;
+    }
+
+    /* Dropdown Button */
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+</style>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<header>
+    <div id="logo-wrapper">
+        <img  src="../src/logo.png"/>
+    </div>
+    <div id="home">
+        <p class="hover-effect">
+            Trang chủ
+        </p>
+    </div>
+    <div>
+        <p>Người bạn theo dõi</p>
+    </div>
+    <div id="search-bar">
+        <input type="text">
+    </div>
+    <div id="header-btns">
+        <div class="header-btn">
+            <button><i class="fas fa-bell"></i></button>
+        </div>
+        <div class="header-btn">
+            <button><i class="fas fa-comment-dots"></i></button>
+        </div>
+        <div class="header-btn">
+            <button>
+                <img id="avatar" src="../src/avatar.jpg"/>
+            </button>
+        </div>
+    </div>
+    <div id="options">
+        <!-- <button><i class="fas fa-bars"></i></button> -->
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn"><i class="fas fa-bars"></i></button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#">Thêm tài khoản khác</a>
+              <a href="#">Cài đặt</a>
+              <a href="#"> Nhận trợ giúp</a>
+              <a href="#"> Đăng xuất</a>
+            </div>
+          </div>
+        <!-- <ul>
+            <li>
+                Thêm tài khoản khác
+            </li>
+            <li>
+                Cài đặt
+            </li>
+            <li>
+                Nhận trợ giúp
+            </li>
+            <li>
+                Đăng xuất
+            </li>
+        </ul> -->
+    </div>
+</header>
+<script>
+    /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
