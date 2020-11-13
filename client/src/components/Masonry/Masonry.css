@@ -1,14 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Arvo');
-body {
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: #f5f4f4;
-    font-size: 13px;
-    font-family: 'Arvo', monospace;
-}
 
 .masonry {
     column-count: 4;
@@ -34,7 +24,7 @@ body {
     backface-visibility: hidden;
 }
 
-img, video {
+.masonry img, video {
     max-width: 100%;
     width: 100%;
     vertical-align: middle;
