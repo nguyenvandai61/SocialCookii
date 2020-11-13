@@ -7,6 +7,9 @@ import './Header.css';
 class Header extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            dropdown: false
+        }
     }
     homeClickHandler = () => {
         this.props.setPage("home");
@@ -16,6 +19,15 @@ class Header extends Component {
     }
     avatarClickHandler = (e) => {
         this.props.setPage("personalInfo");
+    }
+    barsClickHandler = (e) => {
+        let newState = !this.state.dropdown;
+        this.setState({ 'dropdown': newState })
+        if (newState)
+            document.querySelector("#options ul").classList.add('show-element');
+        else
+            document.querySelector("#options ul").classList.remove('show-element');
+
     }
     mouseOverElement(e) {
         e.target.classList.add("hover-effect");
@@ -43,16 +55,16 @@ class Header extends Component {
                 </div>
                 <div id="home">
                     <p onClick={this.homeClickHandler}
-                    onMouseOver={this.mouseOverElement} 
-                    onMouseOut={this.mouseOutElement}>
+                        onMouseOver={this.mouseOverElement}
+                        onMouseOut={this.mouseOutElement}>
                         Trang chủ
                     </p>
                 </div>
                 <div >
-                    <p 
-                    onClick={this.friendClickHandler}
-                    onMouseOver={this.mouseOverElement} 
-                    onMouseOut={this.mouseOutElement}>
+                    <p
+                        onClick={this.friendClickHandler}
+                        onMouseOver={this.mouseOverElement}
+                        onMouseOut={this.mouseOutElement}>
                         Người bạn theo dõi
                         </p>
                 </div>
@@ -76,22 +88,25 @@ class Header extends Component {
                     </div>
                 </div>
                 <div id="options">
-                    <button onMouseOver={this.mouseOverElement} onMouseOut={this.mouseOutElement}><i className="fas fa-bars"></i></button>
-                    <ul>
-                        <li>
-                            Thêm tài khoản khác
-                        </li>
-                        <li>
-                            Cài đặt
-                        </li>
-                        <li>
-                            Nhận trợ giúp
-                        </li>
-                        <li>
-                            Đăng xuất
-                        </li>
-                    </ul>
+                    <button onClick={this.barsClickHandler}><i className="fas fa-bars"></i></button>
+                    <div class="dropdown">
+                        <ul>
+                            <li>
+                                <p class="">Thêm tài khoản khác</p>
+                            </li>
+                            <li>
+                                <p class="">Cài đặt</p>
+                            </li>
+                            <li>
+                                <p class="">Nhận trợ giúp</p>
+                            </li>
+                            <li>
+                                <p class="">Đăng xuất</p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+
             </header>
         );
     }
