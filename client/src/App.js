@@ -12,6 +12,7 @@ import {
 import DetailPost from './components/DetailPost/DetailPost';
 import Friend from './components/Friend/Friend';
 import AdditionalBtns from './components/AdditonalBtns/AdditionalBtns';
+import AddPost from './components/AddPost/AddPost';
 function App() {
   return (
     <div className="App">
@@ -28,6 +29,11 @@ function App() {
           <Route path="/editPersonalInfo">
             <Headers/>
             <EditPersonalInfo />
+            <AdditionalBtns/>
+          </Route>
+          <Route path="/addPost">
+            <Headers/>
+            <AddPost />
             <AdditionalBtns/>
           </Route>
           <Route path="/detailPost">

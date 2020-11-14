@@ -57,7 +57,7 @@ class AdditionalBtns extends Component {
             <div>
                 <div class="additional-btns">
                     <button class="add-btn">
-                        <i class="fas fa-plus"></i>
+                        <a href="/AddPost"></a><i class="fas fa-plus"></i>
                     </button>
                     <button class="question-btn">
                         <i class="fas fa-question"></i>
