@@ -17,6 +17,9 @@ const getAllPost = (req, res) => {
 const getPostByHashTag = (req, res) => {
     return PostService.getPostByHashTag(req, res);
 }
+const getPostByTagname = (req, res) => {
+    return PostService.getPostByTagname(req, res);
+}
 const deletePost = (req, res) => {
     return PostService.deletePost(req, res);
 }
@@ -26,5 +29,6 @@ module.exports = {
     getPost,
     getAllPost,
     getPostByHashTag,
-    deletePost
+    deletePost,
+    getPostByTagname
 }

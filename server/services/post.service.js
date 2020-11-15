@@ -32,6 +32,20 @@ const getPostByHashTag = (req, res) => {
         return res.json({"data" : data});
     })
 }
+
+const getPostByTagname = (req, res) => {
+    Post.find().populate({
+        path: 'hashtagIds',
+        match: {
+          type: req.params.hashtagname
+        }
+      }).exec(function(err, posts) {
+        if(err) return res.status(500).send(err);
+        if(posts == null) return res.status(404).json({ message: "Cannot find Post" });
+       
+        return res.status(200).json(posts);
+      });
+}
 const updatePost = (req, res) => {
     const content = req.body;
     console.log(content);
@@ -60,6 +74,7 @@ module.exports = {
     getPost,
     getAllPost,
     getPostByHashTag,
-    deletePost
+    deletePost,
+    getPostByTagname
 }
 

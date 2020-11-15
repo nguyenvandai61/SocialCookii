@@ -20,10 +20,13 @@ router.post('/', (req, res)=> {
      return postController.getPost(req, res);
  })
 
- router.get('/hashtag/:hashtagIds', (req, res) => {
-    return postController.getPostByHashTag(req, res);
-})
+//  router.get('/hashtag/:hashtagname', (req, res) => {
+//     return postController.getPostByHashTag(req, res);
+// })
 
+router.get('/hashtag/:hashtagname', (req, res) => {
+    return postController.getPostByTagname(req, res);
+})
 router.put('/', (req, res)=> postController.updatePost) ;  
  
 router.delete('/:id', (req, res) => {
