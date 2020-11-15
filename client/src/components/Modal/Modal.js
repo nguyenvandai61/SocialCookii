@@ -52,7 +52,7 @@ class Modal extends Component {
                 <div className="modal-content">
                     <div className="modal-header">
                         <span id={modalObj.buttonName+"-close"} className="close">&times;</span>
-                        <h2>{modalObj.modalHeader}</h2>
+                        {/* <h2>{modalObj.modalHeader}</h2> */}
                     </div>
                     <div className="modal-body">
                         {modalObj.componentRender}

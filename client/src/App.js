@@ -1,18 +1,19 @@
 import './App.css';
+import Admin from './components/Admin'
 import HomePage from './components/Homepage/Homepage';
 import PersonalInfo from './components/PersonalInfo/PersonalInfo';
 import EditPersonalInfo from './components/EditPersonalInfo/EditPersonalInfo';
 import Headers from './components/Header/Header'
+import DetailPost from './components/DetailPost/DetailPost';
+import Friend from './components/Friend/Friend';
+import AdditionalBtns from './components/AdditonalBtns/AdditionalBtns';
+import AddPost from './components/AddPost/AddPost';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
-import DetailPost from './components/DetailPost/DetailPost';
-import Friend from './components/Friend/Friend';
-import AdditionalBtns from './components/AdditonalBtns/AdditionalBtns';
-import AddPost from './components/AddPost/AddPost';
 function App() {
   return (
     <div className="App">
@@ -43,6 +44,9 @@ function App() {
             <Headers/>
             <Friend/>
             <AdditionalBtns/>
+          </Route>
+          <Route path="/admin">
+            <Admin/>
           </Route>
         </Switch>
       </Router>
