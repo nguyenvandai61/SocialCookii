@@ -13,8 +13,13 @@ const deleteUser = (req, res) => {
     let query = req.body.query;
     return UserService.deleteUser(res, query);
 }
+
+const checkLogin = (req, res) => {
+    return  UserService.checkLogin(req, res);
+}
 module.exports = {
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    checkLogin
 }

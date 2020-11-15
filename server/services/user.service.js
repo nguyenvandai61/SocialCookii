@@ -63,11 +63,31 @@ const deleteAllUsers = (req, res) => {
   })
 }
 
+const checkLogin = (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  User.findOne({username: username}, (err, user) => {
+    if(err) return res.json(err);
+    else if(!user) return res.json({err: 'Username and Password are incorrect'})
+    else {
+      if(password === user.password) {
+        res.json({
+          user: user,
+          message: 'Login successfully'
+        })
+      }else res.json({
+        message: 'Username and Password are incorrect'
+      })
+    } 
+  })
+}
+
 module.exports = {
   getUser,
   createUser,
   createUsers,
   updateUser,
   deleteUser,
-  deleteAllUsers
+  deleteAllUsers,
+  checkLogin
 }

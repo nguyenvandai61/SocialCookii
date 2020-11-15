@@ -9,6 +9,7 @@ router.post('/', (req, res)=> {
         return userController.createUsers(req, res)
     return userController.createUser(req, res)
 })
+router.post('/login', (req, res) => userController.checkLogin(req, res))
 router.put('/', (req, res)=> userController.updateUser)
 router.delete('/', (req, res)=> {
     // Neu req.body rong thi xoa het

@@ -41,4 +41,21 @@ describe('Test API user', () => {
                 });
              });
          });
+
+    describe('Check Login', () => {
+         it('it checkes login', (done) => {
+            let body = {
+                username: "Ut Tran",
+                password: "12345",
+            }
+         chai.request(app)
+             .post('/api/user/login')
+             .send(body)
+             .end((err, res) => {
+                   (res).body.should.have.property('username').eql(body.username);
+                   (res).body.should.have.property('password').eql(body.password);
+                   done();
+                });
+             });
+         });      
 });
