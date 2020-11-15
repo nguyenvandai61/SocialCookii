@@ -8,9 +8,8 @@ body {
   font-size: 13px;
   font-family: 'Arvo', monospace;
 }
-.fas {
-  font-size: 1.2em;
-  
+a {
+  color : black;
 }
 button:focus {
   outline: none;

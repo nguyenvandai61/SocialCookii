@@ -15,13 +15,16 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Masonry from './components/Masonry/Masonry';
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route exact path="/"> 
-            <HomePage/>
+            <Headers/>
+            <Masonry/>
+            <AdditionalBtns/>
           </Route>
           <Route path="/personalInfo">
             <Headers/>
