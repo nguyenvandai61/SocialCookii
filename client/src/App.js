@@ -8,6 +8,7 @@ import DetailPost from './components/DetailPost/DetailPost';
 import Friend from './components/Friend/Friend';
 import AdditionalBtns from './components/AdditonalBtns/AdditionalBtns';
 import AddPost from './components/AddPost/AddPost';
+import Login from './components/Login/Login';
 import {
   BrowserRouter as Router,
   Switch,
@@ -44,6 +45,9 @@ function App() {
             <Headers/>
             <Friend/>
             <AdditionalBtns/>
+          </Route>
+          <Route path="/login">
+            <Login/>
           </Route>
           <Route path="/admin">
             <Admin/>

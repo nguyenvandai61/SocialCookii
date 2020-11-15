@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {
+    Link
+} from 'react-router-dom';
 import './style.css'
 class index extends Component {
     constructor(props) {
@@ -150,7 +153,9 @@ class index extends Component {
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-success" data-dismiss="modal">Save Changes</button>
-                    <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <Link to="/login">
+                        <button class="btn btn-danger" data-dismiss="modal">Log out</button>
+                    </Link>
                 </div>
             </div>
         </div>
