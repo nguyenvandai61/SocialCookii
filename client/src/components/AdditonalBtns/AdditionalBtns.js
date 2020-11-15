@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './AdditionalBtns.css';
 import Modal from '../Modal/Modal'
 import PropTypes from 'prop-types';
+import AddPost from '../AddPost/AddPost'
+import Question from '../Question/Question';
 
 class AdditionalBtns extends Component {
     constructor(props) {
@@ -53,6 +55,18 @@ class AdditionalBtns extends Component {
     }
 
     render() {
+        let addModalObj = {
+            modalName: "add-modal",
+            buttonName: "add-btn",
+            modalHeader: "Tạo bài viết",
+            componentRender:<AddPost/>
+        }
+        let questionModalObj = {
+            modalName: "question-modal",
+            buttonName: "question-btn",
+            modalHeader: "Câu hỏi",
+            componentRender:<Question/>
+        }
         return (
             <div>
                 <div class="additional-btns">
@@ -63,8 +77,8 @@ class AdditionalBtns extends Component {
                         <i class="fas fa-question"></i>
                     </button>
                 </div>
-                <Modal modalName="add-modal" buttonName="add-btn"/>
-                <Modal modalName="question-modal" buttonName="question-btn"/>
+                <Modal modalObj={addModalObj}/>
+                <Modal modalObj={questionModalObj}/>
             </div>
 
         );

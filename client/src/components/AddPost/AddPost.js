@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import Avatar from '../../avatar.jpg';
 
 
-class AddPost extends Component{
-    constructor(props){
+class AddPost extends Component {
+    constructor(props) {
         super(props);
     }
     componentWillMount() {
@@ -41,25 +41,28 @@ class AddPost extends Component{
 
     }
     render() {
-        return(
-            <div align="center" className = "add-post">
+        return (
+            <div class="new-post">
                 <h1>Tạo bài viết</h1>
                 <form action="" method="">
-                    <div class="header">
-                        <img src={Avatar} alt="img" height="100px" width="100px" class="avatar"/>
-                        <h2>Your Name</h2>
-                    </div>
                     <div>
-                        <textarea rows="9" cols="70"> 
-                            Bạn đang muốn chia sẻ gì thế?
-        
-                        </textarea> <br/>
-                        <i class="fas fa-images"></i> &ensp;
-                        <i class="fas fa-user-plus"></i> &ensp;
-                        <i class="fas fa-map-marker-alt"></i> 
+                        <textarea class="post-area" cols="70" placeholder="Bạn đang muốn chia sẻ gì thế?">
+                        </textarea>
+                        <div class="buttons-wrapper">
+                            <div class="post-options">
+                                <button type="post">
+                                    <i class="fas fa-images" style={{ color: "rgb(64, 91, 247)" }}></i>
+                                </button>
+                                <button>
+                                    <i class="fas fa-user-plus" style={{ color: "rgb(28, 83, 23)" }}></i>
+                                </button>
+                                <button>
+                                    <i class="fas fa-map-marker-alt" style={{ color: "rgb(255, 74, 74)" }}></i>
+                                </button>
+                            </div>
+                            <input class="submit-btn" type="submit" value="Đăng" />
+                        </div>
                     </div>
-                    
-                    <input type="submit" value="Đăng" />
                 </form>
             </div>
         );
@@ -67,6 +70,6 @@ class AddPost extends Component{
 }
 AddPost.propTypes = {
 
-};
+                    };
 
 export default AddPost;

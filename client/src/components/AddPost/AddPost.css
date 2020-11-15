@@ -1,7 +1,55 @@
-.avatar{
+.avatar {
     border-radius: 50%;
 }
 
-.header{
-    display: inline;
+
+.new-post {
+    position: relative;
+    background-color: #fff;
+    margin: auto;
+    width: 80%;
+}
+
+.post-area {
+    height: 60px;
+    width: 100%;
+    margin: 10px;
+}
+
+.new-post .buttons-wrapper {
+    display: grid;
+    grid-template-columns: 70% 20%;
+    
+}
+.new-post .post-options {
+
+    justify-content: start;
+}
+.new-post button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    font-size: 1.2em;
+    border: none;
+}
+
+.new-post input[type=post] {
+    padding: 20px;
+    width: 92%;
+    border: none;
+    font-size: 18px;
+    background-color: #f1f2f6;
+}
+.new-post .submit-btn {
+    justify-content: end;
+    border: none;
+    padding: 5px 16px;
+    color: #ffffff;
+    background-color: #57606f;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 25px; 
 }
