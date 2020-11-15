@@ -72,7 +72,8 @@ const checkLogin = (req, res) => {
     else {
       if(password === user.password) {
         res.json({
-          user: user,
+          username: user.username,
+          password: user.password,
           message: 'Login successfully'
         })
       }else res.json({
