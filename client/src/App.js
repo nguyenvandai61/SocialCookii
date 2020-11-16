@@ -9,51 +9,55 @@ import Friend from './components/Friend/Friend';
 import AdditionalBtns from './components/AdditonalBtns/AdditionalBtns';
 import AddPost from './components/AddPost/AddPost';
 import Login from './components/Login/Login';
+import Masonry from './components/Masonry/Masonry';
+import Register from './components/Register/Register';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
-import Masonry from './components/Masonry/Masonry';
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/"> 
-            <Headers/>
-            <Masonry/>
-            <AdditionalBtns/>
+          <Route exact path="/">
+            <Headers />
+            <Masonry />
+            <AdditionalBtns />
           </Route>
           <Route path="/personalInfo">
-            <Headers/>
+            <Headers />
             <PersonalInfo />
-            <AdditionalBtns/>
+            <AdditionalBtns />
           </Route>
           <Route path="/editPersonalInfo">
-            <Headers/>
+            <Headers />
             <EditPersonalInfo />
-            <AdditionalBtns/>
+            <AdditionalBtns />
           </Route>
           <Route path="/addPost">
-            <Headers/>
+            <Headers />
             <AddPost />
-            <AdditionalBtns/>
+            <AdditionalBtns />
           </Route>
           <Route path="/detailPost">
-            <DetailPost/>
+            <DetailPost />
           </Route>
           <Route path="/friends">
-            <Headers/>
-            <Friend/>
-            <AdditionalBtns/>
+            <Headers />
+            <Friend />
+            <AdditionalBtns />
           </Route>
           <Route path="/login">
-            <Login/>
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
           </Route>
           <Route path="/admin">
-            <Admin/>
+            <Admin />
           </Route>
         </Switch>
       </Router>
