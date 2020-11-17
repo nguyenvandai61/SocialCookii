@@ -4,6 +4,7 @@ const hashtag = require('./hashtag.routes');
 const post = require('./post.routes');
 const comment = require('./comment.routes');
 const notification = require('./notification.routes');
+const friend = require('./friend.routes');
 var router = express.Router();
 
 
@@ -12,6 +13,7 @@ router.use('/user', user);
 router.use('/hashtag', hashtag);
 router.use('/post', post);
 router.use('/comment', comment);
+router.use('/friend', friend);
 router.use('/notification', notification);
 
 module.exports = router;
