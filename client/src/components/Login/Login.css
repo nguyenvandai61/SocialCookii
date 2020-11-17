@@ -35,7 +35,7 @@
     margin-bottom: 1.5em;
     text-transform: uppercase;
 }
-.center-container-login .sub-main-w3 input[type="email"], .sub-main-w3 input[type="password"] {
+.center-container-login .sub-main-w3 input[type="text"], .sub-main-w3 input[type="password"] {
     outline: none;
     font-size: .9em;
     padding: 1em 3em 1em 1em;
