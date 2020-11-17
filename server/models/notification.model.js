@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Notification = new Schema({
+const notification = new Schema({
     url: {
         type: String,
         maxlength: 255,
@@ -27,4 +27,4 @@ const Notification = new Schema({
     },
 })
 
-module.exports = mongoose.model('Notification', Notification)
+module.exports = mongoose.model('Notification', notification)
