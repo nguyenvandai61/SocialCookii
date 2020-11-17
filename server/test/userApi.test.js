@@ -28,6 +28,7 @@ describe('Test API user', () => {
                     done();
                 });
         });
+        
     });
     describe('#Get all users', () => {
         it('it gets all users', (done) => {
@@ -50,6 +51,19 @@ describe('Test API user', () => {
                 .send(body)
                 .end((err, res) => {
                     (res).should.have.status(200);
+                    done();
+                });
+        });
+        it('it logins a user', (done) => {
+            let body = {
+                username: "dai",
+                password: "12",
+            }
+            chai.request(app)
+                .post('/api/user/login')
+                .send(body)
+                .end((err, res) => {
+                    (res).should.have.status(401);
                     done();
                 });
         });

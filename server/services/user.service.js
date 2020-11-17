@@ -1,28 +1,16 @@
 var User = require('../models/user.model');
 
-const getUser = (req, res) => {
-  User.find(req.query, (err, data) => {
-    if (err) return res.status(500).send(err);
-    res.json({"data": data});
-  })
+const getUser = (query) => {
+  return User.find(query);
 }
 
 const getAllUser = (req, res) => {
-  User.find({}, (err, data) => {
-    if (err) return res.status(500).send(err);
-    res.status(200).json({"data": data})
-  })
+  return User.find({})
 }
 
-
-
-
-const createUser = (res, user) => {
+const createUser = (user) => {
   const newUser = new User(user);
-  newUser.save(err => {
-    if (err) return res.status(500).send(err);
-    return res.status(200).json(newUser);
-  });
+  return newUser.save();
 }
 
 const createUsers = (req, res) => {

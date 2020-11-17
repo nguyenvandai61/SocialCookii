@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Login.css';
+// import { useHistory } from "react-router"
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            password: ''
+            user: {
+                username: '',
+                password: '',
+                role: ''
+            }
         };    
         this.onTextBoxUsername = this.onTextBoxUsername.bind(this);
         this.onTextBoxPassword = this.onTextBoxPassword.bind(this);
@@ -17,37 +21,76 @@ class Login extends Component {
     }
     
     componentDidMount() {
+        console.log(this);
+    console.log(this.props);
     }
 
     onTextBoxUsername(event){ 
-        this.setState({username: event.target.value})
+        this.setState((prevState) => {
+            let newUser = Object.assign({}, prevState.user);
+            newUser.username = event.target.value;
+            return {user: newUser}
+        })
         console.log(this.state.username);
     }
     onTextBoxPassword(event){
-        this.setState({ password: event.target.value})
+        this.setState((prevState) => {
+            let newUser = Object.assign({}, prevState.user);
+            newUser.password = event.target.value;
+            return {user: newUser}
+        })
     }
-
-    onSubmit(){
+    onSuccessLogin = (role) => {
+        console.log(this.props);
+        // this.props.history = [];
+        if (role == "admin") {
+            window.location.href = "/admin";
+            // useHistory().push("/admin");
+            // this.props.history.push("/admin");
+        }
+        else {
+            
+            window.location.href = "/";
+            // this.props.history.push("/");
+            
+        }
+    }
+    onSubmit(e){
+        e.preventDefault();
         console.log('clicked');
         const {
             username,
             password,
-          } = this.state;
+          } = this.state.user;
           fetch('/api/user/login', {
             method: "POST",
             body: JSON.stringify({
               username: username,
               password: password,
             })
-          }).then(data => this.setState({username: data.username, password: data.password}))
-    }
+          }).then(res => {
+              console.log(res);
+              if (res.status == 200) {
+                res.json().then(data => {
+                    this.setState({user: data.data})
+                    
+                    let role = data.data.role;
+                    this.onSuccessLogin(role);
+                })
+              } 
+              else {
 
+              } 
+          })
+    }
+   
     componentWillReceiveProps(nextProps) {
 
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-
+        if (nextState == this.state) return false;
+        return true;
     }
 
     componentWillUpdate(nextProps, nextState) {
@@ -65,11 +108,11 @@ class Login extends Component {
 
 
     render() {
-        console.log('username: ',this.state.username)
         const {
             username,
             password,
-          } = this.state
+          } = this.state.user
+        console.log(username);
         return (
             <div class="center-container-login">
                 <div class="header-w3l">
