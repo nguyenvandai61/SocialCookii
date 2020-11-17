@@ -5,12 +5,12 @@ var should = chai.should();
 chai.use(chaiHttp);
 let app = require('../server');
 //Our parent block
-describe('Test API comment', () => {
+describe('TEST API COMMENT', () => {
     beforeEach((done) => {
         //Before each test we empty the database in your case
         done();
     });
-    describe('Create a comment', () => {
+    describe('#Create a comment', () => {
         it('it creates a comment', (done) => {
             let body = {
                 content: "Ngon qua",

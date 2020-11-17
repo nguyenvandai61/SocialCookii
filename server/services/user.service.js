@@ -7,12 +7,19 @@ const getUser = (req, res) => {
   })
 }
 
+const getAllUser = (req, res) => {
+  User.find({}, (err, data) => {
+    if (err) return res.status(500).send(err);
+    res.status(200).json({"data": data})
+  })
+}
+
+
 
 
 const createUser = (res, user) => {
   const newUser = new User(user);
-  newUser.save(err => {  
-    console.log(err)
+  newUser.save(err => {
     if (err) return res.status(500).send(err);
     return res.status(200).json(newUser);
   });
@@ -63,11 +70,32 @@ const deleteAllUsers = (req, res) => {
   })
 }
 
+const checkLogin = (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  User.findOne({username: username}, (err, user) => {
+    if(err) return res.json(err);
+    else if(!user) return res.json({err: 'Username and Password are incorrect'})
+    else {
+      if(password === user.password) {
+        res.json({
+          user: user,
+          message: 'Login successfully'
+        })
+      }else res.json({
+        message: 'Username and Password are incorrect'
+      })
+    } 
+  })
+}
+
 module.exports = {
   getUser,
+  getAllUser,
   createUser,
   createUsers,
   updateUser,
   deleteUser,
-  deleteAllUsers
+  deleteAllUsers,
+  checkLogin
 }

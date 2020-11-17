@@ -10,7 +10,7 @@ describe('Test API user', () => {
         //Before each test we empty the database in your case
         done();
     });
-    describe('Create a user', () => {
+    describe('#Create a user', () => {
         it('it creates a user', (done) => {
             let body = {
                 username: "dai",
@@ -25,6 +25,31 @@ describe('Test API user', () => {
                     (res).body.should.have.property('username').eql(body.username);
                     (res).body.should.have.property('password').eql(body.password);
                     (res).body.should.have.property('role').eql(body.role);
+                    done();
+                });
+        });
+    });
+    describe('#Get all users', () => {
+        it('it gets all users', (done) => {
+            chai.request(app)
+                .get('/api/user')
+                .end((err, res) => {
+                    (res).should.have.status(200);
+                    done();
+                });
+        });
+    });
+    describe('#Login a user', () => {
+        it('it logins a user', (done) => {
+            let body = {
+                username: "dai",
+                password: "123",
+            }
+            chai.request(app)
+                .post('/api/user/login')
+                .send(body)
+                .end((err, res) => {
+                    (res).should.have.status(200);
                     done();
                 });
         });
