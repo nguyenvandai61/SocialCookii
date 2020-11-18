@@ -1,8 +1,8 @@
-var notificationService = require('../services/notification.service');
+var NotificationService = require('../services/notification.service');
 
 const createNotification = (req, res) => {
     let Notification = req.body;
-    return notificationService.createNotification(res, Notification);
+    return NotificationService.createNotification(res, Notification);
 }
 
 const updateNotification = (req, res) => {
@@ -15,8 +15,14 @@ const deleteNotification = (req, res) => {
     return NotificationService.deleteNotification(res, query);
 }
 
+
+const getNotification = (req, res) => {
+    return NotificationService.getNotification(req, res);
+}
+
 module.exports = {
     createNotification,
     updateNotification,
     deleteNotification,
+    getNotification,
 }
