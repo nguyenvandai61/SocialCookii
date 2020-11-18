@@ -1,4 +1,4 @@
-var Friend = require('../models/Friend.model');
+var Friend = require('../models/friend.model');
 
 const createFriend = (res, friend) => {
     const newFriend = new Friend(friend);
@@ -30,5 +30,5 @@ const updateFriend = (res, query, newData) => {
 module.exports = {
     createFriend,
     getFriend,
-    updateFriend
+    updateFriend,
 }
