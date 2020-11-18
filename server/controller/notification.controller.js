@@ -5,6 +5,18 @@ const createNotification = (req, res) => {
     return notificationService.createNotification(res, Notification);
 }
 
+const updateNotification = (req, res) => {
+    let content = req.body;
+    return NotificationService.updateNotification(res, content.query, content.newContent);
+}
+
+const deleteNotification = (req, res) => {
+    let query = req.body.query;
+    return NotificationService.deleteNotification(res, query);
+}
+
 module.exports = {
     createNotification,
+    updateNotification,
+    deleteNotification,
 }
