@@ -51,52 +51,52 @@ class Masonry extends Component {
                     <section className="section">
                         <div className="masonry">
                             <Link to="/detailPost">
-                                <div className="brick">
+                                <div className="card card-style brick">
                                     <img src={image1} />
                                     <div className="item__details">
                                         jelly-o brownie sweet
                                     </div>
                                 </div>
                             </Link>
-                            <div className="brick">
+                            <div className="card card-style brick">
                                 <img src={image2} />
                                 <div className="item__details">
                                     jelly-o brownie sweet
                                 </div>
                             </div>
-                            <div className="brick">
+                            <div className="card card-style brick">
                                 <img src={image3} />
                                 <div className="item__details">
                                     jelly-o brownie sweet
                                     </div>
                             </div>
-                            <div className="brick">
+                            <div className="card card-style brick">
                                 <img src={image4} />
                                 <div className="item__details">
                                     jelly-o brownie sweet</div>
                             </div>
-                            <div className="brick">
+                            <div className="card card-style brick">
                                 <img src={image5} />
                                 <div className="item__details">
                                     jelly-o brownie sweet</div>
                             </div>
-                            <div className="brick">
+                            <div className="card card-style brick">
                                 <img src={image6} />
                                 <div className="item__details">
                                     jelly-o brownie sweet
                                 </div>                           
                             </div>
-                            <div className="brick">
+                            <div className="card card-style brick">
                                 <img src={image4} />
                                 <div className="item__details">
                                     jelly-o brownie sweet</div>
                             </div>
-                            <div className="brick">
+                            <div className="card card-style brick">
                                 <img src={image5} />
                                 <div className="item__details">
                                     jelly-o brownie sweet</div>
                             </div>
-                            <div className="brick">
+                            <div className="card card-style brick">
                                 <img src={image6} />
                                 <div className="item__details">
                                     jelly-o brownie sweet

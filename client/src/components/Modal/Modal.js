@@ -12,11 +12,12 @@ class Modal extends Component {
     }
 
     componentDidMount() {
-        var modal = document.getElementById(this.props.modalName);
+        let {modalObj} = this.props
+        var modal = document.getElementById(modalObj.modalName);
         // Get the button that opens the modal
-        var btn = document.getElementsByClassName(this.props.buttonName)[0];
+        var btn = document.getElementsByClassName(modalObj.buttonName)[0];
         // Get the <span> element that closes the modal
-        var span = document.getElementById(this.props.buttonName+"-close");
+        var span = document.getElementById(modalObj.buttonName+"-close");
         console.log(span);
         // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
@@ -45,20 +46,20 @@ class Modal extends Component {
     }
 
     render() {
+        let {modalObj} = this.props;
         return (
-            <div id={this.props.modalName} className="modal">
+            <div id={modalObj.modalName} className="modal">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <span id={this.props.buttonName+"-close"} className="close">&times;</span>
-                        <h2>Modal Header</h2>
+                        <span id={modalObj.buttonName+"-close"} className="close">&times;</span>
+                        {/* <h2>{modalObj.modalHeader}</h2> */}
                     </div>
                     <div className="modal-body">
-                        <p>Some text in the Modal Body</p>
-                        <p>Some other text...</p>
+                        {modalObj.componentRender}
                     </div>
-                    <div className="modal-footer">
+                    {/* <div className="modal-footer">
                         <h3>Modal Footer</h3>
-                    </div>
+                    </div> */}
                 </div>
 
             </div>

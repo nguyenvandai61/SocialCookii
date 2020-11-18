@@ -1,38 +1,99 @@
 <html>
-    <head>
-        <style>
-            .avatar{
-                border-radius: 50%;
-            }
-            
-            .header{
-                display: inline;
-            }
-        </style>
-        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    </head>
-    <body>
-        <div align="center">
-            <h1>Tạo bài viết</h1>
-            <form action="" method="">
-                <div class="header">
-                    <img src="../src/avatar.jpg" alt="img" height="100px" width="100px" class="avatar"/>
-                    <h2>Your Name</h2>
-                </div>
-                <div>
-                    <textarea rows="9" cols="70"> 
-                        Bạn đang muốn chia sẻ gì thế?
-    
-                    </textarea> <br>
-                    <i class="fas fa-images"></i>
-                    <i class="fas fa-user-plus"></i>
-                    <i class="fas fa-map-marker-alt"></i> 
-                </div>
-                
-                <input type="submit" value="Đăng" />
-            </form>
-        </div>
-        
 
-    </body>
+<head>
+    <style>
+        .avatar {
+            border-radius: 50%;
+        }
+
+
+        .new-post {
+            position: relative;
+            background-color: #fff;
+            margin: 20px;
+            width: 80%;
+        }
+
+        .post-area {
+            height: 60px;
+            width: 100%;
+            margin: 10px;
+        }
+
+        .new-post .buttons-wrapper {
+            display: grid;
+            grid-template-columns: 70% 20%;
+            
+        }
+        .new-post .post-options {
+
+            justify-content: start;
+        }
+        .new-post button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-sizing: border-box;
+            font-size: 1.2em;
+            border: none;
+        }
+
+        .new-post input[type=post] {
+            padding: 20px;
+            width: 92%;
+            border: none;
+            font-size: 18px;
+            background-color: #f1f2f6;
+        }
+        .new-post .submit-btn {
+            justify-content: end;
+            border: none;
+            padding: 5px 16px;
+            color: #ffffff;
+            background-color: #57606f;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 25px; 
+        }
+        
+    </style>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+
+<body>
+    <div class="new-post" align="center">
+        <h1>Tạo bài viết</h1>
+        <form action="" method="">
+            <div class="header">
+                <img src="../src/avatar.jpg" alt="img" height="100px" width="100px" class="avatar" />
+                <h2>Your Name</h2>
+            </div>
+            <div>
+
+                <textarea class="post-area" cols="70" placeholder="Bạn đang muốn chia sẻ gì thế?">
+                    </textarea>
+                <div class="buttons-wrapper">
+                    <div class="post-options">
+                        <button type="post">
+                            <i class="fas fa-images" style="color: rgb(64, 91, 247)"></i>
+                        </button>
+                        <button>
+                            <i class="fas fa-user-plus" style="color: rgb(28, 83, 23)"></i>
+                        </button>
+                        <button>
+                            <i class="fas fa-map-marker-alt" style="color: rgb(255, 74, 74)"></i>
+                        </button>
+                    </div>
+                    <input class="submit-btn" type="submit" value="Đăng" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+</body>
+
 </html>

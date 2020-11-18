@@ -55,13 +55,13 @@ class EditPersonalInfo extends Component {
                     <div class="grid-item">
                         <div class="grid2">
                             <div>
-                                <h1>Chỉnh sửa hồ sơ</h1>
+                                <h3>Chỉnh sửa hồ sơ</h3>
                                 <p>Mọi người sẽ biết đến bạn qua thông tin bên dưới </p>
                             </div>
                             <div class="grid2">
 
-                                <input type="button" value="Hủy" />
-                                <input type="button" value="Đã xong" />
+                                <input className="btn btn-danger" type="button" value="Hủy" />
+                                <input className="btn btn-success" type="button" value="Đã xong" />
                             </div>
                         </div>
                         <div >

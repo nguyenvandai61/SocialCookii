@@ -9,7 +9,8 @@
 .additional-btns button {
     margin: 2px;
     border-radius: 50%;
-    padding: 15px;
+    width: 50px;
+    height: 50px;
     outline: none;
     border-width: solid 1px #111;
 }

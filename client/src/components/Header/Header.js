@@ -58,7 +58,7 @@ class Header extends Component {
                         <p
                             onMouseOver={this.mouseOverElement}
                             onMouseOut={this.mouseOutElement}>
-                            Người bạn theo dõi
+                            Theo dõi
                             </p>
                     </Link>
                 </div>
@@ -96,9 +96,11 @@ class Header extends Component {
                             <li>
                                 <p class="">Nhận trợ giúp</p>
                             </li>
+                            <Link to="/login">
                             <li>
                                 <p class="">Đăng xuất</p>
                             </li>
+                            </Link>
                         </ul>
                     </div>
                 </div>
