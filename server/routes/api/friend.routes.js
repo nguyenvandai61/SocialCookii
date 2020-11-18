@@ -9,4 +9,9 @@ router.post('/', (req, res) => {
         return friendController.createFriend(req, res)
     return friendController.createFriend(req, res)
 })
+
+router.get('/', (req, res)=> friendController.getFriend(req, res))
+
+router.put('/', (req, res)=> friendController.updateFriend)
+
 module.exports = router
