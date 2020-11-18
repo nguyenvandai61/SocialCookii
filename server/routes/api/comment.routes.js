@@ -9,4 +9,6 @@ router.post('/', (req, res) => {
     return commentController.createComment(req, res);
 })
 
+router.put('/', (req, res)=> commentController.updateComment(req, res));
+
 module.exports = router

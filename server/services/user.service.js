@@ -1,21 +1,16 @@
 var User = require('../models/user.model');
 
-const getUser = (req, res) => {
-  User.find(req.query, (err, data) => {
-    if (err) return res.status(500).send(err);
-    res.json({"data": data});
-  })
+const getUser = (query) => {
+  return User.find(query);
 }
 
+const getAllUser = (req, res) => {
+  return User.find({})
+}
 
-
-const createUser = (res, user) => {
+const createUser = (user) => {
   const newUser = new User(user);
-  newUser.save(err => {  
-    console.log(err)
-    if (err) return res.status(500).send(err);
-    return res.status(200).json(newUser);
-  });
+  return newUser.save();
 }
 
 const createUsers = (req, res) => {
@@ -44,30 +39,19 @@ const updateUser = (res, query, newData) => {
 }
 
 const deleteUser = (res, query) => {
-   User.deleteOne(query, (err, data) => {
-    if (err) return res.status(500).send(err);
-    const response = {
-        message: "User successfully deleted"
-    };
-    return res.status(200).send(response);
-  })
+   return User.deleteOne(query)
 }
 
 const deleteAllUsers = (req, res) => {
-  User.deleteMany({}, (err, data) => {
-    if (err) return res.status(500).send(err);
-    const response = {
-        message: "All questions successfully deleted"
-    };
-    return res.status(200).send(response);
-  })
+  return User.deleteMany({});
 }
 
 module.exports = {
   getUser,
+  getAllUser,
   createUser,
   createUsers,
   updateUser,
   deleteUser,
-  deleteAllUsers
+  deleteAllUsers,
 }

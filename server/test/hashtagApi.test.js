@@ -10,7 +10,7 @@ describe('Test API hashtag', () => {
         //Before each test we empty the database in your case
         done();
     });
-    describe('Create a hashtag', () => {
+    describe('#Create a hashtag', () => {
         it('it creates a hashtag', (done) => {
             let body = {
                 hashtagName: "pizza"

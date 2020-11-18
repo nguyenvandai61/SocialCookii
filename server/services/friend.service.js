@@ -1,30 +1,17 @@
 var Friend = require('../models/friend.model');
 
-const createFriend = (res, friend) => {
+const createFriend = (friend) => {
     const newFriend = new Friend(friend);
-    newFriend.save(err => {
-        console.log(err)
-        if (err) return res.status(500).send(err);
-        return res.status(200).json(newFriend);
-    });
+    return newFriend.save();
 }
 
-const getFriend = (req, res) => {
-    Friend.find(req.query, (err, data) => {
-        if (err) return res.status(500).send(err);
-        res.json({ "data": data });
-    })
+const getFriend = (query) => {
+    return Friend.find(query);
 }
 
-const updateFriend = (res, query, newData) => {
+const updateFriend = (query, newData) => {
     const content = req.body;
-    Friend.findOneAndUpdate(content.query, content.newData, function (err) {
-        if (err) return res.status(500).send(err);
-        const response = {
-            message: "Friend successfully updated"
-        };
-        return res.status(200).send(response);
-    });
+    return Friend.findOneAndUpdate(query, newData);
 }
 
 module.exports = {

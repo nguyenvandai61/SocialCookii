@@ -3,12 +3,13 @@ const userController = require('../../controller/user.controller');
 var router = express.Router();
 
 
-router.get('/', (req, res)=> userController.getUser(req, res))
+router.get('/', (req, res)=> userController.getAllUser(req, res))
 router.post('/', (req, res)=> {
     if (Array.isArray(req.body))
         return userController.createUsers(req, res)
     return userController.createUser(req, res)
 })
+router.post('/login', (req, res) => userController.checkLogin(req, res))
 router.put('/', (req, res)=> userController.updateUser)
 router.delete('/', (req, res)=> {
     // Neu req.body rong thi xoa het
