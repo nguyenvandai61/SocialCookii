@@ -1,0 +1,30 @@
+.register-container .divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.register-container .divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;   
+    z-index: 2;
+}
+.register-container .divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+}
+
+.register-container .btn-facebook {
+    background-color: #405D9D;
+    color: #fff;
+}
+.register-container .btn-twitter {
+    background-color: #42AEEC;
+    color: #fff;
+}

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Masonry.css';
+import {
+    Link
+} from 'react-router-dom';
 import image1 from '../../image/dishes/1.jpg'
 import image2 from '../../image/dishes/2.jpg'
 import image3 from '../../image/dishes/3.jpg'
@@ -47,51 +50,53 @@ class Masonry extends Component {
                     <h1>Cookii Gallery</h1>
                     <section className="section">
                         <div className="masonry">
-                            <div className="brick">
-                                <img src={image1} />
-                                <div className="item__details">
-                                    jelly-o brownie sweet
+                            <Link to="/detailPost">
+                                <div className="card card-style brick">
+                                    <img src={image1} />
+                                    <div className="item__details">
+                                        jelly-o brownie sweet
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="brick">
+                            </Link>
+                            <div className="card card-style brick">
                                 <img src={image2} />
                                 <div className="item__details">
                                     jelly-o brownie sweet
                                 </div>
                             </div>
-                            <div className="brick">
+                            <div className="card card-style brick">
                                 <img src={image3} />
                                 <div className="item__details">
                                     jelly-o brownie sweet
                                     </div>
                             </div>
-                            <div className="brick">
+                            <div className="card card-style brick">
                                 <img src={image4} />
                                 <div className="item__details">
                                     jelly-o brownie sweet</div>
                             </div>
-                            <div className="brick">
+                            <div className="card card-style brick">
                                 <img src={image5} />
                                 <div className="item__details">
                                     jelly-o brownie sweet</div>
                             </div>
-                            <div className="brick">
+                            <div className="card card-style brick">
                                 <img src={image6} />
                                 <div className="item__details">
                                     jelly-o brownie sweet
                                 </div>                           
                             </div>
-                            <div className="brick">
+                            <div className="card card-style brick">
                                 <img src={image4} />
                                 <div className="item__details">
                                     jelly-o brownie sweet</div>
                             </div>
-                            <div className="brick">
+                            <div className="card card-style brick">
                                 <img src={image5} />
                                 <div className="item__details">
                                     jelly-o brownie sweet</div>
                             </div>
-                            <div className="brick">
+                            <div className="card card-style brick">
                                 <img src={image6} />
                                 <div className="item__details">
                                     jelly-o brownie sweet
