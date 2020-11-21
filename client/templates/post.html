@@ -13,9 +13,11 @@
             margin: 20px;
             width: 80%;
         }
-
-        .post-area {
-            height: 60px;
+        textarea, input:focus{
+            outline: none;
+            border: none;
+        }
+        textarea, .title-right > input {
             width: 100%;
             margin: 10px;
         }
@@ -25,9 +27,16 @@
             grid-template-columns: 70% 20%;
             
         }
-        .new-post .post-options {
-
-            justify-content: start;
+        .big-thumbnail > input > label {
+            height: 100%;
+        }
+        .big-thumbnail > label {
+            height: 100%;
+            text-align: center;
+        }
+        .thumbnail {
+            height: 25% ;
+            
         }
         .new-post button {
             width: 40px;
@@ -45,19 +54,27 @@
             font-size: 18px;
             background-color: #f1f2f6;
         }
-        .new-post .submit-btn {
-            justify-content: end;
-            border: none;
-            padding: 5px 16px;
-            color: #ffffff;
-            background-color: #57606f;
-            font-size: 16px;
-            cursor: pointer;
-            text-decoration: none;
+        .color input{ background-color:#f1f1f1;}
+
+        .files:before {
+            position: absolute;
+            bottom: 10px;
+            left: 0;  pointer-events: none;
+            width: 100%;
+            right: 0;
+            height: 57px;
+            content: " or drag it here. ";
+            display: block;
+            margin: 0 auto;
+            color: #2ea591;
+            font-weight: 600;
+            text-transform: capitalize;
             text-align: center;
             border-radius: 25px; 
         }
-        
+        .post-options{
+            padding: 5px;
+        }
     </style>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
