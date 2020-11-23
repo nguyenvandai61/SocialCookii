@@ -1,31 +1,7 @@
 .avatar {
     border-radius: 50%;
 }
-
-
-.new-post {
-    position: relative;
-    background-color: #fff;
-    margin: auto;
-    width: 80%;
-}
-
-.post-area {
-    height: 60px;
-    width: 100%;
-    margin: 10px;
-}
-
-.new-post .buttons-wrapper {
-    display: grid;
-    grid-template-columns: 70% 20%;
-    
-}
-.new-post .post-options {
-
-    justify-content: start;
-}
-.new-post button {
+.new-post-left button {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -33,23 +9,121 @@
     font-size: 1.2em;
     border: none;
 }
-
-.new-post input[type=post] {
-    padding: 20px;
-    width: 92%;
-    border: none;
-    font-size: 18px;
-    background-color: #f1f2f6;
+.new-post-left{
+    height: 650px;
+   
 }
-.new-post .submit-btn {
-    justify-content: end;
+.new-post-right{
+    height: 650px;
+    
+}
+.post {
+    height: 650px;
+}
+
+.title-right > span{
+    font-size: 60px;
+    font-weight: 500px;
+}
+.title-right {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.custom-textarea, .title-right > input{
+    border-bottom: 2px solid rgb(0, 0, 0,0.2);
+}
+textarea, input:focus{
+    outline: none;
     border: none;
-    padding: 5px 16px;
-    color: #ffffff;
-    background-color: #57606f;
-    font-size: 16px;
-    cursor: pointer;
-    text-decoration: none;
+}
+textarea, .title-right > input {
+    width: 100%;
+    border: none;
+    background: none;
+}
+
+.post-content > textarea {
+    height: 230px;
+}
+.post-recipe{
+    margin-bottom: 30px;;
+}
+.post-recipe > textarea{
+    height: 230px;
+}
+
+.big-thumbnail{
+    margin-top: 20px;
+    height: 60%;
+    
+}
+.big-thumbnail > input > label {
+    height: 100%;
+}
+.big-thumbnail > label {
+    height: 100%;
     text-align: center;
-    border-radius: 25px; 
+}
+.big-thumbnail > form {
+    height: 100%;
+}
+.thumbnail {
+    height: 25% ;
+    
+}
+.box__dragndrop,
+.box__uploading,
+.box__success,
+.box__error {
+    display: none;
+}
+.files input {
+    outline: 2px dashed #92b0b3;
+    outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    padding: 20px;
+    text-align: center !important;
+    margin: 0;
+    height: 100% !important;
+    width: 100% !important;
+}
+.files input:focus{     outline: 2px dashed #92b0b3;  outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #92b0b3;
+}
+.files{ position:relative; height: 100%;}
+.files:after {  pointer-events: none;
+    position: absolute;
+    top: 150px;
+    left: 0;
+    width: 50px;
+    right: 0;
+    height: 56px;
+    content: "";
+    background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+    display: block;
+    margin: 0 auto;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.color input{ background-color:#f1f1f1;}
+
+.files:before {
+    position: absolute;
+    bottom: 10px;
+    left: 0;  pointer-events: none;
+    width: 100%;
+    right: 0;
+    height: 57px;
+    content: " or drag it here. ";
+    display: block;
+    margin: 0 auto;
+    color: #2ea591;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-align: center;
+}
+.post-options{
+    padding: 5px;
 }

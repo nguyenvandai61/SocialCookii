@@ -42,34 +42,56 @@ class AddPost extends Component {
     }
     render() {
         return (
-            <div class="new-post">
-                <h1>Tạo bài viết</h1>
-                <form action="" method="">
-                    <div>
-                        <textarea class="post-area" cols="70" placeholder="Bạn đang muốn chia sẻ gì thế?">
-                        </textarea>
-                        <div class="buttons-wrapper">
-                            <div class="post-options">
-                                <button type="post">
-                                    <i class="fas fa-images" style={{ color: "rgb(64, 91, 247)" }}></i>
-                                </button>
-                                <button>
-                                    <i class="fas fa-user-plus" style={{ color: "rgb(28, 83, 23)" }}></i>
-                                </button>
-                                <button>
-                                    <i class="fas fa-map-marker-alt" style={{ color: "rgb(255, 74, 74)" }}></i>
-                                </button>
-                            </div>
-                            <input class="submit-btn" type="submit" value="Đăng" />
+            <div class="container new-post">
+                <div class="row">
+                    <div class="col-md-6 new-post-left">
+                        <div class="big-thumbnail">
+                            <form method="post" action="#" id="#">
+                                <div class="form-group files color">
+                                    <input type="file" class="form-control" multiple="" />
+                                </div>
+                            </form>
+                        </div>
+                        <div class="thumbnail">
+
+                        </div>
+                        <div class="post-options">
+                            <button type="post">
+                                <i class="fas fa-images" style={{ color: "rgb(64, 91, 247)" }}></i>
+                            </button>
+                            <button>
+                                <i class="fas fa-user-plus" style={{ color: "rgb(28, 83, 23)" }}></i>
+                            </button>
+                            <button>
+                                <i class="fas fa-map-marker-alt" style={{ color: "rgb(255, 74, 74)" }}></i>
+                            </button>
                         </div>
                     </div>
-                </form>
+                    <div class="col-md-6 new-post-right">
+                        <div class="container card-right">
+                            <div class="title-right">
+                                <input type="text" placeholder="Tạo tiêu đề" />
+                            </div>
+                            <div class="user">
+                                <img src={Avatar} alt="img" height="50px" width="50px" class="avatar" />
+                                <span>Phan Vu</span>
+                            </div>
+                            <div class="post-content custom-textarea">
+                                <textarea rows="1" placeholder="Hãy mô tả món ăn của bạn"></textarea>
+                            </div>
+                            <div class="post-recipe custom-textarea">
+                                <textarea rows="1" placeholder="Hãy chia sẽ công thức món ăn của bạn"></textarea>
+                            </div>
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="Đăng" />
+                    </div>
+                </div>
             </div>
         );
     }
 }
 AddPost.propTypes = {
 
-                    };
+};
 
 export default AddPost;
