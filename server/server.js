@@ -8,6 +8,7 @@ const app = express();
 const path = require('path');
 const port = process.env.PORT || 5000;
 
+app.use(express.json())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -22,10 +23,8 @@ app.all('*', function (req, res, next) {
         next();
     }
 });
-
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
-
 
 // set up mongoose
 mongoose.connect(config.mongoose.uri, {

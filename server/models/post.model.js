@@ -22,8 +22,11 @@ const PostSchema = new mongoose.Schema({
   editedAt: {
     type: Date,
   },
-  thumbnail: {
-    type: Object
+  thumbnails: {
+    type: []
+  },
+  recipe: {
+    type: String
   },
   album: {
     type: []
