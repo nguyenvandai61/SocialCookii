@@ -1,5 +1,6 @@
 // const userService = require('../services/user.service');
 var UserService = require('../services/user.service');
+
 const getAllUser = (req, res) => {
     UserService.getAllUser().then((data, err) => {
         if (err) return res.status(500).send(err);
@@ -48,11 +49,31 @@ const checkLogin = async (req, res) => {
         return res.status(200).json({data: user[0]});
     })
 }
+
+
+const checkRegister = async (req, res) => {
+    const {username} = req.body;
+    req.query = {username: username}
+    console.log(req.query)
+    const newUser = req.body
+    return UserService.getUser(req.query).then((user, err) => {
+        console.log(user);
+        if (user.length > 0)
+            return res.status(401).json("Username existed");
+        else {
+            return UserService.createUser(newUser).then((newUser, err) => {
+                if (err) return res.status(500).send(err);
+                    return res.status(200).json(newUser);
+            });
+        }
+    })
+}
 module.exports = {
     getAllUser,
     createUser,
     updateUser,
     deleteUser,
     deleteAllUsers,
-    checkLogin
+    checkLogin,
+    checkRegister
 }

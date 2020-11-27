@@ -23,13 +23,13 @@ const PostSchema = new mongoose.Schema({
     type: Date,
   },
   thumbnails: {
-    type: []
+    type: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Image"
+    }]
   },
   recipe: {
     type: String
-  },
-  album: {
-    type: []
   },
   videos: {
     type: []
