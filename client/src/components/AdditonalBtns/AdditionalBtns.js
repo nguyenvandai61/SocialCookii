@@ -68,13 +68,13 @@ class AdditionalBtns extends Component {
             componentRender:<Question/>
         }
         return (
-            <div>
-                <div class="additional-btns">
-                    <button class="add-btn">
-                        <a href="/AddPost"></a><i class="fas fa-plus"></i>
+            <div className="additional-btns-wrapper">
+                <div className="additional-btns">
+                    <button className="add-btn">
+                        <a href="/AddPost"></a><i className="fas fa-plus"></i>
                     </button>
-                    <button class="question-btn">
-                        <i class="fas fa-question"></i>
+                    <button className="question-btn">
+                        <i className="fas fa-question"></i>
                     </button>
                 </div>
                 <Modal modalObj={addModalObj}/>

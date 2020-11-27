@@ -1,4 +1,4 @@
-const userService = require('../services/user.service');
+// const userService = require('../services/user.service');
 var UserService = require('../services/user.service');
 const getAllUser = (req, res) => {
     UserService.getAllUser().then((data, err) => {
@@ -38,22 +38,10 @@ const deleteAllUsers = (req, res) => {
         return res.status(200).send(data);
       })
 }
-
 const checkLogin = async (req, res) => {
     let { username, password } = req.body;
     req.query = req.body;
-    return userService.getUser(req.query).then((user, err) => {
-        console.log(user);
-        if (user.length == 0)
-            return res.status(401).json("Login failed");
-        return res.status(200).json({data: user[0]});
-    })
-}
-
-const checkLogin = async (req, res) => {
-    let { username, password } = req.body;
-    req.query = req.body;
-    return userService.getUser(req.query).then((user, err) => {
+    return UserService.getUser(req.query).then((user, err) => {
         console.log(user);
         if (user.length == 0)
             return res.status(401).json("Login failed");
@@ -65,5 +53,6 @@ module.exports = {
     createUser,
     updateUser,
     deleteUser,
-    deleteAllUsers
+    deleteAllUsers,
+    checkLogin
 }
