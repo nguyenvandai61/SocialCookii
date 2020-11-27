@@ -18,7 +18,6 @@ function decodeBase64Image(dataString) {
 }
 const createPost = async (req, res) => {
     let post = req.body;
-    console.log("lolo")
     post.thumbnails = post.thumbnails.map(thumbnail => {
         var decodedImg = decodeBase64Image(thumbnail.img.data);
         var imageBuffer = decodedImg.data;
@@ -27,7 +26,7 @@ const createPost = async (req, res) => {
         var fileName =  thumbnail.name+'.' + extension;
         console.log(fileName)
         try{
-            fs.writeFileSync('assets/image/posts'+fileName, imageBuffer, 'utf8');
+            fs.writeFileSync('assets/image/posts/'+fileName, imageBuffer, 'utf8');
         }
         catch(err){
             console.error(err)

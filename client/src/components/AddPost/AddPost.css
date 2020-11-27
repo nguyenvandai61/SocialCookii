@@ -58,7 +58,7 @@ textarea, .title-right>input {
 }
 
 .new-post .post-recipe>textarea {
-    height: 230px;
+    /* height: 230px; */
 }
 .new-post .frame {
     
@@ -150,4 +150,12 @@ textarea, .title-right>input {
 
 .color input {
     background-color: #f1f1f1;
+}
+
+.success-create-post {
+    display: none;
+}
+
+.fail-create-post {
+    display: none;
 }

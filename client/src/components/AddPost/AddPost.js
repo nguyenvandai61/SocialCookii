@@ -92,12 +92,13 @@ class AddPost extends Component {
         }).then(res => {
             console.log(res);
             if (res.status == 200) {
+                document.querySelector('.success-create-post').style.display = 'block';
                 res.json().then(data => {
-                   
+
                 })
             }
             else {
-
+                document.querySelector('.fail-create-post').style.display = 'block';
             }
         })
     }
@@ -121,8 +122,11 @@ class AddPost extends Component {
         return (
             <div className="container new-post">
                 <div class="alert alert-success success-create-post" role="alert">
-                        This is a success alert—check it out!
+                    This is a success alert—check it out!
                     </div>
+                <div class="alert alert-danger fail-create-post" role="alert">
+                    This is a danger alert—check it out!
+                </div>
                 <div className="row">
                     <div className="col-md-6 new-post-left">
                         <form method="post" action="#" id="#">
@@ -184,7 +188,7 @@ class AddPost extends Component {
                         </div>
                         <input className="btn btn-primary" type="submit" value="Đăng" onClick={this.postData} />
                     </div>
-                    
+
                 </div>
             </div>
         );
