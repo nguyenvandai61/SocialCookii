@@ -40,10 +40,10 @@ const deleteAllUsers = (req, res) => {
       })
 }
 const checkLogin = async (req, res) => {
+    console.log(req);
     let { username, password } = req.body;
     req.query = req.body;
     return UserService.getUser(req.query).then((user, err) => {
-        console.log(user);
         if (user.length == 0)
             return res.status(401).json("Login failed");
         return res.status(200).json({data: user[0]});

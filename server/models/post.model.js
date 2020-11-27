@@ -23,10 +23,7 @@ const PostSchema = new mongoose.Schema({
     type: Date,
   },
   thumbnails: {
-    type: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Image"
-    }]
+    type: Array
   },
   recipe: {
     type: String

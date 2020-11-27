@@ -54,7 +54,7 @@ describe('Test API user', () => {
                     done();
                 });
         });
-        it('it logins a user', (done) => {
+        it('it fail logins a user', (done) => {
             let body = {
                 username: "dai",
                 password: "12",
