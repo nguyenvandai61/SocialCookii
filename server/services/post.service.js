@@ -1,18 +1,12 @@
 var Post = require('../models/post.model')
 
 
-const createPost = (res, post) => {
+const createPost = (post) => {
     const newPost = new Post(post);
-    newPost.save(err => {
-        if (err) return res.status(500).send(err);
-        return res.status(200).json(newPost);
-    });
+    return newPost.save();
 }
-const getAllPost = (req, res) => {
-    Post.find((err, data) => {
-        if(err) return res.status(500).send(err);
-        return res.json({"data": data})
-    });
+const getAllPost = () => {
+    return Post.find();
 }
 
 const getPost = (req, res) => {

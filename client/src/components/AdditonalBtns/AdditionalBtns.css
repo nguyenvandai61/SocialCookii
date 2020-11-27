@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Arvo');
-.additional-btns {
+.additional-btns-wrapper .additional-btns {
     position: fixed;
     bottom: 0;
     right: 0;
     padding: 10px;
 }
 
-.additional-btns button {
+.additional-btns-wrapper .additional-btns button {
     margin: 2px;
     border-radius: 50%;
     width: 50px;
@@ -15,13 +15,13 @@
     border-width: solid 1px #111;
 }
 
-.additional-btns button i {
+.additional-btns-wrapper .additional-btns button i {
     font-size: 1.2em;
 }
 
 /* The Modal (background) */
 
-.modal {
+.additional-btns-wrapper .modal {
     display: none;
     /* Hidden by default */
     position: fixed;
@@ -46,7 +46,7 @@
 
 /* Modal Content */
 
-.modal-content {
+.additional-btns-wrapper .modal-content {
     position: relative;
     background-color: #fefefe;
     margin: auto;
@@ -86,30 +86,30 @@
 
 /* The Close Button */
 
-.close {
+.additional-btns-wrapper .close {
     color: white;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover, .close:focus {
+.additional-btns-wrapper .close:hover, .additional-btns-wrapper .close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
 }
 
-.modal-header {
+.additional-btns-wrapper .modal-header {
     padding: 2px 16px;
     background-color: #5cb85c;
     color: white;
 }
 
-.modal-body {
+.additional-btns-wrapper .modal-body {
     padding: 2px 16px;
 }
 
-.modal-footer {
+.additional-btns-wrapper .modal-footer {
     padding: 2px 16px;
     background-color: #5cb85c;
     color: white;

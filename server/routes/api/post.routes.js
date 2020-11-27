@@ -1,12 +1,11 @@
 var express = require('express');
 const postController = require('../../controller/post.controller');
 var router = express.Router();
-
-
-router.post('/', (req, res)=> {
+router.post('/', async (req, res)=> {
+    console.log(req.body);
     if (Array.isArray(req.body))
         return postController.createPost(req, res)
-    return postController.createPost(req, res);
+    return await postController.createPost(req, res);
 })
  router.get('/', (req, res) => {
      return postController.getAllPost(req, res);

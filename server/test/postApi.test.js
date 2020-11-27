@@ -19,10 +19,10 @@ describe('Test API post', () => {
                 createdAt : "2020-11-08T01:11:18.965Z",
                 deletedAt: "",
                 editedAt: "",
-                thumbnail:{
-                    url: "/images/mongodb.png",
-                    caption: "cong thuc"
-                },
+                thumbnails: [
+                    "/images/anh1.png",
+                    "/images/anh1.png"
+                ],
                 album:[
                     {
                         url: "/images/anh1.png",
@@ -33,6 +33,7 @@ describe('Test API post', () => {
                         caption: "ket qua"
                     }
                 ],
+                recipe: "2 kg nước",
                 videos:[
                     {
                         url: "/images/video.mp3",
@@ -62,7 +63,9 @@ describe('Test API post', () => {
                     (res).body.should.have.property('createdAt').eql(body.createdAt);
                     (res).body.should.have.property('deletedAt').eql(null);
                     (res).body.should.have.property('editedAt').eql(null);
-                    (res).body.should.have.property('thumbnail').eql(body.thumbnail);
+                    (res).body.should.have.property('thumbnails').eql(body.thumbnails);
+                    (res).body.should.have.property('recipe').eql(body.recipe);
+                    
                     (res).body.should.have.property('album').eql(body.album);
                     (res).body.should.have.property('videos').eql(body.videos);
                     (res).body.should.have.property('comments').eql(body.comments);

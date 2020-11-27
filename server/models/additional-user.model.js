@@ -6,10 +6,10 @@ const AdditionalUser = new Schema({
         type: Schema.Types.ObjectId,
         maxlength: 255,
     },
-    creatAt: {
+    createdAt: {
         type: Date,
     },
-    updateAt: {
+    updatedAt: {
         type: Date,
     },
     isActive: {
