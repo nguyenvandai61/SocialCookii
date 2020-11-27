@@ -3,32 +3,25 @@ var PostService = require('../services/post.service');
 
 const createPost = (req, res) => {
     let post = req.body;
-    return PostService.createPost(res, post);
+    return PostService.createPost(post);
 }
 const updatePost = (req, res) => {
-    return PostService.updatePost(req, res);
+    return PostService.updatePost(query, newPost);
 }
 const getPost = (req, res) => {
-    return PostService.getPost(req, res);
+    return PostService.getPost(query);
 }
 const getAllPost = (req, res) => {
-    return PostService.getAllPost(req, res);
+    return PostService.getAllPost();
 }
-const getPostByHashTag = (req, res) => {
-    return PostService.getPostByHashTag(req, res);
-}
-const getPostByTagname = (req, res) => {
-    return PostService.getPostByTagname(req, res);
-}
+
 const deletePost = (req, res) => {
-    return PostService.deletePost(req, res);
+    return PostService.deletePost(query);
 }
 module.exports = {
     createPost, 
     updatePost,
     getPost,
     getAllPost,
-    getPostByHashTag,
     deletePost,
-    getPostByTagname
 }

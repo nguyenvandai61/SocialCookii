@@ -39,23 +39,11 @@ const updateUser = (res, query, newData) => {
 }
 
 const deleteUser = (res, query) => {
-   User.deleteOne(query, (err, data) => {
-    if (err) return res.status(500).send(err);
-    const response = {
-        message: "User successfully deleted"
-    };
-    return res.status(200).send(response);
-  })
+   return User.deleteOne(query)
 }
 
 const deleteAllUsers = (req, res) => {
-  User.deleteMany({}, (err, data) => {
-    if (err) return res.status(500).send(err);
-    const response = {
-        message: "All questions successfully deleted"
-    };
-    return res.status(200).send(response);
-  })
+  return User.deleteMany({});
 }
 
 module.exports = {

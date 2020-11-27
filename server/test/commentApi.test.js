@@ -27,4 +27,20 @@ describe('TEST API COMMENT', () => {
                 });
         });
     });
+    // describe("Update comment", () => {
+    //     it('it updates a comment', (done) => {
+    //         let body = {
+    //             content: "Ngon ghe",
+    //             createdAt: "2020-11-08T01:11:18.965Z"
+    //         }
+            
+    //         chai.request(app)
+    //             .put('/api/comment')
+    //             .send(body)
+    //             .end((err, res) => {
+    //                 (res).should.have.status(200);
+    //                 done();
+    //             });
+    //     });
+    // })
 });
