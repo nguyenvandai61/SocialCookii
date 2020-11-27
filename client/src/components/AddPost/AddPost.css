@@ -1,8 +1,8 @@
-.avatar {
+.new-post .avatar {
     border-radius: 50%;
 }
 
-.new-post-left button {
+.new-post .new-post-left button {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -11,29 +11,29 @@
     border: none;
 }
 
-.new-post-left {
+.new-post .new-post-left {
     height: 650px;
 }
 
-.new-post-right {
+.new-post .new-post-right {
     height: 650px;
 }
 
-.post {
+.new-post .post {
     height: 650px;
 }
 
-.title-right>span {
+.new-post .title-right>span {
     font-size: 60px;
     font-weight: 500px;
 }
 
-.title-right {
+.new-post .title-right {
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.custom-textarea, .title-right>input {
+.new-post .custom-textarea, .new-post .title-right>input {
     border-bottom: 2px solid rgb(0, 0, 0, 0.2);
 }
 
@@ -52,59 +52,59 @@ textarea, .title-right>input {
     height: 230px;
 }
 
-.post-recipe {
+.new-post .post-recipe {
     margin-bottom: 30px;
     ;
 }
 
-.post-recipe>textarea {
+.new-post .post-recipe>textarea {
     height: 230px;
 }
 
-.big-thumbnail {
+.new-post .big-thumbnail {
     margin-top: 20px;
     height: 60%;
 }
 
-.big-thumbnail>input>label {
+.new-post .big-thumbnail>input>label {
     height: 100%;
 }
 
-.big-thumbnail>label {
+.new-post .big-thumbnail>label {
     height: 100%;
     text-align: center;
 }
 
-.big-thumbnail>form {
+.new-post .big-thumbnail>form {
     height: 100%;
 }
 
-.thumbnails {
+.new-post .thumbnails {
     display: grid;
     grid-template-columns: auto auto auto;
     margin: 2px;
 }
-.thumbnail i {
+.new-post .thumbnail i {
     position: absolute;
     top: 2px;
     right: 2px;
     z-index: 100;
 }
-.thumbnail {
+.new-post .thumbnail {
     height: 25%;
     position: relative;
 }
 
-.thumbnail >img {
+.new-post .thumbnail >img {
    
     width: 100%;
 }
 
-.box__dragndrop, .box__uploading, .box__success, .box__error {
+.new-post .box__dragndrop, .new-post .box__uploading, .new-post .box__success, .new-post .box__error {
     display: none;
 }
 
-.files input {
+.new-post .files input {
     outline: 2px dashed #92b0b3;
     outline-offset: -10px;
     -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
@@ -116,7 +116,7 @@ textarea, .title-right>input {
     width: 100% !important;
 }
 
-.files input:focus {
+.new-post .files input:focus {
     outline: 2px dashed #92b0b3;
     outline-offset: -10px;
     -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
@@ -124,12 +124,12 @@ textarea, .title-right>input {
     border: 1px solid #92b0b3;
 }
 
-.files {
+.new-post .files {
     position: relative;
     height: 100%;
 }
 
-.files:after {
+.new-post .files:after {
     pointer-events: none;
     position: absolute;
     top: 150px;
