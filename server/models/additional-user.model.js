@@ -6,6 +6,12 @@ const AdditionalUser = new Schema({
         type: Schema.Types.ObjectId,
         maxlength: 255,
     },
+    email: {
+        type: String
+    },
+    phone: {
+        type: String
+    },
     createdAt: {
         type: Date,
     },

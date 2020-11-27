@@ -64,6 +64,7 @@ class Login extends Component {
           } = this.state.user;
           fetch('/api/user/login', {
             method: "POST",
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               username: username,
               password: password,

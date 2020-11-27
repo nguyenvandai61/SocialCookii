@@ -24,9 +24,6 @@ const createUsers = (req, res) => {
 }
 
 
-
-
-
 const updateUser = (res, query, newData) => {
   const content = req.body;
   User.findOneAndUpdate(content.query, content.newData, function(err) {
