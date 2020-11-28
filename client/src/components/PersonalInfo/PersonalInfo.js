@@ -7,16 +7,20 @@ import './PersonalInfo.css'
 class PersonalInfo extends Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            user: {
+                username: "dai",
+                password: "123",
+                fullname: "Đại nguyễn",
+                email: "vandai@gmail.com",
+                avatar: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+                nfollowing: 5,
+                nfollowed: 7
+            }
+        }
     }
 
     componentWillMount() {
-        const script = document.createElement("script");
-
-        script.src = "https://kit.fontawesome.com/a076d05399.js";
-        script.async = true;
-
-        document.body.appendChild(script);
     }
 
     componentDidMount() {
@@ -26,11 +30,6 @@ class PersonalInfo extends Component {
     componentWillReceiveProps(nextProps) {
 
     }
-
-    shouldComponentUpdate(nextProps, nextState) {
-
-    }
-
     componentWillUpdate(nextProps, nextState) {
 
     }
@@ -44,15 +43,17 @@ class PersonalInfo extends Component {
     }
 
     render() {
+        const {user} = this.state;
         return (
             <div>
                 <div align="center" className="avatar">
                     <div id="avatar-frame">
-                        <img src={Avatar} alt="img" style={{height: "130px", width: "130px"}}/>
+                        <img src={user.avatar} alt="img" style={{height: "130px", width: "130px"}}/>
                     </div>
-                    <h2>Your name</h2>
-                    <p>@gmail</p>
-                    <p>Người theo dõi - Người đang theo dõi</p>
+                    <h2>{user.fullname}</h2>
+                    <p>{user.email}</p>
+                    <p>{user.nfollowed} Người theo dõi - 
+                        {user.nfollowing} Người đang theo dõi</p>
                 </div>
                 <div class="edit">
                     <a href="/editPersonalInfo"><i class="fas fa-pen"></i></a>

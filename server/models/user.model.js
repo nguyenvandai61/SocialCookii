@@ -38,6 +38,15 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
+  },
+  avatar: {
+    type: String
+  },
+  followed: {
+    type: Array
+  },
+  following: {
+    type: Array
   }
 });
 
