@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import Style from './AddPost.css'
-import PropTypes from 'prop-types';
 import Avatar from '../../avatar.jpg';
 import '../../utils/Base64Image';
-import FileBase from 'react-file-base64';
 
-import image1 from '../../image/dishes/1.jpg'
-import image2 from '../../image/dishes/2.jpg'
-import image3 from '../../image/dishes/3.jpg'
 import Base64Image from '../../utils/Base64Image';
 
 class AddPost extends Component {

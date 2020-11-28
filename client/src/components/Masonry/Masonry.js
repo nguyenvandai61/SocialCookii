@@ -14,12 +14,33 @@ class Masonry extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            listPosts: []
+        }
     }
 
     componentWillMount() {
-
+        this.renderListPosts()
     }
 
+    renderListPosts(){
+        fetch('/api/post', {
+            method: "GET",
+            headers: { 'Content-Type': 'application/json' },
+            
+        })
+        .then(res => {
+            console.log(res);
+            if (res.status == 200) {
+              res.json().then(data => {
+                  this.setState({listPosts: data})
+              })
+            } 
+            else {
+                console("error")
+            } 
+        })
+    }
     componentDidMount() {
 
     }
@@ -29,7 +50,8 @@ class Masonry extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-
+        if (nextState == this.state) return false;
+        return true;
     }
 
     componentWillUpdate(nextProps, nextState) {
@@ -45,6 +67,8 @@ class Masonry extends Component {
     }
 
     render() {
+        const {listPosts} = this.state
+        console.log(listPosts)
         return (
                 <div style={{margin: "15px"}}>
                     <h1>Cookii Gallery</h1>
@@ -58,50 +82,16 @@ class Masonry extends Component {
                                     </div>
                                 </div>
                             </Link>
-                            <div className="card card-style brick">
-                                <img src={image2} />
-                                <div className="item__details">
-                                    jelly-o brownie sweet
-                                </div>
-                            </div>
-                            <div className="card card-style brick">
-                                <img src={image3} />
-                                <div className="item__details">
-                                    jelly-o brownie sweet
+                            {listPosts.map((post, index) => 
+                                <Link to="/detailPost" key = {index}>
+                                    <div className="card card-style brick">
+                                        <img src={post.thumbnails[0]} />
+                                        <div className="item__details">
+                                            {post.title}
+                                        </div>
                                     </div>
-                            </div>
-                            <div className="card card-style brick">
-                                <img src={image4} />
-                                <div className="item__details">
-                                    jelly-o brownie sweet</div>
-                            </div>
-                            <div className="card card-style brick">
-                                <img src={image5} />
-                                <div className="item__details">
-                                    jelly-o brownie sweet</div>
-                            </div>
-                            <div className="card card-style brick">
-                                <img src={image6} />
-                                <div className="item__details">
-                                    jelly-o brownie sweet
-                                </div>                           
-                            </div>
-                            <div className="card card-style brick">
-                                <img src={image4} />
-                                <div className="item__details">
-                                    jelly-o brownie sweet</div>
-                            </div>
-                            <div className="card card-style brick">
-                                <img src={image5} />
-                                <div className="item__details">
-                                    jelly-o brownie sweet</div>
-                            </div>
-                            <div className="card card-style brick">
-                                <img src={image6} />
-                                <div className="item__details">
-                                    jelly-o brownie sweet
-                                </div>                           
-                            </div>
+                                </Link>
+                            )}
                         </div>
                     </section>
                 </div>
