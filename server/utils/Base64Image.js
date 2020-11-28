@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 
 const mkdirp = require('mkdirp');
 const fs = require('fs');
 
 const writeFile = async (path, filename, content) => {
     await mkdirp(path);
+=======
+const fs = require('fs');
+
+const writeFile = async (path, filename, content) => {
+    await fs.mkdirSync(path, { recursive: true });
+>>>>>>> 42c950919bd4183a5d41c77b3a8cab6c5dba7c1e
     fs.writeFileSync(path+filename, content);
 }
 function decodeBase64Image(dataString) {
