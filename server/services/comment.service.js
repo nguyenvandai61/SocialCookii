@@ -9,7 +9,18 @@ const updateComment = (query, newData) => {
     return Comment.findOneAndUpdate(query, newData);
 }
 
+const deleteComment = (req, res) => {
+    Comment.findByIdAndDelete(req.params.id, (err, dov) => {
+        if(err) return res.status(500).send(err);
+        const response = {
+            message: "Comment successfully deleted"
+        };
+        return res.status(200).send(response);
+    });
+}
+
 module.exports = {
     createComment,
-    updateComment
+    updateComment,
+    deleteComment,
 }
