@@ -1,6 +1,6 @@
 var Notification = require('../models/notification.model');
 
-const createNotification = (res, notification) => {
+const createNotification = (notification) => {
     const newNotification = new Notification(notification);
     return newNotification.save();
 }

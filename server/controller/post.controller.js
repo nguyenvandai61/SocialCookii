@@ -1,6 +1,6 @@
 const path = require("path");
-const multer = require("multer");
 const { response } = require('express');
+const mkdirp = require('mkdirp');
 const fs = require('fs');
 var PostService = require('../services/post.service');
 function decodeBase64Image(dataString) {
@@ -16,6 +16,11 @@ function decodeBase64Image(dataString) {
   
     return response;
 }
+
+const writeFile = async (path, filename, content) => {
+  await mkdirp(path);
+  fs.writeFileSync(path+filename, content);
+}
 const createPost = async (req, res) => {
     let post = req.body;
     post.thumbnails = post.thumbnails.map(thumbnail => {
@@ -24,14 +29,14 @@ const createPost = async (req, res) => {
         var type = decodedImg.type;
         var extension = type.split('/')[1];
         var fileName =  thumbnail.name+'.' + extension;
-        console.log(fileName)
+        var newPath = 'assets/image/posts/';
         try{
-            fs.writeFileSync('assets/image/posts/'+fileName, imageBuffer, 'utf8');
+            writeFile(newPath, fileName, imageBuffer);
         }
         catch(err){
             console.error(err)
         }
-        return fileName;
+        return newPath+fileName;
     })
     return await PostService.createPost(post).then((newPost, err) => {
         if (err) return res.status(500).send(err);

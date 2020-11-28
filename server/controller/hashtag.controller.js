@@ -1,11 +1,13 @@
 var HashtagService = require('../services/hashtag.service');
 
-const createHashtag = async (req, res) => {
+const createHashtag = (req, res) => {
     let hashtag = req.body;
-    const newHashtag = await HashtagService.createHashtag(hashtag);
-    if (err)
-        return res.status(500).send(err);
-    return res.status(200).json(newHashtag);
+    console.log(hashtag)
+    return HashtagService.createHashtag(hashtag).then((hashtag, err)=> {
+        if (err)
+            return res.status(500).send(err);
+        return res.status(200).json(hashtag)
+    });
 }
 module.exports = {
     createHashtag

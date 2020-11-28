@@ -16,30 +16,19 @@ describe('Test API post', () => {
                 title : "Mi xao",
                 description: "Nguyen lieu: Mi + Trung ga",
                 authorId :"5fa7edd8869c07126058a867",
-                createdAt : "2020-11-08T01:11:18.965Z",
+                createdAt : Date.now(),
                 deletedAt: "",
                 editedAt: "",
                 thumbnails: [
-                    "/images/anh1.png",
-                    "/images/anh1.png"
-                ],
-                album:[
                     {
-                        url: "/images/anh1.png",
-                        caption: "cong thuc"
-                    },
-                    {
-                        url: "/images/anh2.png",
-                        caption: "ket qua"
+                        name: "base-image-"+Date.now(),
+                        img: {
+                            data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+                            contentType: "image/png"
+                        }
                     }
-                ],
+                ],  
                 recipe: "2 kg nước",
-                videos:[
-                    {
-                        url: "/images/video.mp3",
-                        caption: "cach lam"
-                    }
-                ],
                 comments:[
                     "5fa7f3aa108cb725f035f21a",
                     "5fa7efe5869c07126058a868"
@@ -50,8 +39,9 @@ describe('Test API post', () => {
                 ],
                 state:"Da dang",
                 hashtagIds:"5fa75587997be636b8f92cb3"
-
             }
+
+            let respThumbnail = ['assets/image/posts/'+ body.thumbnails[0].name+'.png'];
             chai.request(app)
                 .post('/api/post')
                 .send(body)
@@ -60,14 +50,11 @@ describe('Test API post', () => {
                     (res).body.should.have.property('title').eql(body.title);
                     (res).body.should.have.property('description').eql(body.description);
                     (res).body.should.have.property('authorId').eql(body.authorId);
-                    (res).body.should.have.property('createdAt').eql(body.createdAt);
+                    // (res).body.should.have.property('createdAt').eql(body.createdAt);
                     (res).body.should.have.property('deletedAt').eql(null);
                     (res).body.should.have.property('editedAt').eql(null);
-                    (res).body.should.have.property('thumbnails').eql(body.thumbnails);
+                    (res).body.should.have.property('thumbnails').eql(respThumbnail);
                     (res).body.should.have.property('recipe').eql(body.recipe);
-                    
-                    (res).body.should.have.property('album').eql(body.album);
-                    (res).body.should.have.property('videos').eql(body.videos);
                     (res).body.should.have.property('comments').eql(body.comments);
                     (res).body.should.have.property('likeUserIds').eql(body.likeUserIds);
                     (res).body.should.have.property('state').eql(body.state);

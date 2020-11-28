@@ -40,7 +40,6 @@ const deleteAllUsers = (req, res) => {
       })
 }
 const checkLogin = async (req, res) => {
-    console.log(req);
     let { username, password } = req.body;
     req.query = req.body;
     return UserService.getUser(req.query).then((user, err) => {

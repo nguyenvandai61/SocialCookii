@@ -62,6 +62,9 @@ class index extends Component {
             }
         })
     }
+    changeUserPage = () => {
+
+    }
     loadData =() => {
         this.getUserInfo();
         this.getPostInfo();
@@ -109,6 +112,13 @@ class index extends Component {
                 <td><button class="btn btn-primary btn-sm">Message</button></td>
             </tr>)
         })
+        let nPage = Math.ceil(users.size / users.pagination.nPerPage);
+        let renderUsersPagi = [];
+        for (let i = 0; i < nPage; i++)
+            renderUsersPagi.push(
+            <li class="page-item active"><a href="#" class="page-link py-2 px-3">{i+1}</a></li>
+            )
+        
         console.log(renderCurrentU);
         return (
             <div>

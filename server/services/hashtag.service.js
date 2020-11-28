@@ -1,6 +1,6 @@
 var Hashtag = require('../models/hashtag.model')
 
-const createHashtag = (res, hashtag) => {
+const createHashtag = (hashtag) => {
     const newHashtag = new Hashtag(hashtag);
     return newHashtag.save();
 }
