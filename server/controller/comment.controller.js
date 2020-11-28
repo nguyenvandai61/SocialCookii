@@ -19,7 +19,17 @@ const updateComment = (req, res) => {
     });
 }
 
+const deleteComment = (req, res) => {
+    let query = req.body.query;
+    return commentService.deleteComment(query).then(
+        (data, err) => {
+            if (err)  return res.status(500).send(err);
+            return res.status(200).send(data)
+        }
+    )
+}
 module.exports = {
     createComment,
-    updateComment
+    updateComment,
+    deleteComment,
 }
