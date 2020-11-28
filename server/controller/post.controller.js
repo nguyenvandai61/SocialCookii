@@ -1,37 +1,17 @@
-const path = require("path");
-const { response } = require('express');
-const mkdirp = require('mkdirp');
-const fs = require('fs');
 var PostService = require('../services/post.service');
-function decodeBase64Image(dataString) {
-    var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
-      response = {};
-  
-    if (matches.length !== 3) {
-      return new Error('Invalid input string');
-    }
-  
-    response.type = matches[1];
-    response.data = Buffer.from(matches[2], 'base64');
-  
-    return response;
-}
+const Base64Image = require('../utils/Base64Image');
 
-const writeFile = async (path, filename, content) => {
-  await mkdirp(path);
-  fs.writeFileSync(path+filename, content);
-}
 const createPost = async (req, res) => {
     let post = req.body;
     post.thumbnails = post.thumbnails.map(thumbnail => {
-        var decodedImg = decodeBase64Image(thumbnail.img.data);
+        var decodedImg = Base64Image.decodeBase64Image(thumbnail.img.data);
         var imageBuffer = decodedImg.data;
         var type = decodedImg.type;
         var extension = type.split('/')[1];
         var fileName =  thumbnail.name+'.' + extension;
         var newPath = 'assets/image/posts/';
         try{
-            writeFile(newPath, fileName, imageBuffer);
+            Base64Image.writeFile(newPath, fileName, imageBuffer);
         }
         catch(err){
             console.error(err)

@@ -8,7 +8,10 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dropdown: false
+            dropdown: false,
+            user: {
+                avatar: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+            }
         }
     }
    
@@ -27,18 +30,10 @@ class Header extends Component {
         e.target.classList.remove("hover-effect");
     }
 
-    renderFontAwesome() {
-        const script = document.createElement("script");
-
-        script.src = "https://kit.fontawesome.com/a076d05399.js";
-        script.async = true;
-
-        document.body.appendChild(script);
-    }
     componentDidMount() {
-        this.renderFontAwesome();
     }
     render() {
+        const {user} = this.state
         return (
             <header>
                 <div id="logo-wrapper">
@@ -78,7 +73,7 @@ class Header extends Component {
                     <div className="header-btn" onMouseOver={this.mouseOverElement} onMouseOut={this.mouseOutElement}>
                             <Link to="/personalInfo">
                         <button>
-                            <img id="avatar" src={Avatar} />
+                            <img id="avatar" src={user.avatar} />
                         </button>
                             </Link>
                     </div>
