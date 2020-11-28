@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import Style from './AddPost.css'
 import PropTypes from 'prop-types';
 import Avatar from '../../avatar.jpg';
+import '../../utils/Base64Image';
 import FileBase from 'react-file-base64';
 
 import image1 from '../../image/dishes/1.jpg'
 import image2 from '../../image/dishes/2.jpg'
 import image3 from '../../image/dishes/3.jpg'
+import Base64Image from '../../utils/Base64Image';
 
 class AddPost extends Component {
     constructor(props) {
@@ -55,26 +57,10 @@ class AddPost extends Component {
         })
     }
     // function to capture base64 format of an image
-    getImageObj = async (file, index) => {
-        return new Promise((resolve, reject) => {
-            var reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                let imageObj = {
-                    name: "base-image-" + Date.now() + index,
-                    description: '',
-                    img: {
-                        data: reader.result,
-                        contentType: file.type
-                    }
-                };
-                resolve(imageObj);
-            }
-        })
-    }
+   
     getThumbnailsObj = async (files) => {
         for (let i = 0; i < files.length; i++) {
-            this.getImageObj(files[i], i).then(thumbnail => {
+            Base64Image.getImageObj(files[i], i).then(thumbnail => {
                 this.state.thumbnails.push(thumbnail);
                 this.forceUpdate();
             })
@@ -108,9 +94,7 @@ class AddPost extends Component {
         var thumbnailsWrapper = document.getElementsByClassName('thumbnails')[0];
         if (!thumbnailsWrapper) return;
         let thumbnails = event.target.files;
-        this.getThumbnailsObj(thumbnails).then(thumbnails => {
-            // console.log(thumbnails);
-        })
+        this.getThumbnailsObj(thumbnails);
     }
     render() {
         let { thumbnails } = this.state;

@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import Style from './EditPersonalInfo.css'
+import Style from './EditPersonalInfo.css';
 import PropTypes from 'prop-types';
-import Avatar from '../../avatar.jpg'
+import Avatar from '../../avatar.jpg';
+import Base64Image from '../../utils/Base64Image';
 
 class EditPersonalInfo extends Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            user: {
+                avatar: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+            }
+        }
     }
 
     componentWillMount() {
@@ -21,10 +26,6 @@ class EditPersonalInfo extends Component {
 
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-
-    }
-
     componentWillUpdate(nextProps, nextState) {
 
     }
@@ -36,8 +37,22 @@ class EditPersonalInfo extends Component {
     componentWillUnmount() {
 
     }
+    showAvatarDialog = () => {
+        document.getElementById('selectedFile').click()
+    }
+    changeNewAvatar = (event) => {
+        let avatarFile = event.target.files[0];
+        console.log(avatarFile);
+        document.querySelector('.avatar-img-wrapper img').src = avatarFile;
+        Base64Image.file2Base64(avatarFile).then(avatar => {
+            let user = {...this.state.user}
+            user.avatar = avatar;
+            this.setState({user: user});
+        });
+    }
 
     render() {
+        const { user } = this.state
         return (
             <div className="edit-personal-info">
                 <a href="/personalInfo" ><i class="far fa-arrow-alt-circle-left"></i></a>
@@ -64,27 +79,49 @@ class EditPersonalInfo extends Component {
                                 <input className="btn btn-success" type="button" value="Đã xong" />
                             </div>
                         </div>
+                        <input type="file" id="selectedFile" style={{ display: "none" }} onChange={this.changeNewAvatar}/>
                         <div >
                             <div className="avatar-wrapper">
                                 <div className="avatar-img-wrapper">
-                                    <img src={Avatar} alt="" height="100px" width="100px" />
+                                    <img src={user.avatar} alt="" height="100px" width="100px" />
                                 </div>
-                                <p><button className="change">
+                                <p><button className="change" onClick={this.showAvatarDialog}>
                                     <i className="fas fa-pen"></i>
-                                    </button></p>
+                                </button></p>
                             </div>
                         </div>
-                        <div class="info">
-                            <label>Tên</label><br />
-                            <p><input type="text" value="" /></p>
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label" for="username">Username</label>
+                                <div class="controls">
+                                    <input type="text" id="username" name="username" placeholder="" class="input-xlarge" />
+                                    <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+                                </div>
+                            </div>
 
-                            <label>Họ</label><br />
-                            <p><input type="text" value="" /></p>
+                            <div class="control-group">
+                                <label class="control-label" for="email">E-mail</label>
+                                <div class="controls">
+                                    <input type="text" id="email" name="email" placeholder="" class="input-xlarge" />
+                                    <p class="help-block">Please provide your E-mail</p>
+                                </div>
+                            </div>
 
-                            <label>Tên người dùng</label><br />
-                            <p><input type="text" value="" /></p>
-                            <label>Giới thiệu hồ sơ của bạn</label><br />
-                            <p><input type="text" value="" /></p>
+                            <div class="control-group">
+                                <label class="control-label" for="password">Password</label>
+                                <div class="controls">
+                                    <input type="password" id="password" name="password" placeholder="" class="input-xlarge" />
+                                    <p class="help-block">Password should be at least 4 characters</p>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="password_confirm">Password (Confirm)</label>
+                                <div class="controls">
+                                    <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge" />
+                                    <p class="help-block">Please confirm password</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

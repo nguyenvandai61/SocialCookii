@@ -4,7 +4,41 @@ import './DetailPost.css';
 class DetailPost extends Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            post: {
+                title : "Bánh xèo",
+                description: "Bánh xèo là một món ăn truyền thống thuần túy và rất quen thuộc đối với chúng ta. Tuy nhiên ngày nay, bánh xèo Việt Nam đã trở thành một cái tên đặc biệt. Luôn luôn được nhắc đến bởi nhiều người nước ngoài khi ghé thăm Việt Nam. Bánh xèo cũng được biến tấu nhiều phù hợp với khẩu vị, phong tục của từng địa phương khác nhau. Nhưng đều giữ chung cho món ăn này một hương vị riêng. Để lại cho người thưởng thức nhiều cảm xúc khó quên khi dùng qua dù chỉ là một lần.",
+                authorId :"5fa7edd8869c07126058a867",
+                createdAt : Date.now(),
+                deletedAt: "",
+                editedAt: "",
+                thumbnails: [
+                    {
+                        name: "base-image-"+Date.now(),
+                        img: {
+                            data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+                            contentType: "image/png"
+                        }
+                    }
+                ],  
+                recipe: "2 kg nước",
+                comments:[
+                    {
+                        userId: "5fa7edd8869c07126058a867",
+                        comment: "Nhìn có vẻ ngon đấy"
+                    },
+                    {
+                        
+                    }
+                ],
+                likeUserIds:[
+                    "5fa7f3aa108cb725f035f21a",
+                    "5fa7efe5869c07126058a868"
+                ],
+                state:"Da dang",
+                hashtagIds:"5fa75587997be636b8f92cb3"
+            }
+        }
     }
 
     componentWillMount() {

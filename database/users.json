@@ -1,0 +1,67 @@
+[{
+  "_id": {
+    "$oid": "5fc227da32654e3b98b58df9"
+  },
+  "username": "dai",
+  "password": "123",
+  "email": "crystallifestyle05@gmail.com",
+  "phone": "+8437603215",
+  "birthday": "2020-11-18",
+  "gender": "",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc2282867043b2e6ccefa05"
+  },
+  "username": "vu",
+  "password": "123",
+  "email": "vuphan@gmail.com",
+  "phone": "+8437603216",
+  "birthday": "2020-11-18",
+  "gender": "Nam",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc2284067043b2e6ccefa06"
+  },
+  "username": "duong",
+  "password": "123",
+  "email": "thuyduong@gmail.com",
+  "phone": "+8437603216",
+  "birthday": "2020-11-18",
+  "gender": "Nữ",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc2285067043b2e6ccefa07"
+  },
+  "username": "cong",
+  "password": "123",
+  "email": "thucong@gmail.com",
+  "phone": "+8437603216",
+  "birthday": "2020-11-18",
+  "gender": "Nữ",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc2286767043b2e6ccefa08"
+  },
+  "username": "trung",
+  "password": "123",
+  "email": "trungchau@gmail.com",
+  "phone": "+8437603216",
+  "birthday": "2020-11-18",
+  "gender": "Nam",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc2287367043b2e6ccefa09"
+  },
+  "username": "admin",
+  "password": "123",
+  "email": "crystallifestyle05@gmail.com",
+  "phone": "+8437603215",
+  "birthday": "2020-11-18",
+  "gender": "",
+  "__v": 0
+}]
