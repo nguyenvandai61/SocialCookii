@@ -74,14 +74,6 @@ class Masonry extends Component {
                     <h1>Cookii Gallery</h1>
                     <section className="section">
                         <div className="masonry">
-                            <Link to="/detailPost">
-                                <div className="card card-style brick">
-                                    <img src={image1} />
-                                    <div className="item__details">
-                                        jelly-o brownie sweet
-                                    </div>
-                                </div>
-                            </Link>
                             {listPosts.map((post, index) => 
                                 <Link to="/detailPost" key = {index}>
                                     <div className="card card-style brick">
