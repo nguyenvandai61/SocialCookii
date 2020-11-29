@@ -16,7 +16,7 @@ const createPost = async (req, res) => {
         catch(err){
             console.error(err)
         }
-        return newPath+fileName;
+        return 'image/posts/'+fileName;
     })
     return await PostService.createPost(post).then((newPost, err) => {
         if (err) return res.status(500).send(err);

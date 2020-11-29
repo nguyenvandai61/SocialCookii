@@ -6,6 +6,7 @@ const apiRouter = require('./routes/api/index.routes');
 const config = require('./config');
 const app = express();
 const path = require('path');
+const router = require('./routes/index.routes');
 const port = process.env.PORT || 5000;
 app.use(bodyParser.json({limit: '10mb', extended: true}))
 app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
@@ -21,7 +22,6 @@ app.all('*', function (req, res, next) {
 });
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
-
 // set up mongoose
 mongoose.connect(config.mongoose.uri, {
     useNewUrlParser: true,
@@ -36,9 +36,11 @@ mongoose.connect(config.mongoose.uri, {
         console.log('Error connecting to database');
     });
 
+let pa =path.resolve(__dirname+'/assets/image/posts');
+console.log("lulu"+pa);
 
+app.use('/', express.static(__dirname+"../client/build"));
 
-app.use(express.static("../client/build"));
 // app.use(express.static('../client/build'));
 // Handle React routing, return all requests to React app
 console.log("production")

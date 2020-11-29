@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Avatar from '../../avatar.jpg';
+import './AddPost.css';
 import '../../utils/Base64Image';
 
 import Base64Image from '../../utils/Base64Image';
