@@ -1,4 +1,4 @@
-.content {
+.edit-personal-info .content {
     width: 80%;
     margin: auto 50px;
     display: grid;
@@ -6,26 +6,26 @@
 
      padding: 10px;
 }
-.grid2{
+.edit-personal-info  .grid2{
     display: grid;
     grid-template-columns: auto auto ;
 }
-.grid3{
+.edit-personal-info  .grid3{
     display: grid;
     grid-template-columns: auto auto ;
 }
-.grid2 input{
+.edit-personal-info .grid2 input{
     border: 2px solid;
     border-radius: 12px;
     text-align: center;
     margin: 5px;
 }
-.change{
+.edit-personal-info  .change{
     border: 2px solid;
     border-radius: 12px;
     background-color:lightgrey;
 }
-.info input{
+.edit-personal-info  .info input{
     border: 1px solid;
     border-radius: 12px;
     height: 40px;

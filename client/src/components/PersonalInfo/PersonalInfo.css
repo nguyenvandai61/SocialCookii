@@ -5,3 +5,34 @@
     border-color: #3f3636;
     overflow: hidden;
 }
+.personal-info .content {
+    background-color: #5f1712;
+    border-radius: 30px;
+    padding: 3px;
+}
+.personal-info .avatar {
+    margin: auto;
+    width: 50%;
+}
+.personal-info ul {
+    padding: 0;
+}
+.data {
+    margin-top: .6em;
+    color: #ffffff; }
+    .data li {
+      width: 32%;
+      text-align: center;
+      display: inline-block;
+      font-size: 1.5em;
+      border-right: solid 1px #bdc3c7; }
+      .data li:last-child {
+        border: none; }
+      .data li span {
+        display: block;
+        text-transform: uppercase;
+        font-family: 'Quicksand';
+        font-size: .5em;
+        margin-top: .6em;
+        font-weight:700;
+      }
