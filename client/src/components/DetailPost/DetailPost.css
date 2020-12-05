@@ -1,17 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Arvo');
 .detail-post {
+	text-align: left;
     display: inline-grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding: 70px;
+    padding: 20px;
     border: 1px solid gray;
     border-radius: 5px;
 }
 
-.detail-post .big-thumbnail {
-    margin-top: 20px;
-    max-height: 40vh;
-    min-height: 40vh;
-}
 
 .detail-post .big-thumbnail>img {
     max-width: 100%;
@@ -66,14 +62,46 @@
     height: 50px;
 }
 
-.left {
-    margin-right: 30px;
+.detail-post .left {
+	/* margin-right: 30px; */
+	width: 90%;
+	height: 90vh;
+	display: block;
+	margin: auto;
+	padding: 10px;
+	box-shadow: 5px 20px 60px 10px Gray;
+}
+.detail-post .left .big-thumbnail {
+	margin: auto;
+	height: 60vh;
+	display: block;
+}
+.detail-post .left .big-thumbnail img{
+	margin: auto;
+	width: 95%;
+	height: 60vh;
+	display: block;
 }
 
 .left img {
     border-radius: 15px;
 }
 
+.detail-post .right {
+	height: 90vh;
+	overflow:auto;    
+}
+
+.detail-post .thumbnails {
+
+}
+
+.detail-post .thumbnails img{
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	padding: 5px;
+}
 .cmt {
     display: flex;
 }
@@ -81,7 +109,6 @@
 .cmt input {
     width: 400px;
     border: 1px solid gray;
-    border-radius: 15px;
 }
 
 .submit input {
@@ -95,7 +122,23 @@
     border: 1px solid gray;
     border-radius: 15px;
 }
+.detail-post .button-like {
+	display: inline-block;
+	background: #e74c3c;
+	color: white;
+	width: 100px;
+	padding: 5px;
+	cursor: pointer;
+}
+.detail-post .button-like:hover{
+	
+	background: #c0392b;
+}
 
+.detail-post .button-like .fa-heart{
+	/* padding: 10px; */
+	/* background: #e03724; */
+}
 .detail-post .follow {
     margin: 1.5em auto 0 auto;
     background-color: #0b9133;
@@ -233,7 +276,7 @@
 }
 
 .detail-post .reply-list {
-	padding-left: 88px;
+	padding-left: 40px;
 	clear: both;
 	margin-top: 15px;
 }
@@ -277,7 +320,7 @@
  * Caja del Comentario
  ---------------------------*/
 .detail-post .comments-list .comment-box {
-	width: 680px;
+	width: 100%;
 	float: right;
 	position: relative;
 	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
@@ -304,9 +347,6 @@
 	left: -12px;
 }
 
-.detail-post .reply-list .comment-box {
-	width: 610px;
-}
 .detail-post .comment-box .comment-head {
 	background: #FCFCFC;
 	padding: 10px 12px;
@@ -375,7 +415,7 @@
 
 .detail-post .comment-box .comment-name.by-author, .comment-box .comment-name.by-author a {color: #03658c;}
 .detail-post .comment-box .comment-name.by-author:after {
-	content: 'autor';
+	content: 'Tác giả';
 	background: #03658c;
 	color: #FFF;
 	font-size: 12px;
