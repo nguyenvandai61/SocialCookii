@@ -41,7 +41,7 @@ describe('Test API post', () => {
                 hashtagIds:"5fa75587997be636b8f92cb3"
             }
 
-            let respThumbnail = ['assets/image/posts/'+ body.thumbnails[0].name+'.png'];
+            let respThumbnail = ['image/posts/'+ body.thumbnails[0].name+'.png'];
             chai.request(app)
                 .post('/api/post')
                 .send(body)

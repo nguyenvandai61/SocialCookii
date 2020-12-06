@@ -120,6 +120,7 @@ class Register extends Component {
               phone: phone,
               birthday: birthday,
               gender: gender,
+              avatar: "/default/"
             })
           }).then(res => {
               console.log(res);
