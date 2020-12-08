@@ -37,15 +37,14 @@ mongoose.connect(config.mongoose.uri, {
     });
 
 let pa =path.resolve(__dirname+'/assets/image/posts');
-console.log("lulu"+pa);
-
 app.use('/', express.static(__dirname+"../client/build"));
 
 // app.use(express.static('../client/build'));
 // Handle React routing, return all requests to React app
 console.log("production")
+console.log(path.resolve(__dirname, '../client/build/', 'index.html'))
 app.get('/*', function (req, res) {
-    res.sendFile('index.html');
+    res.sendFile(path.resolve(__dirname, '../client/build/', 'index.html'));
 });
 app.listen(port, () => console.log(`Listening on port ${port}`));
 

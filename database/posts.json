@@ -51,4 +51,57 @@
   "description": "Siêu ngon",
   "recipe": "Cà rốt",
   "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc8560babc7aa24b0435549"
+  },
+  "thumbnails": [
+    "image/posts/base-image-16069647190120.png",
+    "image/posts/base-image-16069647190481.png",
+    "image/posts/base-image-16069647190762.png"
+  ],
+  "videos": [],
+  "comments": [],
+  "likeUserIds": [],
+  "hashtagIds": [],
+  "createdAt": null,
+  "title": "Bánh xèo",
+  "description": "Bánh thơm và ngon",
+  "recipe": "Trứng, tôm, thịt",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc85636abc7aa24b043554a"
+  },
+  "thumbnails": [
+    "image/posts/base-image-16069647658060.jpeg",
+    "image/posts/base-image-16069647658251.jpeg",
+    "image/posts/base-image-16069647658482.jpeg"
+  ],
+  "videos": [],
+  "comments": [],
+  "likeUserIds": [],
+  "hashtagIds": [],
+  "createdAt": null,
+  "title": "Thịt xốt chanh",
+  "description": "Béo ngậy",
+  "recipe": "Thịt, xúc xích",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc85ec0abc7aa24b043554b"
+  },
+  "thumbnails": [
+    "image/posts/base-image-16069669499930.jpeg",
+    "image/posts/base-image-16069669500171.jpeg"
+  ],
+  "videos": [],
+  "comments": [],
+  "likeUserIds": [],
+  "hashtagIds": [],
+  "createdAt": null,
+  "title": "Xào cà rốt",
+  "description": "Giòn",
+  "recipe": "Cà rốt",
+  "__v": 0
 }]

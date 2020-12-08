@@ -1,3 +1,4 @@
+const postService = require('../services/post.service');
 var PostService = require('../services/post.service');
 const Base64Image = require('../utils/Base64Image');
 
@@ -27,7 +28,12 @@ const updatePost = (req, res) => {
     return PostService.updatePost(query, newPost);
 }
 const getPost = (req, res) => {
-    return PostService.getPost(query);
+    console.log(req.params.id);
+    return postService.getPost(req.params.id).then((data,err) => {
+        if(err) return res.status(500).send(err);
+        if(data == null) return res.status(404).json({ message: "Cannot find User" });
+        return res.status(200).json({"data": data})
+    })
 }
 const getAllPost = (req, res) => {
     return PostService.getAllPost().then((posts, err) => {

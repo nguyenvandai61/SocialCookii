@@ -9,12 +9,8 @@ const getAllPost = () => {
     return Post.find();
 }
 
-const getPost = (req, res) => {
-    Post.findById(req.params.id, (err, data) => {
-        if(err) return res.status(500).send(err);
-        if(data == null) return res.status(404).json({ message: "Cannot find User" });
-        return res.json({"data": data})
-    })
+const getPost = (query) => {
+    return Post.findById(query)
 }
 
 const getPostByHashTag = (req, res) => {
