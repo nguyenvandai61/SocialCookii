@@ -28,11 +28,12 @@ const updatePost = (req, res) => {
     return PostService.updatePost(query, newPost);
 }
 const getPost = (req, res) => {
-    console.log(req.params.id);
-    return postService.getPost(req.params.id).then((data,err) => {
+    let query = {_id: req.params.id};
+    // console.log(req.params.id);
+    return postService.getPost(query).then((data,err) => {
         if(err) return res.status(500).send(err);
         if(data == null) return res.status(404).json({ message: "Cannot find User" });
-        return res.status(200).json({"data": data})
+        return res.status(200).json(data)
     })
 }
 const getAllPost = (req, res) => {

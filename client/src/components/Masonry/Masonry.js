@@ -37,7 +37,6 @@ class Masonry extends Component {
               })
             } 
             else {
-                console("error")
             } 
         })
     }
@@ -68,7 +67,7 @@ class Masonry extends Component {
 
     render() {
         const {listPosts} = this.state
-        console.log(listPosts)
+        console.log(listPosts);
         return (
                 <div style={{margin: "15px"}}>
                     <h1>Cookii Gallery</h1>

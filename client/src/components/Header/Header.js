@@ -80,20 +80,20 @@ class Header extends Component {
                 </div>
                 <div id="options">
                     <button onClick={this.barsClickHandler}><i className="fas fa-bars"></i></button>
-                    <div class="dropdown">
+                    <div className="dropdown">
                         <ul>
                             <li>
-                                <p class="">Thêm tài khoản khác</p>
+                                <p className="">Thêm tài khoản khác</p>
                             </li>
                             <li>
-                                <p class="">Cài đặt</p>
+                                <p className="">Cài đặt</p>
                             </li>
                             <li>
-                                <p class="">Nhận trợ giúp</p>
+                                <p className="">Nhận trợ giúp</p>
                             </li>
                             <Link to="/login">
                             <li>
-                                <p class="">Đăng xuất</p>
+                                <p className="">Đăng xuất</p>
                             </li>
                             </Link>
                         </ul>
