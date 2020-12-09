@@ -4,6 +4,16 @@ const getUser = (query) => {
   return User.find(query);
 }
 
+const getUserInfo = (id) => {
+  // console.log(User.find(query).select("_id -username -fullname -avatar"));
+  return User.findById(id).select({ 
+    "_id": 1,
+    "username": 1,
+    "fullname": 1, 
+    "avatar": 1
+  });;
+} 
+
 const getAllUser = (req, res) => {
   return User.find({})
 }
@@ -45,6 +55,7 @@ const deleteAllUsers = (req, res) => {
 
 module.exports = {
   getUser,
+  getUserInfo,
   getAllUser,
   createUser,
   createUsers,

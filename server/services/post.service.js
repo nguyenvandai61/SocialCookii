@@ -10,7 +10,7 @@ const getAllPost = () => {
 }
 
 const getPost = (query) => {
-    return Post.findById(query)
+    return Post.find(query)
 }
 
 const getPostByHashTag = (req, res) => {
@@ -18,7 +18,7 @@ const getPostByHashTag = (req, res) => {
     Post.find(req.params, (err, data) => {
         if(err) return res.status(500).send(err);
         if(data == null) return res.status(404).json({ message: "Cannot find Post" });
-        return res.json({"data" : data});
+        return res.json(data);
     })
 }
 
@@ -44,7 +44,7 @@ const updatePost = (req, res) => {
           message: "Post successfully updated"
       };
       console.log(doc.description);
-      return res.json({"data" : doc});
+      return res.json(doc);
     });
   }
 

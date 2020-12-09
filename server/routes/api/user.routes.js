@@ -4,6 +4,8 @@ var router = express.Router();
 
 
 router.get('/', (req, res)=> userController.getAllUser(req, res))
+router.get('/userInfo/:id', (req, res)=> userController.getUserInfo(req, res))
+router.get('/:id', (req,res)=> userController.getUser(req, res))
 router.post('/', (req, res)=> {
     if (Array.isArray(req.body))
         return userController.createUsers(req, res)

@@ -7,9 +7,24 @@ const getAllUser = (req, res) => {
         res.status(200).json(data);
     });
 }
-const getUserByUsername = (req, res) => {
-    req.query = req.body.username;
-    return UserService.getUser(req, res);
+const getUser = (req, res) => {
+    console.log(req.params);
+    let query = {_id: req.params.id};
+    return UserService.getUser(query).then((data, err) => {
+        if (err)
+            return res.status(500).json(err)
+        return res.status(200).json(data);
+    });
+}
+const getUserInfo = (req, res) => {
+    console.log("GET USER INFO");
+    console.log(req.params.id)
+    return UserService.getUserInfo(req.params.id).then((data, err) => {
+        console.log(data);
+        if (err)
+            return res.status(500).json(err)
+        return res.status(200).json(data);
+    });
 }
 const createUser = (req, res) => {
     let user = req.body;
@@ -69,6 +84,8 @@ const checkRegister = async (req, res) => {
 }
 module.exports = {
     getAllUser,
+    getUser,
+    getUserInfo,
     createUser,
     updateUser,
     deleteUser,

@@ -66,6 +66,8 @@ class AddPost extends Component {
             createdAt: Date.now()
         })
         let body = this.state;
+        body.createdBy = {id: "5fc3bb629e921808d0bb4304"}
+        console.log(body)
         fetch('/api/post/', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },

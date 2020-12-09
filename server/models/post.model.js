@@ -9,9 +9,8 @@ const PostSchema = new mongoose.Schema({
   description: {
     type: String,
   },
-  authorId: {
-    type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
+  createdBy: {
+    type: Object
   },
   createdAt: {
     type: Date,
@@ -31,10 +30,9 @@ const PostSchema = new mongoose.Schema({
   videos: {
     type: []
   },
-  comments: [{
-    type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
-  }],
+  comments: {
+    type: Array,
+  },
   likeUserIds: [{
     type: mongoose.Schema.Types.ObjectId,
       ref: "User"

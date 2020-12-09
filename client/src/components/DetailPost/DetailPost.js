@@ -5,7 +5,8 @@ class DetailPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            post: {}
+            post: {},
+            listUserCache: []
         }
     }
 
@@ -13,7 +14,7 @@ class DetailPost extends Component {
         let post = {
             title: "Bánh xèo",
             description: "Bánh xèo là một món ăn truyền thống thuần túy và rất quen thuộc đối với chúng ta. Tuy nhiên ngày nay, bánh xèo Việt Nam đã trở thành một cái tên đặc biệt. Luôn luôn được nhắc đến bởi nhiều người nước ngoài khi ghé thăm Việt Nam. Bánh xèo cũng được biến tấu nhiều phù hợp với khẩu vị, phong tục của từng địa phương khác nhau. Nhưng đều giữ chung cho món ăn này một hương vị riêng. Để lại cho người thưởng thức nhiều cảm xúc khó quên khi dùng qua dù chỉ là một lần.",
-            author: {
+            createdBy: {
                 id: 1,
             },
             createdAt: Date.now(),
@@ -27,12 +28,12 @@ class DetailPost extends Component {
             comments: [
                 {
                     id: 2,
-                    
+
                     time: Date.now(),
                     content: "Nhìn có vẻ ngon đấy",
                     replyComments: [
                         {
-                            id: 3,                    
+                            id: 3,
                             time: Date.now(),
                             content: "Ukm ngon đấy"
                         },
@@ -45,7 +46,6 @@ class DetailPost extends Component {
                 },
                 {
                     id: 5,
-                    
                     time: Date.now(),
                     content: "Nhìn có vẻ ngon đấy",
                     replyComments: [
@@ -53,7 +53,7 @@ class DetailPost extends Component {
                             id: 3,
                             time: Date.now(),
                             content: "Ukm ngon đấy"
-                        }, 
+                        },
                         {
                             id: 1,
                             time: Date.now(),
@@ -91,7 +91,7 @@ class DetailPost extends Component {
                 name: "Công Trần",
             }
         }
-        Object.assign(post.author, users[post.author.id]);
+        Object.assign(post.createdBy, users[post.createdBy.id]);
         post.comments.map(comment => {
             Object.assign(comment, users[comment.id]);
             comment.replyComments.map(rComment => {
@@ -99,24 +99,37 @@ class DetailPost extends Component {
             })
         })
 
-        this.setState({post: post});
+        this.setState({ post: post });
+    }
+    fetchUserInfo = (id) => {
+        return fetch("/api/user/userInfo/" + id).then(res => {
+            return res.json();
+        }).then(user => {
+            console.log(user);
+            return user[0];
+        })
     }
     fetchPost = async () => {
         let id = window.location.pathname.split('/')[2];
-        console.log("Fetch post")
-
-        return await fetch('/api/post/'+id, {
+        return await fetch('/api/post/' + id, {
             headers: { 'Content-Type': 'application/json' },
         }).then(res => {
-            // console.log(res.json());
-            if (res.status == 200) 
+            if (res.status == 200)
                 return res.json()
-        }).then(data => {
-            console.log(data.data);
-            this.setState({post: data.data});
-            return data;
+        }).then(data1 => data1[0])
+        .then(data => {
+            console.log(data);
+            this.setState({ post: data })
+            // this.fetchUserInfo(data.createdBy.id).then(user => {
+            //     console.log(user);
+            //     data.createdBy = user;
+            //     this.setState({ post: data[0] });
+            //     // console.log(data1.data);
+            //     return data;
+            // });
         })
     }
+
 
     replaceImage = (e) => {
         document.querySelector(".big-thumbnail").querySelector("img").src = e.target.src;
@@ -128,7 +141,7 @@ class DetailPost extends Component {
 
     componentDidMount() {
         // this.addAuthorText();
-        
+
         this.fetchPost();
     }
 
@@ -150,13 +163,14 @@ class DetailPost extends Component {
 
     render() {
         const { post } = this.state;
+        console.log(post);
         return (
 
-            <div class="detail-post">
-                <div class="left">
+            <div className="detail-post">
+                <div className="left">
                     <div className="big-thumbnail frame">
                         {
-                            (post.thumbnails[0]) ? (<img src={"/"+post.thumbnails[0]} />) : ''
+                            (post.thumbnails[0]) ? (<img src={"/" + post.thumbnails[0]} />) : ''
                         }
                     </div>
                     <div className="thumbnails">
@@ -164,35 +178,35 @@ class DetailPost extends Component {
                             post.thumbnails.map((thumbnail, index) => {
                                 if (thumbnail) {
                                     return (<div className="thumbnail" key={index}>
-                                        <img src={"/"+thumbnail} onClick={this.replaceImage}/>
+                                        <img src={"/" + thumbnail} onClick={this.replaceImage} />
                                     </div>)
                                 }
                             })
                         }
                     </div>
                 </div>
-                <div class="right">
+                <div className="right">
                     <h1>{post.title}</h1>
                     <p>
                         {post.description}
                     </p>
-                    <div class="info">
-                        <div class="col-sm-9 post-avatar">
-                            <img src={post.author?post.author.avatar:""} alt="" height="60px" width="60px" class="avatar" />
-                            <h2>{post.author?post.author.name:""}</h2>
+                    <div className="info">
+                        <div className="col-sm-9 post-avatar">
+                            <img src={post.createdBy ? "/"+post.createdBy.avatar : ""} alt="" height="60px" width="60px" className="avatar" />
+                            <h2>{post.createdBy ? post.createdBy.fullname : ""}</h2>
                         </div>
-                        <div class="col-sm-3">
-                            <input class="follow" style={{ width: "100px" }} type="submit" value="Theo dõi" />
+                        <div className="col-sm-3">
+                            <input className="follow" style={{ width: "100px" }} type="submit" value="Theo dõi" />
                         </div>
 
                     </div>
                     <div className="button-like">
-                        <i class="fas fa-heart"></i> 
+                        <i className="fas fa-heart"></i>
                         <span>Yêu thích</span>  &ensp;
                     </div> <br />
-                    <span>10 Lượt yêu thích</span>
+                    <span>{post.likeUserIds.length} Lượt yêu thích</span>
                     <h3>Nguyên liệu</h3>
-                    <div class="content1">
+                    <div className="content1">
                         {post.recipe}
                     </div>
 
@@ -200,7 +214,7 @@ class DetailPost extends Component {
                         <div>
                             <h2>Comments</h2>
                             <form>
-                                <div class="cmt">
+                                <div className="cmt">
                                     <input type="text" placeholder="Thêm nhận xét" /> <br />
                                     <button>Send</button>
                                 </div>
@@ -208,51 +222,52 @@ class DetailPost extends Component {
                         </div>
                         <div>
                             {
-                                post.comments.map(comment => {
+                                post.comments.map((comment, index) => {
+                                    console.log(post);
                                     return (
-                                        <li>
-                                            <div class="comment-main-level">
-                                                <div class="comment-box">
-                                                    <div class="comment-head">
-                                                        <div class="comment-avatar"><img src={comment.avatar} alt="" /></div>
-            
-                                                        <h6 className={"comment-name " + (comment.id == post.author.id?'by-author':'')}><a href="">{comment.name}</a></h6>
+                                        <li key={index}>
+                                            <div className="comment-main-level">
+                                                <div className="comment-box">
+                                                    <div className="comment-head">
+                                                        <div className="comment-avatar"><img src={comment.avatar} alt="" /></div>
+
+                                                        <h6 className={"comment-name " + (comment._id == post.createdBy._id ? 'by-author' : '')}><a href="">{comment.name}</a></h6>
                                                         <span></span>
-                                                        <i class="fa fa-reply"></i>
-                                                        <i class="fa fa-heart"></i>
+                                                        <i className="fa fa-reply"></i>
+                                                        <i className="fa fa-heart"></i>
                                                     </div>
-                                                    <div class="comment-content">
+                                                    <div className="comment-content">
                                                         {comment.content}
                                                     </div>
                                                 </div>
                                             </div>
-                                            <ul class="comments-list reply-list">
+                                            <ul className="comments-list reply-list">
                                                 {
-                                                    comment.replyComments.map(replyComment => {
+                                                    (comment.replyComments)?comment.replyComments.map((replyComment, index) => {
                                                         return (
-                                                            <li>
-                                                                <div class="comment-box">
-                                                                    <div class="comment-head">
-                                                                        <div class="comment-avatar"><img src={replyComment.avatar} alt="" /></div>
-                                                                        <h6 className={"comment-name " + (replyComment.id == post.author.id?'by-author':'')}>
+                                                            <li key={index}>
+                                                                <div className="comment-box">
+                                                                    <div className="comment-head">
+                                                                        <div className="comment-avatar"><img src={replyComment.avatar} alt="" /></div>
+                                                                        <h6 className={"comment-name " + (replyComment._id == post.createdBy._id ? 'by-author' : '')}>
                                                                             <a href="#">{replyComment.name}</a></h6>
                                                                         <span>hace 10 minutos</span>
-                                                                        <i class="fa fa-reply"></i>
-                                                                        <i class="fa fa-heart"></i>
+                                                                        <i className="fa fa-reply"></i>
+                                                                        <i className="fa fa-heart"></i>
                                                                     </div>
-                                                                    <div class="comment-content">
-                                                                        {replyComment.content}    
+                                                                    <div className="comment-content">
+                                                                        {replyComment.content}
                                                                     </div>
                                                                 </div>
                                                             </li>
                                                         )
-                                                    })
+                                                    }):""
                                                 }
                                             </ul>
                                         </li>
-        
-        
-        
+
+
+
                                     )
                                 })
                             }
