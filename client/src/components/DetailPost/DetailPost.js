@@ -230,9 +230,7 @@ class DetailPost extends Component {
                 </div>
                 <div className="right">
                     <h1>{post.title}</h1>
-                    <p>
-                        {post.description}
-                    </p>
+                    <div style={{wordBreak:'break-word',display:'inline-block'}} className="editor" dangerouslySetInnerHTML={{__html:post.description}}/>
                     <div className="info">
                         <div className="col-sm-9 post-avatar">
                             <img src={post.createdBy ? "/"+post.createdBy.avatar : ""} alt="" height="60px" width="60px" className="avatar" />
