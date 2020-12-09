@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Logo from '../../logo.png';
+import Logo from '../../cookii-logo.png';
 import Avatar from '../../avatar.jpg';
 import { Link } from 'react-router-dom';
 import './Header.css';
@@ -58,7 +58,7 @@ class Header extends Component {
                     </Link>
                 </div>
                 <div id="search-bar">
-                    <input type="text" />
+                    <input type="text" placeholder="Tìm kiếm" />
                     <button id="search-btn">
                         <i className="fas fa-search"></i>
                     </button>

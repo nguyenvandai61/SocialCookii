@@ -70,7 +70,6 @@ class Masonry extends Component {
         console.log(listPosts);
         return (
                 <div style={{margin: "15px"}}>
-                    <h1>Cookii Gallery</h1>
                     <section className="section">
                         <div className="masonry">
                             {listPosts.map((post, index) => 
