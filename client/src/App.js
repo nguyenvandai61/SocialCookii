@@ -47,6 +47,11 @@ function App() {
             <DetailPost />
             <AdditionalBtns />
           </Route>
+          <Route path="/post/:id">  
+            <Headers />
+            <DetailPost />
+            <AdditionalBtns />
+          </Route>
           <Route path="/friends">
             <Headers />
             <Friend />

@@ -101,10 +101,25 @@ class DetailPost extends Component {
 
         this.setState({post: post});
     }
+    fetchPost = async () => {
+        let id = window.location.pathname.split('/')[2];
+        console.log("Fetch post")
+
+        return await fetch('/api/post/'+id, {
+            headers: { 'Content-Type': 'application/json' },
+        }).then(res => {
+            // console.log(res.json());
+            if (res.status == 200) 
+                return res.json()
+        }).then(data => {
+            console.log(data.data);
+            this.setState({post: data.data});
+            return data;
+        })
+    }
 
     replaceImage = (e) => {
         document.querySelector(".big-thumbnail").querySelector("img").src = e.target.src;
-        
         console.log(e.target.src);
     }
     componentWillMount() {
@@ -113,6 +128,8 @@ class DetailPost extends Component {
 
     componentDidMount() {
         // this.addAuthorText();
+        
+        this.fetchPost();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -132,22 +149,22 @@ class DetailPost extends Component {
     }
 
     render() {
-        const { thumbnails, author, comments } = this.state.post;
+        const { post } = this.state;
         return (
 
             <div class="detail-post">
                 <div class="left">
                     <div className="big-thumbnail frame">
                         {
-                            (thumbnails[0]) ? (<img src={thumbnails[0]} />) : ''
+                            (post.thumbnails[0]) ? (<img src={"/"+post.thumbnails[0]} />) : ''
                         }
                     </div>
                     <div className="thumbnails">
                         {
-                            thumbnails.map((thumbnail, index) => {
+                            post.thumbnails.map((thumbnail, index) => {
                                 if (thumbnail) {
                                     return (<div className="thumbnail" key={index}>
-                                        <img src={thumbnail} onClick={this.replaceImage}/>
+                                        <img src={"/"+thumbnail} onClick={this.replaceImage}/>
                                     </div>)
                                 }
                             })
@@ -155,17 +172,14 @@ class DetailPost extends Component {
                     </div>
                 </div>
                 <div class="right">
-                    <h1>Bánh xèo </h1>
-                    <p>Bánh xèo là một món ăn truyền thống thuần túy và rất quen thuộc đối với chúng ta.
-                    Tuy nhiên ngày nay, bánh xèo Việt Nam đã trở thành một cái tên đặc biệt.
-                    Luôn luôn được nhắc đến bởi nhiều người nước ngoài khi ghé thăm Việt Nam.
-                    Bánh xèo cũng được biến tấu nhiều phù hợp với khẩu vị, phong tục của từng địa phương khác nhau.
-                    Nhưng đều giữ chung cho món ăn này một hương vị riêng. Để lại cho người thưởng thức nhiều cảm xúc khó quên khi dùng qua dù chỉ là một lần.
-                </p>
+                    <h1>{post.title}</h1>
+                    <p>
+                        {post.description}
+                    </p>
                     <div class="info">
                         <div class="col-sm-9 post-avatar">
-                            <img src={author.avatar} alt="" height="60px" width="60px" class="avatar" />
-                        <h2>{author.name}</h2>
+                            <img src={post.author?post.author.avatar:""} alt="" height="60px" width="60px" class="avatar" />
+                            <h2>{post.author?post.author.name:""}</h2>
                         </div>
                         <div class="col-sm-3">
                             <input class="follow" style={{ width: "100px" }} type="submit" value="Theo dõi" />
@@ -179,21 +193,7 @@ class DetailPost extends Component {
                     <span>10 Lượt yêu thích</span>
                     <h3>Nguyên liệu</h3>
                     <div class="content1">
-                        <div>
-                            <ul>
-                                <li> Bột bánh xèo Mikko : 500g</li>
-                                <li>Tôm tươi: 150g</li>
-                                <li>Thịt ba chỉ heo: 150g</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul>
-                                <li>Nấm hương: 15 cái</li>
-                                <li>Giá đỗ: 100g</li>
-                                <li>Đỗ sạch đã bóc vỏ: 50g</li>
-                            </ul>
-
-                        </div>
+                        {post.recipe}
                     </div>
 
                     <div className="comment-wrapper">
@@ -208,7 +208,7 @@ class DetailPost extends Component {
                         </div>
                         <div>
                             {
-                                comments.map(comment => {
+                                post.comments.map(comment => {
                                     return (
                                         <li>
                                             <div class="comment-main-level">
@@ -216,7 +216,7 @@ class DetailPost extends Component {
                                                     <div class="comment-head">
                                                         <div class="comment-avatar"><img src={comment.avatar} alt="" /></div>
             
-                                                        <h6 className={"comment-name " + (comment.id == author.id?'by-author':'')}><a href="">{comment.name}</a></h6>
+                                                        <h6 className={"comment-name " + (comment.id == post.author.id?'by-author':'')}><a href="">{comment.name}</a></h6>
                                                         <span></span>
                                                         <i class="fa fa-reply"></i>
                                                         <i class="fa fa-heart"></i>
@@ -234,7 +234,7 @@ class DetailPost extends Component {
                                                                 <div class="comment-box">
                                                                     <div class="comment-head">
                                                                         <div class="comment-avatar"><img src={replyComment.avatar} alt="" /></div>
-                                                                        <h6 className={"comment-name " + (replyComment.id == author.id?'by-author':'')}>
+                                                                        <h6 className={"comment-name " + (replyComment.id == post.author.id?'by-author':'')}>
                                                                             <a href="#">{replyComment.name}</a></h6>
                                                                         <span>hace 10 minutos</span>
                                                                         <i class="fa fa-reply"></i>
