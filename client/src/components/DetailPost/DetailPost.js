@@ -5,9 +5,46 @@ class DetailPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            post: {}
+            post: {},
+            isFollowed : false
         }
+        this.onFollow = this.onFollow.bind(this)
+        // userName = localStorage.getItem('userName');
+        // console.log(userName)
     }
+
+
+    onFollow(e){
+
+        e.preventDefault();
+          // const {authorId} = this.state.post
+          const userId = "5fccf11a0fbb1823e0a6a68f"
+          const authorId = "5fc08664881dcf2e6456a7de"
+          const url = '/api/user/' + userId
+          console.log(url)
+          fetch(url, {
+            method: "PUT",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              following: {authorId},
+            })
+          }).then(res => {
+              if (res.status == 200) {
+                res.json().then(data => {
+                    console.log(data)
+                    const {isFollowed} = this.state 
+                    this.setState({
+                      isFollowed: !isFollowed,
+                    })
+                })
+              } 
+              else {
+
+              } 
+          })
+
+    }
+
 
     loadUser = () => {
         let post = {
@@ -150,6 +187,12 @@ class DetailPost extends Component {
 
     render() {
         const { post } = this.state;
+        const { thumbnails, author, comments } = this.state.post;
+        const {isFollowed} = this.state 
+        var status = "Theo dõi"
+        if(isFollowed){
+            status = "Đã theo dõi"
+        }
         return (
 
             <div class="detail-post">
@@ -182,7 +225,11 @@ class DetailPost extends Component {
                             <h2>{post.author?post.author.name:""}</h2>
                         </div>
                         <div class="col-sm-3">
-                            <input class="follow" style={{ width: "100px" }} type="submit" value="Theo dõi" />
+                            <input class="follow" 
+                                    onClick={this.onFollow} 
+                                    style={{ width: "100px" }} 
+                                    type="submit" 
+                                    value={status}/>
                         </div>
 
                     </div>

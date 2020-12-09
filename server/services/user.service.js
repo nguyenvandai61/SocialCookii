@@ -24,14 +24,17 @@ const createUsers = (req, res) => {
 }
 
 
-const updateUser = (res, query, newData) => {
+const updateUser = (req, res) => {
   const content = req.body;
-  User.findOneAndUpdate(content.query, content.newData, function(err) {
+  console.log(req.params)
+  console.log(req.query)
+  User.findByIdAndUpdate(req.params.id, content,  function(err, doc) {
     if (err) return res.status(500).send(err);
     const response = {
         message: "User successfully updated"
     };
-    return res.status(200).send(response);
+    console.log(doc)
+    return res.status(200).json({"data" : doc});
   });
 }
 

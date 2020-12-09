@@ -19,8 +19,7 @@ const createUser = (req, res) => {
     });
 }
 const updateUser = (req, res) => {
-    let content = req.body;
-    return UserService.updateUser(content.query, content.newContent);
+    return UserService.updateUser(req, res);
 }
 
 const deleteUser = (req, res) => {
@@ -67,6 +66,13 @@ const checkRegister = async (req, res) => {
         }
     })
 }
+
+const follow = (req, res) => {
+    let content = req.body;
+    return UserService.updateUser(content.query, content.newContent);
+}
+
+
 module.exports = {
     getAllUser,
     createUser,
