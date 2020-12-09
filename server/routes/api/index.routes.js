@@ -5,6 +5,7 @@ const post = require('./post.routes');
 const comment = require('./comment.routes');
 const notification = require('./notification.routes');
 const friend = require('./friend.routes');
+const emotion = require('./emotion.routes');
 var router = express.Router();
 
 
@@ -15,5 +16,5 @@ router.use('/post', post);
 router.use('/comment', comment);
 router.use('/friend', friend);
 router.use('/notification', notification);
-
+router.use('/emotion', emotion);
 module.exports = router;
