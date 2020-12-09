@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {Redirect, Link} from 'react-router-dom'
 import './Login.css';
 // import { useHistory } from "react-router"
 class Login extends Component {
@@ -10,7 +11,9 @@ class Login extends Component {
                 username: '',
                 password: '',
                 role: ''
-            }
+            },
+            isSuccess: false,
+            message: ''
         };    
         this.onTextBoxUsername = this.onTextBoxUsername.bind(this);
         this.onTextBoxPassword = this.onTextBoxPassword.bind(this);
@@ -52,7 +55,6 @@ class Login extends Component {
             
             window.location.href = "/";
             // this.props.history.push("/");
-            
         }
     }
     onSubmit(e){
@@ -80,7 +82,7 @@ class Login extends Component {
                 })
               } 
               else {
-
+                this.setState({isSuccess: false, message:"Đăng nhập thất bại"});
               } 
           })
     }
@@ -89,10 +91,6 @@ class Login extends Component {
 
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (nextState == this.state) return false;
-        return true;
-    }
 
     componentWillUpdate(nextProps, nextState) {
 
@@ -117,6 +115,15 @@ class Login extends Component {
             localStorage.setItem('userName', username);
         }  
         console.log(username);
+        const {isSuccess, message} = this.state;
+        // if (this.props.response.login.hasOwnProperty('response')) {
+        //     isSuccess = this.props.response.login.response.success;
+        //     message = this.props.response.login.response.message;
+            
+        //     if (isSuccess) {
+        //       setCookie('token', this.props.response.login.response.token, 1);
+        //     }
+        // }
         return (
             <div class="center-container-login">
                 <div class="header-w3l">
@@ -153,6 +160,10 @@ class Login extends Component {
                                         <span class="icon2"><i class="fa fa-unlock" aria-hidden="true"></i></span>
                                     </div>
                                     <div class="sub-w3l">
+                                        <div>
+                                            {!isSuccess ? <div  className="error-message">{message}</div> : <Redirect to='dashboard' />}
+                                        </div>
+                                        Don't have account? <Link to='register'>Register here</Link>
                                         <h6><a href="#">Forgot Password?</a></h6>
                                         <div class="right-w3l">
                                             <button onClick={this.onSubmit}>Submit</button>

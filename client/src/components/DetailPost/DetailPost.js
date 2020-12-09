@@ -142,8 +142,7 @@ class DetailPost extends Component {
         return fetch("/api/user/userInfo/" + id).then(res => {
             return res.json();
         }).then(user => {
-            console.log(user);
-            return user[0];
+            return user;
         })
     }
     fetchPost = async () => {
@@ -151,19 +150,23 @@ class DetailPost extends Component {
         return await fetch('/api/post/' + id, {
             headers: { 'Content-Type': 'application/json' },
         }).then(res => {
-            if (res.status == 200)
+            if (res.status == 200) {
+
+                console.log(res)
                 return res.json()
+            }
         }).then(data1 => data1[0])
         .then(data => {
             console.log(data);
             this.setState({ post: data })
-            // this.fetchUserInfo(data.createdBy.id).then(user => {
-            //     console.log(user);
-            //     data.createdBy = user;
-            //     this.setState({ post: data[0] });
-            //     // console.log(data1.data);
-            //     return data;
-            // });
+            this.fetchUserInfo(data.createdBy.id).then(user => {
+                console.log(user);
+                data.createdBy = user;
+                console.log(data);
+                this.setState({ post: data });
+                // // console.log(data1.data);
+                return data;
+            });
         })
     }
 
@@ -174,12 +177,12 @@ class DetailPost extends Component {
     }
     componentWillMount() {
         this.loadUser();
+        this.fetchPost();
     }
 
     componentDidMount() {
         // this.addAuthorText();
 
-        this.fetchPost();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -213,7 +216,7 @@ class DetailPost extends Component {
                 <div className="left">
                     <div className="big-thumbnail frame">
                         {
-                            (post.thumbnails[0]) ? (<img src={"/" + post.thumbnails[0]} />) : ''
+                            (post.thumbnails) ? (<img src={"/" + post.thumbnails[0]} />) : ''
                         }
                     </div>
                     <div className="thumbnails">
