@@ -4,10 +4,10 @@ mongoose.Promise = global.Promise;
 
 const PostSchema = new mongoose.Schema({
   title: {
-    type: String,
+    type: String
   },
   description: {
-    type: String,
+    type: String
   },
   createdBy: {
     type: Object
@@ -46,5 +46,5 @@ const PostSchema = new mongoose.Schema({
   }],
 });
 
-
+PostSchema.index({title: 'text'});
 module.exports = mongoose.model('Post', PostSchema)

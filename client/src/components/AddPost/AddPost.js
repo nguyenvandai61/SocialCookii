@@ -104,8 +104,6 @@ class AddPost extends Component {
         this.getThumbnailsObj(thumbnails);
     }
 
-   
-
     render() {
         let { thumbnails } = this.state;
         console.log(thumbnails.length)

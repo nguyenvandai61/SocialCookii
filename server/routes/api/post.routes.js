@@ -8,7 +8,10 @@ router.post('/', async (req, res)=> {
     return await postController.createPost(req, res);
 })
  router.get('/', (req, res) => {
-     return postController.getAllPost(req, res);
+     if(req.query.q == null){
+        return postController.getAllPost(req, res);
+     }
+     else return postController.searchPost(req, res);
  })
 
  router.put('/:id', (req, res) => {
