@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Avatar from '../../avatar.jpg';
 import './AddPost.css';
 import '../../utils/Base64Image';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import Base64Image from '../../utils/Base64Image';
 
@@ -51,6 +53,14 @@ class AddPost extends Component {
             [name]: value
         })
     }
+
+    // get data from ckeditor 5
+    onCashange  = data => { 
+        console.log( "Called" );
+        this.setState({
+            description : data.getData()
+        })
+     }
     // function to capture base64 format of an image
    
     getThumbnailsObj = async (files) => {
@@ -66,6 +76,8 @@ class AddPost extends Component {
             createdAt: Date.now()
         })
         let body = this.state;
+        body.createdBy = {id: "5fc3bb629e921808d0bb4304"}
+        console.log(body)
         fetch('/api/post/', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
@@ -91,6 +103,7 @@ class AddPost extends Component {
         let thumbnails = event.target.files;
         this.getThumbnailsObj(thumbnails);
     }
+
     render() {
         let { thumbnails } = this.state;
         console.log(thumbnails.length)
@@ -106,7 +119,7 @@ class AddPost extends Component {
                 <div class="alert alert-danger fail-create-post" role="alert">
                     This is a danger alert—check it out!
                 </div>
-                <div className="row">
+                <div className="row mt-2">
                     <div className="col-md-6 new-post-left">
                         <form method="post" action="#" id="#">
                             <div className="form-group files color">
@@ -142,30 +155,46 @@ class AddPost extends Component {
                                 <i className="fas fa-map-marker-alt" style={{ color: "rgb(255, 74, 74)" }}></i>
                             </button>
                         </div>
+                        <input className="btn btn-primary mt-5" type="submit" value="Đăng" onClick={this.postData} />
                     </div>
                     <div className="col-md-6 new-post-right">
                         <div className="container card-right">
+                            <div className="user">
+                                <img src={Avatar} alt="img" height="50px" width="50px" className="avatar" />
+                                <span>Phan Vu</span>
+                            </div>
                             <div className="title-right">
                                 <input type="text" placeholder="Tạo tiêu đề"
                                     name="title"
                                     onChange={this.handleChange} />
                             </div>
-                            <div className="user">
-                                <img src={Avatar} alt="img" height="50px" width="50px" className="avatar" />
-                                <span>Phan Vu</span>
-                            </div>
-                            <div className="post-content custom-textarea">
-                                <textarea rows="1" placeholder="Hãy mô tả món ăn của bạn"
-                                    name="description"
-                                    onChange={this.handleChange}></textarea>
-                            </div>
-                            <div className="post-recipe custom-textarea">
-                                <textarea rows="1" placeholder="Hãy chia sẽ công thức món ăn của bạn"
-                                    name="recipe"
-                                    onChange={this.handleChange}></textarea>
+                        
+                            <div className="App">
+                               
+                                <CKEditor
+                                    editor={ ClassicEditor }
+                                    data="<p>Mô tả món ăn và công thức cho mọi người</p>"
+                                    onReady={ editor => {
+                                        // You can store the "editor" and use when it is needed.
+                                        console.log( 'Editor is ready to use!', editor );
+                                    } }                                
+                                    onChange={ ( event, editor ) => {
+                                        const data = editor.getData();
+                                        this.onCashange( editor );
+                                        console.log( { event, editor, data } );
+
+                                    } }
+                                    onBlur={ ( event, editor ) => {
+                                        console.log( 'Blur.', editor );
+                                    } }
+                                    onFocus={ ( event, editor ) => {
+                                        console.log( 'Focus.', editor );
+                                    } }
+                                />
+                                
                             </div>
                         </div>
-                        <input className="btn btn-primary" type="submit" value="Đăng" onClick={this.postData} />
+                        
                     </div>
 
                 </div>

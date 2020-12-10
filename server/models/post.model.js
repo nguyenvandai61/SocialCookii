@@ -4,14 +4,13 @@ mongoose.Promise = global.Promise;
 
 const PostSchema = new mongoose.Schema({
   title: {
-    type: String,
+    type: String
   },
   description: {
-    type: String,
+    type: String
   },
-  authorId: {
-    type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
+  createdBy: {
+    type: Object
   },
   createdAt: {
     type: Date,
@@ -31,10 +30,9 @@ const PostSchema = new mongoose.Schema({
   videos: {
     type: []
   },
-  comments: [{
-    type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
-  }],
+  comments: {
+    type: Array,
+  },
   likeUserIds: [{
     type: mongoose.Schema.Types.ObjectId,
       ref: "User"
@@ -48,5 +46,5 @@ const PostSchema = new mongoose.Schema({
   }],
 });
 
-
+PostSchema.index({title: 'text'});
 module.exports = mongoose.model('Post', PostSchema)

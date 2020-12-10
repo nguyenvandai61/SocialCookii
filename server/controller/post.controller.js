@@ -28,11 +28,12 @@ const updatePost = (req, res) => {
     return PostService.updatePost(query, newPost);
 }
 const getPost = (req, res) => {
+    let query = {_id: req.params.id};
     console.log(req.params.id);
-    return postService.getPost(req.params.id).then((data,err) => {
+    return postService.getPost(query).then((data,err) => {
         if(err) return res.status(500).send(err);
         if(data == null) return res.status(404).json({ message: "Cannot find User" });
-        return res.status(200).json({"data": data})
+        return res.status(200).json(data)
     })
 }
 const getAllPost = (req, res) => {
@@ -44,10 +45,23 @@ const getAllPost = (req, res) => {
 const deletePost = (req, res) => {
     return PostService.deletePost(query);
 }
+
+const searchPost = (req, res) => {
+    console.log(req.query.q);
+    const keySearch = req.query.q;
+    let query = { $text: { $search: keySearch } };
+    return PostService.getPost(query).then((data, err) => {
+        if (err)
+            return res.status(500).json(err)
+        return res.status(200).json(data);
+    });
+}
+
 module.exports = {
     createPost, 
     updatePost,
     getPost,
     getAllPost,
     deletePost,
+    searchPost
 }

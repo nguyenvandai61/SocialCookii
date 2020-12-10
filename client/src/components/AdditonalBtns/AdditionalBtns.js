@@ -38,10 +38,6 @@ class AdditionalBtns extends Component {
 
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-
-    }
-
     componentWillUpdate(nextProps, nextState) {
 
     }

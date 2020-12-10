@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Logo from '../../logo.png';
+import Logo from '../../cookii-logo.png';
 import Avatar from '../../avatar.jpg';
 import { Link } from 'react-router-dom';
 import './Header.css';
@@ -58,7 +58,7 @@ class Header extends Component {
                     </Link>
                 </div>
                 <div id="search-bar">
-                    <input type="text" />
+                    <input type="text" placeholder="Tìm kiếm" />
                     <button id="search-btn">
                         <i className="fas fa-search"></i>
                     </button>
@@ -80,20 +80,20 @@ class Header extends Component {
                 </div>
                 <div id="options">
                     <button onClick={this.barsClickHandler}><i className="fas fa-bars"></i></button>
-                    <div class="dropdown">
+                    <div className="dropdown">
                         <ul>
                             <li>
-                                <p class="">Thêm tài khoản khác</p>
+                                <p className="">Thêm tài khoản khác</p>
                             </li>
                             <li>
-                                <p class="">Cài đặt</p>
+                                <p className="">Cài đặt</p>
                             </li>
                             <li>
-                                <p class="">Nhận trợ giúp</p>
+                                <p className="">Nhận trợ giúp</p>
                             </li>
                             <Link to="/login">
                             <li>
-                                <p class="">Đăng xuất</p>
+                                <p className="">Đăng xuất</p>
                             </li>
                             </Link>
                         </ul>

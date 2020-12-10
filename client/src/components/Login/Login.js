@@ -113,6 +113,9 @@ class Login extends Component {
             username,
             password,
           } = this.state.user
+        if(!username){
+            localStorage.setItem('userName', username);
+        }  
         console.log(username);
         return (
             <div class="center-container-login">
