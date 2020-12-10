@@ -11,6 +11,8 @@ import AddPost from './components/AddPost/AddPost';
 import Login from './components/Login/Login';
 import Masonry from './components/Masonry/Masonry';
 import Register from './components/Register/Register';
+import indexUser from  './components/Admin/Users/indexUser';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -65,6 +67,9 @@ function App() {
           </Route>
           <Route path="/admin">
             <Admin />
+          </Route>
+          <Route path="/admin/indexUser">
+            <indexUser />
           </Route>
         </Switch>
       </Router>

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import {
     Link
 } from 'react-router-dom';
-import './style.css'
+import '../../Admin/style.css'
 
-import Sidebar from './templates/sidebar';
-import Footer from './templates/footer';
-class index extends Component {
+import Sidebar from '../../Admin/templates/sidebar';
+import Footer from '../../Admin/templates/footer';
+class indexUser extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -201,88 +201,55 @@ class index extends Component {
 
 
 
-                <section>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
-                                <div class="row mt-md-3 pt-md-5 mb-3">
-                                    <div class="col-xl-3 col-sm-6 p-2">
-                                        <div class="card card-style">
-                                            <div class="card-body ">
-                                                <div class="d-flex justify-content-between">
-                                                    <i class="fas fa-hashtag fa-3x text-warning"></i>
-                                                    <div class="text-right">
-                                                        <h5>Hashtags</h5>
-                                                    <h3>{hashtags.size}</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer">
-                                                <i class="fas fa-sync mr-3"></i>
-                                                <span>Updated Know</span>
-                                            </div>
-                                        </div>
+                
 
+
+                <section>
+                    <div class="container-fluid mt-5">
+                        <div class="row">
+                        <div class="col-sm-6">
+                            <a href="/admin/user/add" class="btn btn-success btn-md">Thêm</a>
+                        </div>
+                            <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+                                <div class="row ">
+                                    <div class="col-xl-6 col-12 mb-4 mb-xl-0">
+                                        <h2 class="text-muted text-center mb-5">Users</h2>
+                                        <table class="table table-striped bg-light text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Username</th>
+                                                    <th>Password</th>
+                                                    <th>Role</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {renderCurrentU}
+                                            </tbody>
+                                        </table>
+                                        <ul class="pagination justify-content-center">
+                                            <li class="page-item"><a href="#" class="page-link px-3 py-2">
+                                                <span>&laquo;</span>
+                                            </a></li>
+                                            {
+                                                
+                                            }
+                                            <li class="page-item active"><a href="#" class="page-link py-2 px-3">1</a></li>
+                                            <li class="page-item"><a href="#" class="page-link py-2 px-3">2</a></li>
+                                            <li class="page-item"><a href="#" class="page-link py-2 px-3">3</a></li>
+                                            <li class="page-item"><a href="#" class="page-link py-2 px-3">4</a></li>
+                                            <li class="page-link"><a href="#" class="page-item py-2 px-3">
+                                                <span>&raquo;</span>
+                                            </a></li>
+                                        </ul>
                                     </div>
-                                    <div class="col-xl-3 col-sm-6 p-2">
-                                        <div class="card card-style">
-                                            <div class="card-body">
-                                                <div class="d-flex justify-content-between">
-                                                    <i class="fas fa-sticky-note fa-3x text-success"></i>
-                                                    <div class="text-right">
-                                                        <h5>Posts</h5>
-                                                        <h3>{posts.size}</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer">
-                                                <i class="fas fa-sync mr-3"></i>
-                                                <span>Updated Know</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-sm-6 p-2">
-                                        <div class="card card-style">
-                                            <div class="card-body">
-                                                <div class="d-flex justify-content-between">
-                                                    <i class="fas fa-users fa-3x text-primary"></i>
-                                                    <div class="text-right">
-                                                        <h5>Users</h5>
-                                                        <h3>{users.size}</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer">
-                                                <i class="fas fa-sync mr-3"></i>
-                                                <span>Updated Know</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-sm-6 p-2">
-                                        <div class="card card-style">
-                                            <div class="card-body">
-                                                <div class="d-flex justify-content-between">
-                                                    <i class="fas fa-chart-line fa-3x text-danger"></i>
-                                                    <div class="text-right">
-                                                        <h5>Sales</h5>
-                                                        <h3>$135,000</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer">
-                                                <i class="fas fa-sync mr-3"></i>
-                                                <span>Updated Know</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-
-
-                
                                             
                 <Footer/>
 
@@ -300,8 +267,8 @@ class index extends Component {
     }
 }
 
-index.propTypes = {
+indexUser.propTypes = {
 
 };
 
-export default index;
+export default indexUser;
