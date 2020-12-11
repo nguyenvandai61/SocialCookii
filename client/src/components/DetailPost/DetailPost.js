@@ -5,7 +5,11 @@ class DetailPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            post: {},
+            post: {
+                thumbnails: [],
+                likeUserIds: [],
+                comments: []
+            },
             isFollowed : false,
             listUserCache: []
         }
@@ -47,7 +51,7 @@ class DetailPost extends Component {
     }
 
 
-    loadUser = () => {
+    loadDefaultPost = () => {
         let post = {
             title: "Bánh xèo",
             description: "Bánh xèo là một món ăn truyền thống thuần túy và rất quen thuộc đối với chúng ta. Tuy nhiên ngày nay, bánh xèo Việt Nam đã trở thành một cái tên đặc biệt. Luôn luôn được nhắc đến bởi nhiều người nước ngoài khi ghé thăm Việt Nam. Bánh xèo cũng được biến tấu nhiều phù hợp với khẩu vị, phong tục của từng địa phương khác nhau. Nhưng đều giữ chung cho món ăn này một hương vị riêng. Để lại cho người thưởng thức nhiều cảm xúc khó quên khi dùng qua dù chỉ là một lần.",
@@ -139,6 +143,7 @@ class DetailPost extends Component {
         this.setState({ post: post });
     }
     fetchUserInfo = (id) => {
+        console.log(id);
         return fetch("/api/user/userInfo/" + id).then(res => {
             return res.json();
         }).then(user => {
@@ -159,7 +164,7 @@ class DetailPost extends Component {
         .then(data => {
             console.log(data);
             this.setState({ post: data })
-            this.fetchUserInfo(data.createdBy.id).then(user => {
+            this.fetchUserInfo(data.createdBy).then(user => {
                 console.log(user);
                 data.createdBy = user;
                 console.log(data);
@@ -176,7 +181,7 @@ class DetailPost extends Component {
         console.log(e.target.src);
     }
     componentWillMount() {
-        this.loadUser();
+        // this.loadDefaultPost();
         this.fetchPost();
     }
 
@@ -239,8 +244,8 @@ class DetailPost extends Component {
                             <img src={post.createdBy ? "/"+post.createdBy.avatar : ""} alt="" height="60px" width="60px" className="avatar" />
                             <h2>{post.createdBy ? post.createdBy.fullname : ""}</h2>
                         </div>
-                        <div class="col-sm-3">
-                            <input class="follow" 
+                        <div className="col-sm-3">
+                            <input className="follow" 
                                     onClick={this.onFollow} 
                                     style={{ width: "100px" }} 
                                     type="submit" 
@@ -313,9 +318,6 @@ class DetailPost extends Component {
                                                 }
                                             </ul>
                                         </li>
-
-
-
                                     )
                                 })
                             }
