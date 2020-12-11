@@ -5,8 +5,9 @@ import {
 } from 'react-router-dom';
 import '../../Admin/style.css'
 
-import Sidebar from '../../Admin/templates/sidebar';
-import Footer from '../../Admin/templates/footer';
+import Header from '../templates/Header';
+import Footer from '../templates/footer';
+import AddUser from './AddUser'
 class indexUser extends Component {
     constructor(props) {
         super(props);
@@ -125,57 +126,7 @@ class indexUser extends Component {
         console.log(renderCurrentU);
         return (
             <div>
-
-                {/* <!--Navbar Stars--> */}
-                <nav class="navbar navbar-expand-md navbar-light">
-                    <button class="navbar-toggler ml-auto mb-2 bg-light" data-toggle="collapse" data-target="#myNavbar"><span
-                        class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        {/* <!-- sidebar starts --> */}
-                        <Sidebar/>
-                        {/* <!-- SideBar Ends --> */}
-
-
-                        {/* <!--Top Navbar--> */}
-
-                        <div class="col-xl-10 col-lg-9 col-md-8 bg-dark ml-auto fixed-top py-2 top-navbar">
-                            <div class="row align-items-center">
-                                <div class="col-md-4">
-                                    <h4 class="text-light text-uppercase mb-0">DashBoard</h4>
-                                </div>
-                                <div class="col-md-5">
-                                    <form>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control search-input" placeholder="Search.." />
-                                            <button type="button" class="btn btn-white search-button m-0 p-2"><i
-                                                class="fas fa-search text-danger"></i></button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-md-3">
-                                    <ul class="navbar-nav">
-                                        <li class="nav-item icon-parent">
-                                            <a href="#" class="nav-link"><i
-                                                class="fas fa-comments fa-lg text-muted icon-bullet"></i></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link"><i
-                                                class="fas fa-bell text-muted fa-lg icon-bullet"></i></a>
-                                        </li>
-                                        <li class="nav-item ml-md-auto">
-                                            <a href="" data-toggle="modal" data-target="#sign-out" class="nav-link"><i
-                                                class="fas text-danger fa-sign-out-alt fa-lg text-muted"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        {/* <!--End of Top Navbar--> */}
-                    </div>
-                </nav>
-                {/* <!--Navbar Ends--> */}
-
-
+                <Header/>
 
 
                 {/* <!-- Modal starts Here --> */}
@@ -208,7 +159,7 @@ class indexUser extends Component {
                     <div class="container-fluid mt-5">
                         <div class="row">
                         <div class="col-sm-6">
-                            <a href="/admin/user/add" class="btn btn-success btn-md">Thêm</a>
+                            <AddUser/>
                         </div>
                             <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
                                 <div class="row ">

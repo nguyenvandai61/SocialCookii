@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class templates extends Component {
     constructor(props) {
@@ -52,8 +53,10 @@ class templates extends Component {
                 </div>
                 <ul class="navbar-nav mt-4 flex-column ">
                     <li class="nav-item ">
-                        <a href="#" class="nav-link text-white p-2 mb-2 current"><i
-                            class="fas fa-home fa-lg mr-3 text-white"></i>DashBoard</a>
+                        <Link to="/admin/">
+                            <a href="#" class="nav-link text-white p-2 mb-2 current"><i
+                                class="fas fa-home fa-lg mr-3 text-white"></i>DashBoard</a>
+                        </Link>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link text-white p-2 mb-2 sidebar-link"><i
@@ -63,8 +66,10 @@ class templates extends Component {
                         <a href="" class="nav-link text-white p-2 mb-2 sidebar-link"><i class="fas fa-copy"></i>&emsp;Posts</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/user/index" class="nav-link p-2 mb-2 sidebar-link text-white"><i
-                            class="fas fa-users"></i>&emsp;Users</a>
+                        <Link to="/admin/user">
+                            <a href="#" class="nav-link p-2 mb-2 sidebar-link text-white"><i
+                                class="fas fa-users"></i>&emsp;Users</a>
+                        </Link>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link text-white p-2 mb-2 sidebar-link"><i

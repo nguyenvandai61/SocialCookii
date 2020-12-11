@@ -11,7 +11,7 @@ import AddPost from './components/AddPost/AddPost';
 import Login from './components/Login/Login';
 import Masonry from './components/Masonry/Masonry';
 import Register from './components/Register/Register';
-import indexUser from  './components/Admin/Users/indexUser';
+import UserManager from  './components/Admin/Users/UserManager';
 
 import {
   BrowserRouter as Router,
@@ -65,11 +65,11 @@ function App() {
           <Route path="/register">
             <Register />
           </Route>
-          <Route path="/admin">
+          <Route exact path="/admin">
             <Admin />
           </Route>
-          <Route path="/admin/indexUser">
-            <indexUser />
+          <Route path="/admin/user">
+            <UserManager />
           </Route>
         </Switch>
       </Router>
