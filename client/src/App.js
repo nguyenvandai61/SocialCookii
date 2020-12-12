@@ -11,12 +11,14 @@ import AddPost from './components/AddPost/AddPost';
 import Login from './components/Login/Login';
 import Masonry from './components/Masonry/Masonry';
 import Register from './components/Register/Register';
+import searchUser from './components/SearchUser/SearchUser';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
 } from "react-router-dom";
+import SearchUser from './components/SearchUser/SearchUser';
 function App() {
   return (
     <div className="App">
@@ -25,6 +27,11 @@ function App() {
           <Route exact path="/">
             <Headers />
             <Masonry />
+            <AdditionalBtns />
+          </Route>
+          <Route path="/searchUser">
+            <Headers />
+            <SearchUser />
             <AdditionalBtns />
           </Route>
           <Route path="/personalInfo">

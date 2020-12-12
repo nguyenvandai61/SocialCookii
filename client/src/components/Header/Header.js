@@ -13,8 +13,13 @@ class Header extends Component {
                 avatar: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
             }
         }
+        this.onSearch = this.onSearch.bind(this)
     }
    
+    onSearch(e){
+        window.location.href = "/searchUser";
+    }
+
     barsClickHandler = (e) => {
         let newState = !this.state.dropdown;
         this.setState({ 'dropdown': newState })
@@ -59,7 +64,7 @@ class Header extends Component {
                 </div>
                 <div id="search-bar">
                     <input type="text" placeholder="Tìm kiếm" />
-                    <button id="search-btn">
+                    <button id="search-btn" onClick={this.onSearch}>
                         <i className="fas fa-search"></i>
                     </button>
                 </div>
