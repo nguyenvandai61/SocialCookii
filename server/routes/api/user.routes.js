@@ -20,8 +20,7 @@ jwtOptions.secretOrKey = 'mysecretword';
 // }
 
 router.get('/', (req, res)=> userController.getAllUser(req, res))
-router.get('/userInfo/:id', passport.authenticate('jwt',{session : false}),
-(req, res)=> userController.getUserInfo(req, res))
+router.get('/userInfo/:id', (req, res)=> userController.getUserInfo(req, res))
 router.get('/:id', (req,res)=> userController.getUser(req, res))
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res)=> {
     if (Array.isArray(req.body))
@@ -30,23 +29,9 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res)=> 
 })
 router.post(
     '/login', 
-    // passport.authenticate('local-login'), 
     (req, res) => {
         console.log(req.body);
         return userController.checkLogin(req, res);
-        // console.log("authen success");
-    // if (req.isAuthenticated()) {
-    //     const {_id, username, role} = req.user;
-    //     const token = signToken(_id);
-    //     res.cookie('access_token', token, {httpOnly: true, sameSite: true});
-    //     return userController.checkLogin(req, res)
-    // }
-    // successRedirect: '/',
-    // failureRedirect: '/login',
-        // var payload = {id: user._id};
-        // var token = jwt.sign(payload, jwtOptions.secretOrKey);
-        // res.json({message: "ok", token: token});
-        return res.status(200).json(req.user);
     }
 );
 

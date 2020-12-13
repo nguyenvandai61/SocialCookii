@@ -58,7 +58,7 @@ const deleteAllUsers = (req, res) => {
         return res.status(200).send(data);
       })
 }
-const checkLogin = async (req, res) => {
+const checkLogin = (req, res) => {
     // console.log("Auth.config", path.join(__dirname, 'strategies', 'local-strategy'))
     console.log("login")
     // return UserService.getUser(req.query).then((user, err) => {
@@ -78,6 +78,9 @@ const checkLogin = async (req, res) => {
         if (! user) {
             return res.status(401).json({message: "no such user found"});
         }
+        console.log(user.password);
+        console.log(password);
+        
         if (user.password === password) {
             var opts = {}
             opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
@@ -88,9 +91,9 @@ const checkLogin = async (req, res) => {
             var payload = {id: user.id};
             var token = jwt.sign(payload, opts.secretOrKey)
             console.log("token"+token);
-            return res.json({message: "ok", token: token})
+            return res.status(200).json({message: "ok", token: token});
         } else {
-            return res.json(401).json({message:"invalid credentials"});
+            return res.status(401).json({message:"invalid credentials"});
         }
     });
 }

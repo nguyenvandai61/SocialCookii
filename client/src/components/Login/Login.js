@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Redirect, Link} from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import './Login.css';
 // import { useHistory } from "react-router"
 class Login extends Component {
@@ -14,7 +14,7 @@ class Login extends Component {
             },
             isSuccess: false,
             message: ''
-        };    
+        };
         this.onTextBoxUsername = this.onTextBoxUsername.bind(this);
         this.onTextBoxPassword = this.onTextBoxPassword.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -22,24 +22,24 @@ class Login extends Component {
     componentWillMount() {
 
     }
-    
+
     componentDidMount() {
         console.log(this);
     }
 
-    onTextBoxUsername(event){ 
+    onTextBoxUsername(event) {
         this.setState((prevState) => {
             let newUser = Object.assign({}, prevState.user);
             newUser.username = event.target.value;
-            return {user: newUser}
+            return { user: newUser }
         })
         console.log(this.state.username);
     }
-    onTextBoxPassword(event){
+    onTextBoxPassword(event) {
         this.setState((prevState) => {
             let newUser = Object.assign({}, prevState.user);
             newUser.password = event.target.value;
-            return {user: newUser}
+            return { user: newUser }
         })
     }
     onSuccessLogin = (role) => {
@@ -51,51 +51,53 @@ class Login extends Component {
             // this.props.history.push("/admin");
         }
         else {
-            
+
             window.location.href = "/";
             // this.props.history.push("/");
         }
     }
-    onSubmit(e){
+    onSubmit(e) {
         e.preventDefault();
         console.log('clicked');
         const {
             username,
             password,
-          } = this.state.user;
-          fetch('/api/user/login', {
+        } = this.state.user;
+        fetch('/api/user/login', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              username: username,
-              password: password,
+                username: username,
+                password: password,
             })
-          }).then(res => {
-              console.log(res);
-              if (res.status == 200) {
-                // console.log(res.json());
-                res.json().then(data => {
-                    console.log(data);
-                    localStorage.setItem("user", JSON.stringify({ token: data.token }))
-                    this.setState({user: data})
-                    
-                    // Redirect another page
-                    let role = data.role;
-                    this.onSuccessLogin(role);
-                })
-              } 
-              else {
+        })
+            .then(res => {
+                if (!res.ok) {
+                    throw Error("Failed");
+                }
+                return res.json()
+            })
+            .then(data => {
+                console.log(data);
+                localStorage.setItem("user", JSON.stringify({ token: data.token }))
+                // this.setState({user: data})
+
+                // Redirect another page
+                let role = data.role;
+                this.onSuccessLogin(role);
+            })
+            .catch((err) => {
                 this.setState({isSuccess: false, message:"Đăng nhập thất bại"});
-              } 
-          })
+            })
+            
     }
     render() {
         const {
             username,
             password,
-          } = this.state.user
+        } = this.state.user
         console.log(username);
-        const {isSuccess, message} = this.state;
+        const { isSuccess, message } = this.state;
         return (
             <div class="center-container-login">
                 <div class="header-w3l">
@@ -104,36 +106,36 @@ class Login extends Component {
                 <div class="container-login">
                     <div class="login-form">
                         <div class="main-content-agile">
-                            <div class="sub-main-w3">	
+                            <div class="sub-main-w3">
                                 <div class="wthree-pro">
                                     <h2>Login </h2>
                                 </div>
                                 <form>
                                     <div class="pom-agile">
-                                        <input placeholder="E-mail" 
-                                            name="username" 
-                                            class="user" 
-                                            type="text" 
-                                            required="" 
+                                        <input placeholder="E-mail"
+                                            name="username"
+                                            class="user"
+                                            type="text"
+                                            required=""
                                             onChange={this.onTextBoxUsername}
                                             value={username}
-                                            />
+                                        />
                                         <span class="icon1"><i class="fa fa-user" aria-hidden="true"></i></span>
                                     </div>
                                     <div class="pom-agile">
-                                        <input  placeholder="Password"
-                                                name="password" 
-                                                class="pass" 
-                                                type="password" 
-                                                required=""
-                                                onChange={this.onTextBoxPassword} 
-                                                value={password}
-                                                />
+                                        <input placeholder="Password"
+                                            name="password"
+                                            class="pass"
+                                            type="password"
+                                            required=""
+                                            onChange={this.onTextBoxPassword}
+                                            value={password}
+                                        />
                                         <span class="icon2"><i class="fa fa-unlock" aria-hidden="true"></i></span>
                                     </div>
                                     <div class="sub-w3l">
                                         <div>
-                                            {!isSuccess ? <div  className="error-message">{message}</div> : <Redirect to='dashboard' />}
+                                            {!isSuccess ? <div className="error-message">{message}</div> : <Redirect to='dashboard' />}
                                         </div>
                                         Don't have account? <Link to='register'>Register here</Link>
                                         <h6><a href="#">Forgot Password?</a></h6>
@@ -144,12 +146,12 @@ class Login extends Component {
                                 </form>
                             </div>
                         </div>
-                    </div>    
+                    </div>
                 </div>
             </div>
         );
     }
-}   
+}
 
 Login.propTypes = {
 

@@ -153,7 +153,9 @@ class DetailPost extends Component {
     fetchPost = async () => {
         let id = window.location.pathname.split('/')[2];
         return await fetch('/api/post/' + id, {
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json' 
+            },
         }).then(res => {
             if (res.status == 200) {
 

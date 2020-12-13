@@ -4,8 +4,9 @@ const passport = require('passport');
 var router = express.Router();
 router.post(
     '/',
-    passport.authenticate('jwt', { session: false }),
+    passport.authenticate('jwt', {session: false}),
     async (req, res) => {
+        console.log("authen success");
         if (Array.isArray(req.body))
             return postController.createPost(req, res)
         return await postController.createPost(req, res);
@@ -25,7 +26,7 @@ router.put('/:id', (req, res) => {
 
 router.get(
     '/:id',
-    passport.authenticate('jwt', { session: false }),
+    // passport.authenticate('jwt', { session: false }),
     (req, res) => {
         console.log("Authen success");
         return postController.getPost(req, res);

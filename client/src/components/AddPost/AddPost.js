@@ -74,12 +74,15 @@ class AddPost extends Component {
         this.setState({
             createdAt: Date.now()
         })
+        let token = localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).token : "";
+        
         let body = this.state;
-        body.createdBy = {_id: "5fcb4886dac53933fca13c37"}
-        console.log(body)
         fetch('/api/post/', {
             method: "POST",
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json', 
+                'Authorization': 'bearer '+ token
+            },
             body: JSON.stringify(body)
         }).then(res => {
             console.log(res);

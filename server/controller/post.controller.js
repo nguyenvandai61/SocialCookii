@@ -20,6 +20,8 @@ const createPost = async (req, res) => {
         }
         return 'image/posts/'+fileName;
     })
+    post.createdBy = {};
+    post.createdBy._id = req.user.id;
     console.log("IDDD"+post.createdBy._id);
 
     return await PostService.createPost(post).then((newPost, err) => {
