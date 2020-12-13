@@ -63,10 +63,26 @@ class Header extends Component {
                     </Link>
                 </div>
                 <div id="search-bar">
-                    <input type="text" placeholder="Tìm kiếm" />
-                    <button id="search-btn" onClick={this.onSearch}>
-                        <i className="fas fa-search"></i>
-                    </button>
+                    <div className="search-box">
+                        <button id="search-btn" onClick={this.onSearch}>
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <input type="text" placeholder="Tìm kiếm" />
+                        <button id="close-search-btn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="optional-search dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Tất cả các ghim
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Bài viết</a>
+                            <a class="dropdown-item" href="#">Mọi người</a>
+                            <a class="dropdown-item" href="#">Videos</a>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div id="header-btns">
                     <div className="header-btn" onMouseOver={this.mouseOverElement} onMouseOut={this.mouseOutElement}>
