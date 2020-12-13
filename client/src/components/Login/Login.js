@@ -25,7 +25,6 @@ class Login extends Component {
     
     componentDidMount() {
         console.log(this);
-    console.log(this.props);
     }
 
     onTextBoxUsername(event){ 
@@ -74,10 +73,14 @@ class Login extends Component {
           }).then(res => {
               console.log(res);
               if (res.status == 200) {
+                // console.log(res.json());
                 res.json().then(data => {
-                    this.setState({user: data.data})
+                    console.log(data);
+                    localStorage.setItem("user", JSON.stringify({ token: data.token }))
+                    this.setState({user: data})
                     
-                    let role = data.data.role;
+                    // Redirect another page
+                    let role = data.role;
                     this.onSuccessLogin(role);
                 })
               } 
@@ -86,44 +89,13 @@ class Login extends Component {
               } 
           })
     }
-   
-    componentWillReceiveProps(nextProps) {
-
-    }
-
-
-    componentWillUpdate(nextProps, nextState) {
-
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-
-    }
-
-    componentWillUnmount() {
-
-    }
-
-
-
     render() {
         const {
             username,
             password,
           } = this.state.user
-        if(!username){
-            localStorage.setItem('userName', username);
-        }  
         console.log(username);
         const {isSuccess, message} = this.state;
-        // if (this.props.response.login.hasOwnProperty('response')) {
-        //     isSuccess = this.props.response.login.response.success;
-        //     message = this.props.response.login.response.message;
-            
-        //     if (isSuccess) {
-        //       setCookie('token', this.props.response.login.response.token, 1);
-        //     }
-        // }
         return (
             <div class="center-container-login">
                 <div class="header-w3l">

@@ -3,7 +3,9 @@ var User = require('../models/user.model');
 const getUser = (query) => {
   return User.find(query);
 }
-
+const getUserById = (id) => {
+  return User.findById(id);
+}
 const getUserInfo = (id) => {
   // console.log(User.find(query).select("_id -username -fullname -avatar"));
   return User.findById(id).select({ 
@@ -32,7 +34,9 @@ const createUsers = (req, res) => {
     return res.status(200).json(docs);
   });
 }
-
+const getUserByName = (name) => {
+  return User.findOne({username: name});
+}
 
 const updateUser = (req, res) => {
   const content = req.body;
@@ -43,7 +47,6 @@ const updateUser = (req, res) => {
     const response = {
         message: "User successfully updated"
     };
-    console.log(doc)
     return res.status(200).json({"data" : doc});
   });
 }
@@ -59,6 +62,8 @@ const deleteAllUsers = (req, res) => {
 module.exports = {
   getUser,
   getUserInfo,
+  getUserById,
+  getUserByName,
   getAllUser,
   createUser,
   createUsers,

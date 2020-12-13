@@ -56,7 +56,6 @@ class AddPost extends Component {
 
     // get data from ckeditor 5
     onCashange  = data => { 
-        console.log( "Called" );
         this.setState({
             description : data.getData()
         })

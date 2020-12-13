@@ -1,5 +1,10 @@
 // const userService = require('../services/user.service');
 var UserService = require('../services/user.service');
+var jwt = require('jsonwebtoken');
+var ExtractJwt = require('passport-jwt').ExtractJwt;
+const bcrypt = require('bcrypt');
+
+
 
 const getAllUser = (req, res) => {
     UserService.getAllUser().then((data, err) => {
@@ -54,13 +59,40 @@ const deleteAllUsers = (req, res) => {
       })
 }
 const checkLogin = async (req, res) => {
-    let { username, password } = req.body;
-    req.query = req.body;
-    return UserService.getUser(req.query).then((user, err) => {
-        if (user.length == 0)
-            return res.status(401).json("Login failed");
-        return res.status(200).json({data: user[0]});
-    })
+    // console.log("Auth.config", path.join(__dirname, 'strategies', 'local-strategy'))
+    console.log("login")
+    // return UserService.getUser(req.query).then((user, err) => {
+    //     if (user.length == 0)
+    //         return res.status(401).json("Login failed");
+    //     console.log(user);
+    //             return res.status(200).json(user);
+        
+    //     })
+    console.log(req.body);
+    if (req.body.username && req.body.password) {
+        var {username, password} = req.body;
+    }
+    var user = UserService.getUserByName(username).then((user, err) => {
+
+        console.log(user);
+        if (! user) {
+            return res.status(401).json({message: "no such user found"});
+        }
+        if (user.password === password) {
+            var opts = {}
+            opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+            opts.secretOrKey = 'secret';
+            opts.issuer = 'accounts.examplesoft.com';
+            opts.audience = 'yoursite.net';
+
+            var payload = {id: user.id};
+            var token = jwt.sign(payload, opts.secretOrKey)
+            console.log("token"+token);
+            return res.json({message: "ok", token: token})
+        } else {
+            return res.json(401).json({message:"invalid credentials"});
+        }
+    });
 }
 
 
@@ -86,7 +118,6 @@ const follow = (req, res) => {
     let content = req.body;
     return UserService.updateUser(content.query, content.newContent);
 }
-
 
 module.exports = {
     getAllUser,

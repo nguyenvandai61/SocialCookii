@@ -37,7 +37,6 @@ const getPostByTagname = (req, res) => {
 }
 const updatePost = (req, res) => {
     const content = req.body;
-    console.log(content);
     Post.findOneAndUpdate(req.params.id, content, {new: true},function(err, doc) {
       if (err) return res.status(500).send(err);
       const response = {

@@ -28,6 +28,12 @@ class Header extends Component {
         else
             document.querySelector("#options ul").classList.remove('show-element');
     }
+
+
+    logout = (e) => {
+        localStorage.removeItem("user");
+        window.location.href = '/login';
+    }
     mouseOverElement(e) {
         e.target.classList.add("hover-effect");
     }
@@ -112,11 +118,9 @@ class Header extends Component {
                             <li>
                                 <p className="">Nhận trợ giúp</p>
                             </li>
-                            <Link to="/login">
-                            <li>
+                            <li onClick={this.logout}>
                                 <p className="">Đăng xuất</p>
                             </li>
-                            </Link>
                         </ul>
                     </div>
                 </div>

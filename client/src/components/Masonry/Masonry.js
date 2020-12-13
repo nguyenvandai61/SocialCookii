@@ -24,10 +24,13 @@ class Masonry extends Component {
     }
 
     renderListPosts(){
+        let token = localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).token : "";
         fetch('/api/post', {
             method: "GET",
-            headers: { 'Content-Type': 'application/json' },
-            
+            headers: { 
+                'Authorization': 'bearer '+token,
+                'Content-Type': 'application/json' 
+            },
         })
         .then(res => {
             console.log(res);
@@ -48,10 +51,6 @@ class Masonry extends Component {
 
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (nextState == this.state) return false;
-        return true;
-    }
 
     componentWillUpdate(nextProps, nextState) {
 
