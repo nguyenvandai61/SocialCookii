@@ -32,12 +32,13 @@ const PostSchema = new mongoose.Schema({
   videos: {
     type: []
   },
-  comments: {
-    type: Array,
-  },
+  comments: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Comment"
+  }],
   likeUserIds: [{
     type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
+    ref: "User"
   }],
   state: {
     type: String,

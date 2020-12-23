@@ -1,13 +1,18 @@
 const { response } = require('express');
 var commentService = require('../services/comment.service');
 
-const createComment = (req, res) =>{
+const createComment = async (req, res) =>{
     let comment = req.body;
-    return commentService.createComment(comment).then((newComment, err) =>{
+    console.log(comment);
+    comment.userId = {};
+    comment.userId._id = req.user.id;
+    console.log("Comment by: "+comment.userId._id);
+    return await commentService.createComment(comment, res).then((newComment, err) =>{
         if(err) return res.status(500).send(err);
         return res.status(200).json(newComment);
     });
 }
+
 const updateComment = (req, res) => {
     let newComment = req.body;
     console.log(newComment);
@@ -28,8 +33,15 @@ const deleteComment = (req, res) => {
         }
     )
 }
+
+const getAllComment = (req, res) => {
+    return Comment.getAllComment().then((comments, err) => {
+        return res.status(200).json(comments);
+    });
+}
 module.exports = {
     createComment,
     updateComment,
     deleteComment,
+    getAllComment
 }

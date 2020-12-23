@@ -5,11 +5,26 @@ const createPost = (post) => {
     const newPost = new Post(post);
     return newPost.save();
 }
-const getAllPost = () => {
-    return Post.find();
+const getAllPost = (req, res) => {
+    Post.find()
+      .populate('comments')
+      .then((result) => {
+          return res.status(200).json(result)
+      })
+      .catch((error) => {
+        return res.status(500).json({ error });
+      });
 }
 
 const getPost = (query) => {
+  Post.find()
+  .populate('comments')
+  .then((result) => {
+      return res.status(200).json(result)
+  })
+  .catch((error) => {
+    return res.status(500).json({ error });
+  });
     return Post.find(query)
 }
 
