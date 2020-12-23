@@ -44,7 +44,7 @@ class SearchUser extends Component {
 
     render() {
         return (
-            <div class= "container-fluid">
+            <div class= "container-fluid search-user">
                 <div class = "row mt-2">
                     <div class="col-md-3 col-sm-6 col-lg-2 col-sm-4">
                         <div class="infor-card">

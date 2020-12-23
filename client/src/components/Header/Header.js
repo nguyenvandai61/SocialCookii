@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Logo from '../../cookii-logo.png';
-import Avatar from '../../avatar.jpg';
 import { Link } from 'react-router-dom';
+import {getDetailInfoUser, getIdFromJwtToken} from '../../controller/UserJwtController'
 import './Header.css';
 class Header extends Component {
     constructor(props) {
@@ -15,10 +15,11 @@ class Header extends Component {
         }
         this.onSearch = this.onSearch.bind(this)
     }
-   
-    onSearch(e){
+
+    onSearch(e) {
         window.location.href = "/searchUser";
     }
+
 
     barsClickHandler = (e) => {
         let newState = !this.state.dropdown;
@@ -28,7 +29,6 @@ class Header extends Component {
         else
             document.querySelector("#options ul").classList.remove('show-element');
     }
-
 
     logout = (e) => {
         localStorage.removeItem("user");
@@ -40,11 +40,18 @@ class Header extends Component {
     mouseOutElement(e) {
         e.target.classList.remove("hover-effect");
     }
-
+    componentWillMount() {
+        console.log("willmount")
+        getDetailInfoUser().then(detailInfoUser => {
+            console.log(detailInfoUser);
+            this.setState({user: detailInfoUser});
+        });
+    }
     componentDidMount() {
+        
     }
     render() {
-        const {user} = this.state
+        const { user } = this.state
         return (
             <header>
                 <div id="logo-wrapper">
@@ -88,7 +95,7 @@ class Header extends Component {
                             <a class="dropdown-item" href="#">Videos</a>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div id="header-btns">
                     <div className="header-btn" onMouseOver={this.mouseOverElement} onMouseOut={this.mouseOutElement}>
@@ -98,11 +105,11 @@ class Header extends Component {
                         <button><i className="fas fa-comment-dots"></i></button>
                     </div>
                     <div className="header-btn" onMouseOver={this.mouseOverElement} onMouseOut={this.mouseOutElement}>
-                            <Link to="/personalInfo">
-                        <button>
-                            <img id="avatar" src={user.avatar} />
-                        </button>
-                            </Link>
+                        <Link to="/personalInfo">
+                            <button>
+                                <img id="avatar" src={user.avatar} />
+                            </button>
+                        </Link>
                     </div>
                 </div>
                 <div id="options">

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './DetailPost.css';
 import avatar from '../../image/avatars/avatar.jpg'
-
+import { fetchFollow, getIdFromJwtToken } from '../../controller/UserJwtController'
 
 class DetailPost extends Component {
     constructor(props) {
@@ -44,35 +44,17 @@ class DetailPost extends Component {
         console.log("Comment" + this.state.comment)
     }
 
-    // Follow 
-    onFollow(e){
+    onFollow(e) {
         e.preventDefault();
-          // const {authorId} = this.state.post
-          const userId = "5fccf11a0fbb1823e0a6a68f"
-          const authorId = "5fc08664881dcf2e6456a7de"
-          const url = '/api/user/' + userId
-          console.log(url)
-          fetch(url, {
-            method: "PUT",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              following: {authorId},
+        const userId = getIdFromJwtToken();
+        const authorId = this.state.post.createdBy._id;
+        
+        fetchFollow(userId, authorId).then(data => {
+            const { isFollowed } = this.state
+            this.setState({
+                isFollowed: !isFollowed,
             })
-          }).then(res => {
-              if (res.status == 200) {
-                res.json().then(data => {
-                    console.log(data)
-                    const {isFollowed} = this.state 
-                    this.setState({
-                      isFollowed: !isFollowed,
-                    })
-                })
-              } 
-              else {
-
-              } 
-          })
-
+        })
     }
 
     //Comment post
@@ -133,8 +115,7 @@ class DetailPost extends Component {
                 //console.log(user.username);
                 data.createdBy = user;
                 console.log(data);
-                this.setState({ post: data });
-                // // console.log(data1.data);
+                this.setState({ post: data })
                 return data;
             });
         })
@@ -172,15 +153,11 @@ class DetailPost extends Component {
     }
 
     render() {
-        const { post } = this.state;
         const { comment } = this.state
-        const { thumbnails, author, comments } = this.state.post;
-        const {isFollowed} = this.state 
-        var status = "Theo dõi"
-        if(isFollowed){
-            status = "Đã theo dõi"
-        }
-        //console.log(post);
+        const { thumbnails, author, comments } = this.state.post;    
+        const { post, isFollowed } = this.state;
+        console.log(post);
+        let userId = getIdFromJwtToken();
         return (
 
             <div className="detail-post">
@@ -204,20 +181,29 @@ class DetailPost extends Component {
                 </div>
                 <div className="right">
                     <h1>{post.title}</h1>
-                    <div style={{wordBreak:'break-word',display:'inline-block'}} className="editor" dangerouslySetInnerHTML={{__html:post.description}}/>
+                    <div style={{ wordBreak: 'break-word', display: 'inline-block' }} className="editor" dangerouslySetInnerHTML={{ __html: post.description }} />
                     <div className="info">
                         <div className="col-sm-9 post-avatar">
                             {/* <img src={post.createdBy ? "/"+post.createdBy.avatar : ""} alt="" height="60px" width="60px" className="avatar" /> */}
                             <img src={avatar} alt="" height="60px" width="60px" className="avatar" />
                             <h4>{post.createdBy ? post.createdBy.username : ""}</h4>
                         </div>
-                        <div className="col-sm-3">
-                            <input className="follow" 
-                                    onClick={this.onFollow} 
-                                    style={{ width: "100px" }} 
-                                    type="submit" 
-                                    value={status}/>
-                        </div>
+
+                        {
+
+                            (post.createdBy && post.createdBy._id != userId) ?
+                                (
+                                    <div className="col-sm-3">
+                                        <input className="follow"
+                                            onClick={this.onFollow}
+                                            style={{ width: "100px" }}
+                                            type="submit"
+                                            value={isFollowed ? "Đã theo dõi" : "Theo dõi"} />
+                                    </div>
+                                )
+                                : ""
+                        }
+
 
                     </div>
                     <div className="button-like">
@@ -278,7 +264,7 @@ class DetailPost extends Component {
                                             </div>
                                             {/* <ul className="comments-list reply-list">
                                                 {
-                                                    (comment.replyComments)?comment.replyComments.map((replyComment, index) => {
+                                                    (comment.replyComments) ? comment.replyComments.map((replyComment, index) => {
                                                         return (
                                                             <li key={index}>
                                                                 <div className="comment-box">
@@ -296,7 +282,7 @@ class DetailPost extends Component {
                                                                 </div>
                                                             </li>
                                                         )
-                                                    }):""
+                                                    }) : ""
                                                 }
                                             </ul> */}
                                         </li>

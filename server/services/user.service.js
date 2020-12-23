@@ -1,5 +1,6 @@
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
 var User = require('../models/user.model');
-
 const getUser = (query) => {
   return User.find(query);
 }
@@ -7,14 +8,34 @@ const getUserById = (id) => {
   return User.findById(id);
 }
 const getUserInfo = (id) => {
-  // console.log(User.find(query).select("_id -username -fullname -avatar"));
-  return User.findById(id).select({ 
-    "_id": 1,
-    "username": 1,
-    "fullname": 1, 
-    "avatar": 1
-  });;
-} 
+  // return User.findById(id).select({ 
+  //   "_id": 1,
+  //   "username": 1,
+  //   "fullname": 1,
+  //   "followed": 1,
+  //   "following": 1,
+  //   "avatar": 1
+  // });
+  console.log(id);
+  return User.aggregate([
+    {
+      $match: {_id: ObjectId(id) }
+    }, 
+    {
+      $project: {
+        
+        "_id": 1,
+        "username": 1,
+        "fullname": 1,
+        "nfollowed": {$size: '$followed'},
+        "nfollowing": {$size: '$following'},
+        "avatar": 1
+
+      }
+    },
+    { $limit: 1 }
+  ]);
+}
 
 const getAllUser = (req, res) => {
   return User.find({})
@@ -27,32 +48,52 @@ const createUser = (user) => {
 
 const createUsers = (req, res) => {
   let arr = req.body;
-  
-  User.insertMany([...arr], (err, docs) => {  
+
+  User.insertMany([...arr], (err, docs) => {
     console.log(err)
     if (err) return res.status(500).send(err);
     return res.status(200).json(docs);
   });
 }
 const getUserByName = (name) => {
-  return User.findOne({username: name});
+  return User.findOne({ username: name });
 }
 
 const updateUser = (req, res) => {
   const content = req.body;
   console.log(req.params)
   console.log(req.query)
-  User.findByIdAndUpdate(req.params.id, content,  function(err, doc) {
+  User.findByIdAndUpdate(req.params.id, content, function (err, doc) {
     if (err) return res.status(500).send(err);
     const response = {
-        message: "User successfully updated"
+      message: "User successfully updated"
     };
-    return res.status(200).json({"data" : doc});
+    return res.status(200).json({ "data": doc });
   });
+}
+const following = (following, followed) => {
+  return User.findOneAndUpdate(
+    { _id: following }, 
+    { $push: { following: followed} });
+}
+const followed = (following, followed) => {
+  return User.findOneAndUpdate(
+      { _id: followed }, 
+      { $push: { followed: following} })
+}
+const unfollowing = (following, followed) => {
+  return User.findOneAndUpdate(
+    { _id: following }, 
+    { $pull: {following: followed} });
+}
+const unfollowed = (following, followed) => {
+  return User.findOneAndUpdate(
+      { _id: followed }, 
+      { $pull: { followed: following} })
 }
 
 const deleteUser = (res, query) => {
-   return User.deleteOne(query)
+  return User.deleteOne(query)
 }
 
 const deleteAllUsers = (req, res) => {
@@ -70,4 +111,8 @@ module.exports = {
   updateUser,
   deleteUser,
   deleteAllUsers,
+  following,
+  followed,
+  unfollowing,
+  unfollowed,
 }
