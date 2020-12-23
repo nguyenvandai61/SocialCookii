@@ -8,14 +8,6 @@ const getUserById = (id) => {
   return User.findById(id);
 }
 const getUserInfo = (id) => {
-  // return User.findById(id).select({ 
-  //   "_id": 1,
-  //   "username": 1,
-  //   "fullname": 1,
-  //   "followed": 1,
-  //   "following": 1,
-  //   "avatar": 1
-  // });
   console.log(id);
   return User.aggregate([
     {
@@ -23,14 +15,12 @@ const getUserInfo = (id) => {
     }, 
     {
       $project: {
-        
         "_id": 1,
         "username": 1,
         "fullname": 1,
         "nfollowed": {$size: '$followed'},
         "nfollowing": {$size: '$following'},
-        "avatar": 1
-
+        "avatar": 1,
       }
     },
     { $limit: 1 }

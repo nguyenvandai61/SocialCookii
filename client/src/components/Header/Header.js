@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Logo from '../../cookii-logo.png';
 import { Link } from 'react-router-dom';
@@ -19,7 +20,16 @@ class Header extends Component {
     onSearch(e) {
         window.location.href = "/searchUser";
     }
+    searchBy = (e) => {
+        const node = ReactDOM.findDOMNode(this);
+        node.querySelector("#dropdownMenuButton").innerHTML = e.target.innerText; 
+    }
 
+    clearQuery = (e) => {
+        const node = ReactDOM.findDOMNode(this);
+        console.log(node.querySelector("#search-bar input"));
+        node.querySelector("#search-bar input").value = ""; 
+    }
 
     barsClickHandler = (e) => {
         let newState = !this.state.dropdown;
@@ -81,18 +91,18 @@ class Header extends Component {
                             <i class="fas fa-search"></i>
                         </button>
                         <input type="text" placeholder="Tìm kiếm" />
-                        <button id="close-search-btn">
+                        <button id="clear-query-btn" onClick={this.clearQuery}>
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
                     <div class="optional-search dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button id="btn-optional-search" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Tất cả các ghim
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Bài viết</a>
-                            <a class="dropdown-item" href="#">Mọi người</a>
-                            <a class="dropdown-item" href="#">Videos</a>
+                            <a class="dropdown-item" href="#" onClick={this.searchBy}>Bài viết</a>
+                            <a class="dropdown-item" href="#" onClick={this.searchBy}>Mọi người</a>
+                            <a class="dropdown-item" href="#" onClick={this.searchBy}>Videos</a>
                         </div>
                     </div>
 
