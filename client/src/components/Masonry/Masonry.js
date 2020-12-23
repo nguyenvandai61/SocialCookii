@@ -4,12 +4,6 @@ import './Masonry.css';
 import {
     Link
 } from 'react-router-dom';
-import image1 from '../../image/dishes/1.jpg'
-import image2 from '../../image/dishes/2.jpg'
-import image3 from '../../image/dishes/3.jpg'
-import image4 from '../../image/dishes/4.jpg'
-import image5 from '../../image/dishes/5.jpg'
-import image6 from '../../image/dishes/6.jpg'
 class Masonry extends Component {
     constructor(props) {
         super(props);
@@ -66,7 +60,6 @@ class Masonry extends Component {
 
     render() {
         const {listPosts} = this.state
-        console.log(listPosts);
         return (
                 <div style={{margin: "15px"}}>
                     <section className="section">

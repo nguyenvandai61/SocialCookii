@@ -85,7 +85,6 @@ class AddPost extends Component {
             },
             body: JSON.stringify(body)
         }).then(res => {
-            console.log(res);
             if (res.status == 200) {
                 document.querySelector('.success-create-post').style.display = 'block';
                 res.json().then(data => {
@@ -178,7 +177,6 @@ class AddPost extends Component {
                                     data="<p>Mô tả món ăn và công thức cho mọi người</p>"
                                     onReady={ editor => {
                                         // You can store the "editor" and use when it is needed.
-                                        console.log( 'Editor is ready to use!', editor );
                                     } }                                
                                     onChange={ ( event, editor ) => {
                                         const data = editor.getData();

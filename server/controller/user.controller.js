@@ -28,7 +28,7 @@ const getUserInfo = (req, res) => {
         console.log(data);
         if (err)
             return res.status(500).json(err)
-        return res.status(200).json(data);
+        return res.status(200).json(data[0]);
     });
 }
 const createUser = (req, res) => {
@@ -91,7 +91,7 @@ const checkLogin = (req, res) => {
             var payload = {id: user.id};
             var token = jwt.sign(payload, opts.secretOrKey)
             console.log("token"+token);
-            return res.status(200).json({message: "ok", token: token});
+            return res.status(200).json({message: "ok", _id: user._id, token: token});
         } else {
             return res.status(401).json({message:"invalid credentials"});
         }
@@ -118,8 +118,38 @@ const checkRegister = async (req, res) => {
 }
 
 const follow = (req, res) => {
-    let content = req.body;
-    return UserService.updateUser(content.query, content.newContent);
+    let followObj = req.body;
+    console.log(followObj);
+    const {follower, followed} = followObj;
+    UserService.getUserById(follower).then(doc => {
+        console.log(doc);
+        let followingState = doc.following.includes(followed);
+        if (!followingState) {
+            const followingPromise = UserService.following(followObj.follower, followObj.followed)
+            const followedPromise = UserService.followed(followObj.follower, followObj.followed)        
+            
+            return Promise.all([followingPromise, followedPromise])
+            .then((result) => {
+                return res.status(200).json(result)
+            }).catch(err => {
+                return res.status(400).json(err);
+            })
+        }
+        
+        const unfollowingPromise = UserService.unfollowing(followObj.follower, followObj.followed)
+        const unfollowedPromise = UserService.unfollowed(followObj.follower, followObj.followed)        
+        return Promise.all([unfollowingPromise, unfollowedPromise])
+        .then((result) => {
+            // console.log(result);
+            return res.status(200).json(result)
+        }).catch(err => {
+            return res.status(400).json(err);
+        })
+    })
+    // const followingPromise = UserService.following(followObj.follower, followObj.followed)
+    // const followedPromise = UserService.followed(followObj.follower, followObj.followed)
+    
+    
 }
 
 module.exports = {
@@ -131,5 +161,6 @@ module.exports = {
     deleteUser,
     deleteAllUsers,
     checkLogin,
-    checkRegister
+    checkRegister,
+    follow
 }

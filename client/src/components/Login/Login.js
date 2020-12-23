@@ -79,9 +79,7 @@ class Login extends Component {
             })
             .then(data => {
                 console.log(data);
-                localStorage.setItem("user", JSON.stringify({ token: data.token }))
-                // this.setState({user: data})
-
+                localStorage.setItem("user", JSON.stringify({ _id: data._id, token: data.token }))
                 // Redirect another page
                 let role = data.role;
                 this.onSuccessLogin(role);

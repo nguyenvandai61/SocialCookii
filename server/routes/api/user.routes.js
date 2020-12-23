@@ -41,6 +41,7 @@ router.get('/logout',passport.authenticate('jwt',{session : false}),(req,res)=>{
 });
 
 router.post('/register', (req, res) => userController.checkRegister(req, res))
+router.post('/follow', (req, res) => userController.follow(req, res))
 
 router.put('/', (req, res)=> userController.updateUser)
 router.put('/:id', (req, res) => {
@@ -52,16 +53,4 @@ router.delete('/', (req, res)=> {
         return userController.deleteAllUsers(req, res);  
     return userController.deleteUser(req, res)
 })
-    
-router.get("/secret", passport.authenticate('jwt', { session: false }), function(req, res){
-    res.json({message: "Success!"});
-  });
-  
-  router.get("/secretDebug",
-    function(req, res, next){
-      console.log(req.get('Authorization'));
-      next();
-    }, function(req, res){
-      res.json("debugging");
-  });
 module.exports = router
