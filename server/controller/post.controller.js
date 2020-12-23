@@ -43,7 +43,7 @@ const getPost = (req, res) => {
     })
 }
 const getAllPost = (req, res) => {
-    return PostService.getAllPost(req, res).then((posts, err) => {
+    return PostService.getAllPost().then((posts, err) => {
         return res.status(200).json(posts);
     });
 }

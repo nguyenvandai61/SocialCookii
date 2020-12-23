@@ -5,27 +5,17 @@ const createPost = (post) => {
     const newPost = new Post(post);
     return newPost.save();
 }
-const getAllPost = (req, res) => {
-    Post.find()
-      .populate('comments')
-      .then((result) => {
-          return res.status(200).json(result)
-      })
-      .catch((error) => {
-        return res.status(500).json({ error });
-      });
+const getAllPost = () => {
+    return Post.find()
 }
 
 const getPost = (query) => {
-  Post.find()
-  .populate('comments')
-  .then((result) => {
-      return res.status(200).json(result)
-  })
-  .catch((error) => {
-    return res.status(500).json({ error });
-  });
-    return Post.find(query)
+  return Post.find(query)
+    .populate({
+      path: 'comments',
+      // Get friends of friends - populate the 'friends' array for every friend
+      populate: { path: 'userId' }
+    });
 }
 
 const getPostByHashTag = (req, res) => {

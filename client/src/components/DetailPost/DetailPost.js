@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './DetailPost.css';
+import avatar from '../../image/avatars/avatar.jpg'
+
+
 class DetailPost extends Component {
     constructor(props) {
         super(props);
@@ -10,17 +13,39 @@ class DetailPost extends Component {
                 likeUserIds: [],
                 comments: []
             },
+            comment:{
+                postId : "",
+                content : "",
+                createdAt: "",
+                editedAt: "",
+                deletedAt:"",
+                repliedCommentId:[],
+                likeUserIds:[]
+            },
             isFollowed : false,
             listUserCache: []
         }
         this.onFollow = this.onFollow.bind(this)
+        this.onComment = this.onComment.bind(this)
+        this.onTextBoxComment = this.onTextBoxComment.bind(this);
         // userName = localStorage.getItem('userName');
         // console.log(userName)
     }
 
+    onTextBoxComment(event) {
+        let postId = window.location.pathname.split('/')[2];
+        this.setState((prevState) => {
+            let newComment = Object.assign({}, prevState.comment);
+            newComment.postId = postId
+            newComment.createdAt = Date.now()
+            newComment.content = event.target.value;
+            return { comment: newComment }
+        })
+        console.log("Comment" + this.state.comment)
+    }
 
+    // Follow 
     onFollow(e){
-
         e.preventDefault();
           // const {authorId} = this.state.post
           const userId = "5fccf11a0fbb1823e0a6a68f"
@@ -50,98 +75,33 @@ class DetailPost extends Component {
 
     }
 
-
-    loadDefaultPost = () => {
-        let post = {
-            title: "Bánh xèo",
-            description: "Bánh xèo là một món ăn truyền thống thuần túy và rất quen thuộc đối với chúng ta. Tuy nhiên ngày nay, bánh xèo Việt Nam đã trở thành một cái tên đặc biệt. Luôn luôn được nhắc đến bởi nhiều người nước ngoài khi ghé thăm Việt Nam. Bánh xèo cũng được biến tấu nhiều phù hợp với khẩu vị, phong tục của từng địa phương khác nhau. Nhưng đều giữ chung cho món ăn này một hương vị riêng. Để lại cho người thưởng thức nhiều cảm xúc khó quên khi dùng qua dù chỉ là một lần.",
-            createdBy: {
-                id: 1,
+    //Comment post
+    onComment(e){
+        e.preventDefault();
+        let token = localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).token : "";
+        let body = this.state.comment;
+        fetch('/api/comment/', {
+            method: "POST",
+            headers: { 
+                'Content-Type': 'application/json', 
+                'Authorization': 'bearer '+ token
             },
-            createdAt: Date.now(),
-            deletedAt: "",
-            editedAt: "",
-            thumbnails: [
-                "image/posts/base-image-16069669499930.jpeg",
-                "image/posts/base-image-16069669500171.jpeg"
-            ],
-            recipe: "2 kg nước",
-            comments: [
-                {
-                    id: 2,
-
-                    time: Date.now(),
-                    content: "Nhìn có vẻ ngon đấy",
-                    replyComments: [
-                        {
-                            id: 3,
-                            time: Date.now(),
-                            content: "Ukm ngon đấy"
-                        },
-                        {
-                            id: 4,
-                            time: Date.now(),
-                            content: "Haha"
-                        }
-                    ]
-                },
-                {
-                    id: 5,
-                    time: Date.now(),
-                    content: "Nhìn có vẻ ngon đấy",
-                    replyComments: [
-                        {
-                            id: 3,
-                            time: Date.now(),
-                            content: "Ukm ngon đấy"
-                        },
-                        {
-                            id: 1,
-                            time: Date.now(),
-                            content: "Cảm ơn"
-                        }
-                    ]
-                }
-            ],
-            likeUserIds: [
-                "5fa7f3aa108cb725f035f21a",
-                "5fa7efe5869c07126058a868"
-            ],
-            hashtagIds: "5fa75587997be636b8f92cb3"
-        }
-
-        let users = {
-            1: {
-                name: "Đại Nguyễn",
-                avatar: "image/default/avatar/koala.jpg",
-            },
-            2: {
-                avatar: "image/default/avatar/fox.jpg",
-                name: "Phan Vũ",
-            },
-            3: {
-                avatar: "image/default/avatar/sheep.png",
-                name: "Dương Phạm",
-            },
-            4: {
-                avatar: "image/default/avatar/rabbit.jpg",
-                name: "Trung Châu",
-            },
-            5: {
-                avatar: "image/default/avatar/bear-russian.png",
-                name: "Công Trần",
+            body: JSON.stringify(body)
+        }).then(res => {
+            console.log(res);
+            if (res.status == 200) {
+                res.json().then(data => {
+                    console.log("result",data.content)
+                    this.fetchPost()
+                })
             }
-        }
-        Object.assign(post.createdBy, users[post.createdBy.id]);
-        post.comments.map(comment => {
-            Object.assign(comment, users[comment.id]);
-            comment.replyComments.map(rComment => {
-                Object.assign(rComment, users[rComment.id]);
-            })
+            else {
+                console.log("error")
+            }
         })
-
-        this.setState({ post: post });
     }
+
+    // Get UserInfor
     fetchUserInfo = (id) => {
         console.log(id);
         return fetch("/api/user/userInfo/" + id).then(res => {
@@ -152,14 +112,17 @@ class DetailPost extends Component {
     }
     fetchPost = async () => {
         let id = window.location.pathname.split('/')[2];
+        let token = localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).token : "";
+
         return await fetch('/api/post/' + id, {
             headers: { 
-                'Content-Type': 'application/json' 
+                'Content-Type': 'application/json',
+                'Authorization': 'bearer '+ token
             },
         }).then(res => {
             if (res.status == 200) {
 
-                console.log(res)
+                //console.log(res)
                 return res.json()
             }
         }).then(data1 => data1[0])
@@ -167,7 +130,7 @@ class DetailPost extends Component {
             console.log(data);
             this.setState({ post: data })
             this.fetchUserInfo(data.createdBy).then(user => {
-                console.log(user);
+                //console.log(user.username);
                 data.createdBy = user;
                 console.log(data);
                 this.setState({ post: data });
@@ -210,13 +173,14 @@ class DetailPost extends Component {
 
     render() {
         const { post } = this.state;
+        const { comment } = this.state
         const { thumbnails, author, comments } = this.state.post;
         const {isFollowed} = this.state 
         var status = "Theo dõi"
         if(isFollowed){
             status = "Đã theo dõi"
         }
-        console.log(post);
+        //console.log(post);
         return (
 
             <div className="detail-post">
@@ -243,8 +207,9 @@ class DetailPost extends Component {
                     <div style={{wordBreak:'break-word',display:'inline-block'}} className="editor" dangerouslySetInnerHTML={{__html:post.description}}/>
                     <div className="info">
                         <div className="col-sm-9 post-avatar">
-                            <img src={post.createdBy ? "/"+post.createdBy.avatar : ""} alt="" height="60px" width="60px" className="avatar" />
-                            <h2>{post.createdBy ? post.createdBy.fullname : ""}</h2>
+                            {/* <img src={post.createdBy ? "/"+post.createdBy.avatar : ""} alt="" height="60px" width="60px" className="avatar" /> */}
+                            <img src={avatar} alt="" height="60px" width="60px" className="avatar" />
+                            <h4>{post.createdBy ? post.createdBy.username : ""}</h4>
                         </div>
                         <div className="col-sm-3">
                             <input className="follow" 
@@ -260,43 +225,58 @@ class DetailPost extends Component {
                         <span>Yêu thích</span>  &ensp;
                     </div> <br />
                     <span>{post.likeUserIds.length} Lượt yêu thích</span>
-                    <h3>Nguyên liệu</h3>
-                    <div className="content1">
-                        {post.recipe}
-                    </div>
+                    
 
                     <div className="comment-wrapper">
-                        <div>
+                        {/* <div>
                             <h2>Comments</h2>
                             <form>
                                 <div className="cmt">
-                                    <input type="text" placeholder="Thêm nhận xét" /> <br />
-                                    <button>Send</button>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Thêm nhận xét" 
+                                        onChange={this.onTextBoxComment}
+                                        value={comment.content}
+                                        /> <br />
+                                    <button type="submit" onClick={this.onComment}>Send</button>
                                 </div>
                             </form>
-                        </div>
-                        <div>
+                        </div> */}
+                        <div class="comment-container">
                             {
                                 post.comments.map((comment, index) => {
-                                    console.log(post);
+                                    
                                     return (
                                         <li key={index}>
                                             <div className="comment-main-level">
                                                 <div className="comment-box">
                                                     <div className="comment-head">
-                                                        <div className="comment-avatar"><img src={comment.avatar} alt="" /></div>
-
-                                                        <h6 className={"comment-name " + (comment._id == post.createdBy._id ? 'by-author' : '')}><a href="">{comment.name}</a></h6>
+                                                        {/* <div className="comment-avatar"><img src={comment.userId.avartar} alt="" /></div> */}
+                                                        <div className="comment-avatar"><img src={avatar} alt="" /></div>
+                                                        <div className="comment-infor">
+                                                            <div>
+                                                                <h6 className={"comment-name " + (comment.userId._id == post.createdBy._id ? 'by-author' : '')}>
+                                                                    <a href="">{comment.userId.username}</a>
+                                                                </h6>
+                                                            </div>
+                                                            
+                                                            <div className="comment-content">
+                                                                {comment.content}
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                    </div>
+                                                    <div className="interaction">
                                                         <span></span>
-                                                        <i className="fa fa-reply"></i>
                                                         <i className="fa fa-heart"></i>
+                                                        <i className="fa fa-reply"></i>
+                                       
                                                     </div>
-                                                    <div className="comment-content">
-                                                        {comment.content}
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
-                                            <ul className="comments-list reply-list">
+                                            {/* <ul className="comments-list reply-list">
                                                 {
                                                     (comment.replyComments)?comment.replyComments.map((replyComment, index) => {
                                                         return (
@@ -318,11 +298,25 @@ class DetailPost extends Component {
                                                         )
                                                     }):""
                                                 }
-                                            </ul>
+                                            </ul> */}
                                         </li>
                                     )
                                 })
                             }
+                        </div>
+                        <div>
+                            <h2>Comments</h2>
+                            <form>
+                                <div className="cmt">
+                                    <input 
+                                        type="text" 
+                                        placeholder="Thêm nhận xét" 
+                                        onChange={this.onTextBoxComment}
+                                        value={comment.content}
+                                        /> <br />
+                                    <button type="submit" onClick={this.onComment}>Send</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
