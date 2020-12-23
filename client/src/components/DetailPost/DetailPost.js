@@ -112,7 +112,7 @@ class DetailPost extends Component {
             console.log(data);
             this.setState({ post: data })
             this.fetchUserInfo(data.createdBy).then(user => {
-                //console.log(user.username);
+                console.log(user.username);
                 data.createdBy = user;
                 console.log(data);
                 this.setState({ post: data })
@@ -291,7 +291,7 @@ class DetailPost extends Component {
                             }
                         </div>
                         <div>
-                            <h2>Comments</h2>
+                            
                             <form>
                                 <div className="cmt">
                                     <input 

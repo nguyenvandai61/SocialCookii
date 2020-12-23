@@ -107,7 +107,8 @@ li {
 	padding: 5px;
 }
 .cmt {
-    display: flex;
+	display: flex;
+	margin-top: 20px;
 }
 
 .cmt input {
@@ -455,7 +456,7 @@ li {
 
 .comment-container {
 	overflow: auto;
-	height: 46.5vh;
+	height: 37vh;
 }
 
 .comment-infor {
