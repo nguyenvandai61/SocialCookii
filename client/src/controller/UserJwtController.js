@@ -4,25 +4,12 @@ import JwtParser from "../utils/JwtParser";
 let token = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).token : "";
 let headerObject = {
     'Content-Type': 'application/json',
-    'Authorization': 'bearer '+token}
+    'Authorization': 'bearer '+token
+}
 
-const fetchDetaiInfoUser = (id) => {
+const fetchDetaiInfoUser = async (id) => {
     
-    return fetch('api/user/userInfo/' + id, {
-        method: "GET",
-        headers: headerObject,
-    })
-        .then(res => {
-            if (!res.ok) throw Error("Failed");
-            return res.json()
-        })
-        .then(data => {
-            console.log(data);
-            return data;
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+        
 }
 
 export function fetchFollow(follower, followed) {
@@ -57,10 +44,19 @@ export function getIdFromJwtToken() {
 export function getDetailInfoUser() {
     console.log("getdetail")
     let id = getIdFromJwtToken();
-    return fetchDetaiInfoUser(id).then(detailInfoUser => {
-        console.log(detailInfoUser);
-        return detailInfoUser;
-    }).catch(err => {
-        console.log(err);
-    });
+    return fetch('api/user/userInfo/' + id, {
+        method: "GET",
+        headers: headerObject,
+    })
+        .then(res => {
+            if (res.status == 200) {
+                res.json().then(data => {
+                    console.log(data)
+                    return data;
+                })
+            }
+            else {
+    
+            }
+        })
 }

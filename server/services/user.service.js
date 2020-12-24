@@ -89,7 +89,11 @@ const deleteUser = (res, query) => {
 const deleteAllUsers = (req, res) => {
   return User.deleteMany({});
 }
-
+const searchName = (query) => {
+  return User.find({
+    username: new RegExp(query)
+  })
+}
 module.exports = {
   getUser,
   getUserInfo,
@@ -105,4 +109,5 @@ module.exports = {
   followed,
   unfollowing,
   unfollowed,
+  searchName,
 }

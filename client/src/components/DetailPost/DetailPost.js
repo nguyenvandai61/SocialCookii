@@ -135,26 +135,13 @@ class DetailPost extends Component {
         // this.addAuthorText();
 
     }
-
-    componentWillReceiveProps(nextProps) {
-
+    componentWillReceiveProps(props) {
+        this.setState({user: props.user}); 
     }
-
-    componentWillUpdate(nextProps, nextState) {
-
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-
-    }
-
-    componentWillUnmount() {
-
-    }
+    
 
     render() {
         const { comment } = this.state
-        const { thumbnails, author, comments } = this.state.post;    
         const { post, isFollowed } = this.state;
         console.log(post);
         let userId = getIdFromJwtToken();

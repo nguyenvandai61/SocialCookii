@@ -152,6 +152,15 @@ const follow = (req, res) => {
     
 }
 
+const search = (req, res) => {
+    console.log(req.params);
+    UserService.searchName(req.params.searchValue).then((doc, err) => {
+        if (!doc)
+            return res.status(400).json("Error");
+        return res.status(200).json(doc);
+    })
+}
+
 module.exports = {
     getAllUser,
     getUser,
@@ -162,5 +171,6 @@ module.exports = {
     deleteAllUsers,
     checkLogin,
     checkRegister,
-    follow
+    follow,
+    search
 }
