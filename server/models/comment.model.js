@@ -25,7 +25,7 @@ const CommentSchema = new mongoose.Schema({
   },
   repliedCommentId: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'Comment'
   }],
   likeUserIds: [{
     type: mongoose.Schema.Types.ObjectId,

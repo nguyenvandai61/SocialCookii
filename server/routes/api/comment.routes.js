@@ -20,5 +20,19 @@ router.get('/',
             return commentController.getAllComment(req, res);
         }
     })
+ 
+router.get('/:id',
+    passport.authenticate('jwt', {session: false}),
+    (req, res) => {
+        return commentController.getCommnent(req, res);
+    })    
+
+router.put('/:id',
+    passport.authenticate('jwt', {session: false}),
+    (req, res) => {
+        return commentController.updateComment(req, res);
+    })
+
+
 
 module.exports = router

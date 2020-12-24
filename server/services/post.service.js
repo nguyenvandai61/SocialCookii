@@ -13,8 +13,12 @@ const getPost = (query) => {
   return Post.find(query)
     .populate({
       path: 'comments',
-      // Get friends of friends - populate the 'friends' array for every friend
-      populate: { path: 'userId' }
+      populate: [
+        { path: 'userId' },
+        { path: 'repliedCommentId', 
+          populate : { path: 'userId'}
+        }
+      ]
     });
 }
 

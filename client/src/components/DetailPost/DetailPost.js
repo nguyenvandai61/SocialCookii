@@ -286,57 +286,36 @@ class DetailPost extends Component {
                                                     </div>
                                                     
                                                 </div>
-                                                <div className="comment-box comment-reply">
-                                                    <div className="comment-head">
-                                                        <div className="comment-avatar"><img src={"/" + comment.userId.avatar} alt="" /></div>
-                                                        {/* <div className="comment-avatar"><img src={avatar} alt="" /></div> */}
-                                                        <div className="comment-infor">
-                                                            <div>
-                                                                <h6 className={"comment-name " + (comment.userId._id == post.createdBy._id ? 'by-author' : '')}>
-                                                                    <a href="">{comment.userId.username}</a>
-                                                                </h6>
-                                                            </div>
-                                                            
-                                                            <div className="comment-content">
-                                                                {comment.content}
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        
-                                                    </div>
-                                                    <div className="interaction">
-                                                        <span></span>
-                                                        <i className="fa fa-heart"></i>
-                                                       
-                                       
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
-                                            
-                                            {/* <ul className="comments-list reply-list">
+                                                <div className="replied-comment-list">
                                                 {
-                                                    (comment.replyComments) ? comment.replyComments.map((replyComment, index) => {
+                                                    (comment.repliedCommentId) ? comment.repliedCommentId.map((replyComment, index) => {
                                                         return (
-                                                            <li key={index}>
-                                                                <div className="comment-box">
-                                                                    <div className="comment-head">
-                                                                        <div className="comment-avatar"><img src={replyComment.avatar} alt="" /></div>
-                                                                        <h6 className={"comment-name " + (replyComment._id == post.createdBy._id ? 'by-author' : '')}>
-                                                                            <a href="#">{replyComment.name}</a></h6>
-                                                                        <span>hace 10 minutos</span>
-                                                                        <i className="fa fa-reply"></i>
-                                                                        <i className="fa fa-heart"></i>
-                                                                    </div>
-                                                                    <div className="comment-content">
-                                                                        {replyComment.content}
-                                                                    </div>
+                                                            <div className="comment-box comment-reply" key={index}>
+                                                                <div className="comment-head">
+                                                                    <div className="comment-avatar"><img src={"/" + replyComment.userId.avatar} alt="" /></div>
+                                                                    {/* <div className="comment-avatar"><img src={avatar} alt="" /></div> */}
+                                                                    <div className="comment-infor">
+                                                                        <div>
+                                                                            <h6 className={"comment-name " + (replyComment.userId._id == post.createdBy._id ? 'by-author' : '')}>
+                                                                                <a href="">{replyComment.userId.username}</a>
+                                                                            </h6>
+                                                                        </div>
+                                                                        
+                                                                        <div className="comment-content">
+                                                                            {replyComment.content}
+                                                                        </div>
+                                                                    </div>    
                                                                 </div>
-                                                            </li>
+                                                                <div className="interaction">
+                                                                    <span></span>
+                                                                    <i className="fa fa-heart"></i>
+                                                                </div>
+                                                            </div>
                                                         )
                                                     }) : ""
                                                 }
-                                            </ul> */}
+                                                </div>
+                                            </div>
                                         </li>
                                     )
                                 })

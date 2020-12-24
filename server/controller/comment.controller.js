@@ -15,9 +15,9 @@ const createComment = async (req, res) =>{
 
 const updateComment = (req, res) => {
     let newComment = req.body;
-    console.log(newComment);
+    const query = {_id: req.params.id};
+    console.log("params" + query);
     return commentService.updateComment(query, newComment).then((newComment, err) =>{
-        console.log(err);
         console.log(newComment);
         if(err) return res.status(500).send(err);
         return res.status(200).json(newComment);
@@ -39,9 +39,21 @@ const getAllComment = (req, res) => {
         return res.status(200).json(comments);
     });
 }
+
+const getCommnent = (req, res) => {
+    let query = {_id: req.params.id};
+    console.log(req.params.id);
+    return commentService.getCommnent(query).then((data,err) => {
+        console.log(data);
+        if(err) return res.status(500).send(err);
+        if(data == null) return res.status(404).json({ message: "Cannot find Comment" });
+        return res.status(200).json(data)
+    })
+}
 module.exports = {
     createComment,
     updateComment,
     deleteComment,
-    getAllComment
+    getAllComment,
+    getCommnent
 }

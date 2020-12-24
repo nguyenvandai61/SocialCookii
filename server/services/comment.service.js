@@ -23,7 +23,7 @@ const createComment = (comment, res) => {
 }
 
 const updateComment = (query, newData) => {
-    return Comment.findOneAndUpdate(query, newData);
+    return Comment.findByIdAndUpdate(query, newData, {new: true})
 }
 
 const deleteComment = (req, res) => {
@@ -36,8 +36,16 @@ const deleteComment = (req, res) => {
     });
 }
 
+const getCommnent = (query) => {
+    return Comment.find(query)
+    .populate({
+      path: 'repliedCommentId'
+    });
+}
+
 module.exports = {
     createComment,
     updateComment,
     deleteComment,
+    getCommnent
 }
