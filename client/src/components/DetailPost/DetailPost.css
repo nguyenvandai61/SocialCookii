@@ -108,7 +108,7 @@ li {
 }
 .cmt {
 	display: flex;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 .cmt input {
@@ -455,8 +455,7 @@ li {
 }
 
 .comment-container {
-	overflow: auto;
-	height: 37vh;
+
 }
 
 .comment-infor {
@@ -470,9 +469,13 @@ li {
 }
 
 .interaction {
-	margin-left: 70px;
+	margin-left: 85px;
 }
 
 .interaction > i{
 	padding-right: 10px;
+}
+
+.comment-reply {
+	margin-left: 70px;
 }

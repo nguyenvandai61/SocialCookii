@@ -211,7 +211,19 @@ class DetailPost extends Component {
                     </div> <br />
                     <span>{post.likeUserIds.length} Lượt yêu thích</span>
                     
-
+                    <div>                          
+                        <form>
+                            <div className="cmt">
+                                <input 
+                                    type="text" 
+                                    placeholder="Thêm nhận xét" 
+                                    onChange={this.onTextBoxComment}
+                                    value={comment.content}
+                                    /> <br />
+                                <button type="submit" onClick={this.onComment}>Send</button>
+                            </div>
+                        </form>        
+                    </div>
                     <div className="comment-wrapper">
                         {/* <div>
                             <h2>Comments</h2>
@@ -236,8 +248,8 @@ class DetailPost extends Component {
                                             <div className="comment-main-level">
                                                 <div className="comment-box">
                                                     <div className="comment-head">
-                                                        {/* <div className="comment-avatar"><img src={comment.userId.avartar} alt="" /></div> */}
-                                                        <div className="comment-avatar"><img src={avatar} alt="" /></div>
+                                                        <div className="comment-avatar"><img src={"/" + comment.userId.avatar} alt="" /></div>
+                                                        {/* <div className="comment-avatar"><img src={avatar} alt="" /></div> */}
                                                         <div className="comment-infor">
                                                             <div>
                                                                 <h6 className={"comment-name " + (comment.userId._id == post.createdBy._id ? 'by-author' : '')}>
@@ -255,12 +267,53 @@ class DetailPost extends Component {
                                                     <div className="interaction">
                                                         <span></span>
                                                         <i className="fa fa-heart"></i>
-                                                        <i className="fa fa-reply"></i>
+                                                        <a data-toggle="collapse" href={"#collapseReply" + index} role="button" aria-expanded="false" aria-controls={"collapseReply" + index}>
+                                                            <i className="fa fa-reply"></i>
+                                                        </a>
+                                                        <div className="collapse" id={"collapseReply" + index}>                          
+                                                            <form>
+                                                                <div className="cmt">
+                                                                    <input 
+                                                                        type="text" 
+                                                                        placeholder="Thêm nhận xét" 
+                                                                        onChange={this.onTextBoxComment}
+                                                                        value={comment.content}
+                                                                        /> <br />
+                                                                    <button type="submit" onClick={this.onComment}>Send</button>
+                                                                </div>
+                                                            </form>        
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div className="comment-box comment-reply">
+                                                    <div className="comment-head">
+                                                        <div className="comment-avatar"><img src={"/" + comment.userId.avatar} alt="" /></div>
+                                                        {/* <div className="comment-avatar"><img src={avatar} alt="" /></div> */}
+                                                        <div className="comment-infor">
+                                                            <div>
+                                                                <h6 className={"comment-name " + (comment.userId._id == post.createdBy._id ? 'by-author' : '')}>
+                                                                    <a href="">{comment.userId.username}</a>
+                                                                </h6>
+                                                            </div>
+                                                            
+                                                            <div className="comment-content">
+                                                                {comment.content}
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                    </div>
+                                                    <div className="interaction">
+                                                        <span></span>
+                                                        <i className="fa fa-heart"></i>
+                                                       
                                        
                                                     </div>
                                                     
                                                 </div>
                                             </div>
+                                            
                                             {/* <ul className="comments-list reply-list">
                                                 {
                                                     (comment.replyComments) ? comment.replyComments.map((replyComment, index) => {
@@ -288,20 +341,6 @@ class DetailPost extends Component {
                                     )
                                 })
                             }
-                        </div>
-                        <div>
-                            
-                            <form>
-                                <div className="cmt">
-                                    <input 
-                                        type="text" 
-                                        placeholder="Thêm nhận xét" 
-                                        onChange={this.onTextBoxComment}
-                                        value={comment.content}
-                                        /> <br />
-                                    <button type="submit" onClick={this.onComment}>Send</button>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
