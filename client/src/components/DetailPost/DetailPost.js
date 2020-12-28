@@ -20,14 +20,27 @@ class DetailPost extends Component {
                 editedAt: "",
                 deletedAt:"",
                 repliedCommentId:[],
-                likeUserIds:[]
+                likeUserIds:[],
+                isRepliedComment: false
+            },
+            repliedComment:{
+                postId : "",
+                content : "",
+                createdAt: "",
+                editedAt: "",
+                deletedAt:"",
+                repliedCommentId:[],
+                likeUserIds:[],
+                isRepliedComment: true
             },
             isFollowed : false,
             listUserCache: []
         }
         this.onFollow = this.onFollow.bind(this)
         this.onComment = this.onComment.bind(this)
+        this.onRepliedComment = this.onRepliedComment.bind(this)
         this.onTextBoxComment = this.onTextBoxComment.bind(this);
+        this.onTextBoxRepliedComment = this.onTextBoxRepliedComment.bind(this);
         // userName = localStorage.getItem('userName');
         // console.log(userName)
     }
@@ -40,6 +53,18 @@ class DetailPost extends Component {
             newComment.createdAt = Date.now()
             newComment.content = event.target.value;
             return { comment: newComment }
+        })
+        console.log("Comment" + this.state.comment)
+    }
+
+    onTextBoxRepliedComment(event) {
+        let postId = window.location.pathname.split('/')[2];
+        this.setState((prevState) => {
+            let newComment = Object.assign({}, prevState.repliedComment);
+            newComment.postId = postId
+            newComment.createdAt = Date.now()
+            newComment.content = event.target.value;
+            return { repliedComment: newComment }
         })
         console.log("Comment" + this.state.comment)
     }
@@ -74,6 +99,7 @@ class DetailPost extends Component {
             if (res.status == 200) {
                 res.json().then(data => {
                     console.log("result",data.content)
+                    this.setState({comment: data})
                     this.fetchPost()
                 })
             }
@@ -81,6 +107,38 @@ class DetailPost extends Component {
                 console.log("error")
             }
         })
+    }
+
+
+    onRepliedComment(e){
+        e.preventDefault();
+        let token = localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).token : "";
+        let body = this.state.repliedComment;
+        fetch('/api/comment/', {
+            method: "POST",
+            headers: { 
+                'Content-Type': 'application/json', 
+                'Authorization': 'bearer '+ token
+            },
+            body: JSON.stringify(body)
+        }).then(res => {
+            console.log(res);
+            if (res.status == 200) {
+                res.json().then(data => {
+                    console.log("result",data.content)
+                    this.setState({repliedComment: data})
+                    this.fetchPost()
+                })
+            }
+            else {
+                console.log("error")
+            }
+        })
+    }
+
+
+    UpdateRepliedComment(comment){
+        
     }
 
     // Get UserInfor
@@ -141,7 +199,9 @@ class DetailPost extends Component {
     
 
     render() {
-        const { comment } = this.state
+        const { comment } = this.state;
+        const { repliedComment } = this.state;
+        const { thumbnails, author, comments } = this.state.post;    
         const { post, isFollowed } = this.state;
         console.log(post);
         let userId = getIdFromJwtToken();
@@ -263,10 +323,10 @@ class DetailPost extends Component {
                                                                     <input 
                                                                         type="text" 
                                                                         placeholder="Thêm nhận xét" 
-                                                                        onChange={this.onTextBoxComment}
-                                                                        value={comment.content}
+                                                                        onChange={this.onTextBoxRepliedComment}
+                                                                        value={repliedComment.content}
                                                                         /> <br />
-                                                                    <button type="submit" onClick={this.onComment}>Send</button>
+                                                                    <button type="submit" onClick={this.onRepliedComment}>Send</button>
                                                                 </div>
                                                             </form>        
                                                         </div>
