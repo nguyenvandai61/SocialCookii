@@ -205,7 +205,10 @@ li {
     border: none;
     cursor: pointer;
     font-weight: bold;
-    background: #F2F5F8;
+	background: #e2e5e8;
+    border-radius: 25px;
+    margin-left: 10px;
+    padding: 10px;	
 }
 .comment-wrapper{
 	margin-top: 20px;
@@ -469,11 +472,15 @@ li {
 }
 
 .interaction {
-	margin-left: 85px;
+	margin-left: 65px;
 }
 
 .interaction > i{
 	padding-right: 10px;
+}
+
+.interaction > span {
+	margin-left: 20px;
 }
 
 .comment-reply {
