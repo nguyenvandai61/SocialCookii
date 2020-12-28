@@ -22,7 +22,7 @@ import SearchUser from './components/SearchUser/SearchUser';
 import Layout from './components/Layout/Layout';
 let children = {
   "/": Masonry,
-  "/searchUser": SearchUser,
+  "/searchUser/q=:searchValue": SearchUser,
   "/personalInfo": PersonalInfo,
   "/editPersonalInfo": EditPersonalInfo,
   "/addPost": AddPost,

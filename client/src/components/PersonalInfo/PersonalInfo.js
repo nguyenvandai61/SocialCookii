@@ -7,19 +7,31 @@ class PersonalInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {}
+            user: {
+                avatar: "",
+                fullname: "",
+                nfollowed: 0,
+                nfollowing: 0,
+                username: "",
+                _id: ""
+            }
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         getDetailInfoUser().then(detailUserInfo => {
-            console.log(detailUserInfo);
-            this.setState({user: detailUserInfo})
+            if (detailUserInfo) {
+                this.setState({user: detailUserInfo})
+            }
         });
+    }
+    componentWillReceiveProps(props) {
+        this.setState({user: props.user}); 
     }
 
     render() {
-        const { user } = this.state;
+        const { user } = this.props;
+        console.log(user);
         return (
             <div className="personal-info">
                 <div align="center" className="avatar">

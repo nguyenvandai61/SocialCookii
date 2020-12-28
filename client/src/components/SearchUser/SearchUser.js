@@ -16,18 +16,36 @@ class SearchUser extends Component {
     componentWillMount() {
 
     }
-
+    queryUser = (query) => {
+        let token = localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).token : "";
+        fetch('/api/user/search/q='+query, {
+            method: "GET",
+            headers: { 
+                'Authorization': 'bearer '+token,
+                'Content-Type': 'application/json' 
+            },
+        })
+        .then(res => {
+            console.log(res);
+            if (res.status == 200) {
+              res.json().then(data => {
+                  this.setState({listUser: data})
+              })
+            } 
+            else {
+            } 
+        })
+    }
     componentDidMount() {
-
+        console.log("didmount");
+        let q = window.location.pathname.split('/')[2].substring(2);
+        if (q == "") return;
+        this.queryUser(q);
     }
 
     componentWillReceiveProps(nextProps) {
-
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        if (nextState == this.state) return false;
-        return true;
+        let token = localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).token : "";
+        this.queryUser(nextProps.query);
     }
 
     componentWillUpdate(nextProps, nextState) {
@@ -43,311 +61,41 @@ class SearchUser extends Component {
     }
 
     render() {
+        const {listUser} = this.state
         return (
             <div class= "container-fluid search-user">
                 <div class = "row mt-2">
-                    <div class="col-md-3 col-sm-6 col-lg-2 col-sm-4">
-                        <div class="infor-card">
-                            <a href="#">
-                                <div class="cover-image">
-                                    <img src={CoverImage}/>
-                                </div>
-                                <div class="avatar">
-                                    <img src={Avatar} />
-                                </div>
-                                <div class="infor-user">
-                                    <div>
-                                        <div class="username">
-                                            <span>Phan Vũ</span>
-                                        </div>
-                                        <div class="followers">
-                                            <span>1 Người theo dõi</span>
-                                        </div>
-                                        <div class="btn-follow">
-                                            <button > Theo dõi</button>
+                    {
+                    listUser.length == 0? "Không có user phù hợp":
+                    listUser.map(user => {
+                        return (
+                            <div class="col-md-3 col-sm-6 col-lg-2 col-sm-4">
+                            <div class="infor-card">
+                                <a href="#">
+                                    <div class="cover-image">
+                                        <img src={CoverImage}/>
+                                    </div>
+                                    <div class="avatar">
+                                        <img src={"/"+user.avatar} />
+                                    </div>
+                                    <div class="infor-user">
+                                        <div>
+                                            <div class="username">
+                                                <span>{user.username}</span>
+                                            </div>
+                                            <div class="followers">
+                                                <span>{user.followed.length} Người theo dõi</span>
+                                            </div>
+                                            <div class="btn-follow">
+                                                <button > Theo dõi</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-lg-2 col-sm-4">
-                        <div class="infor-card">
-                            <a href="#">
-                                <div class="cover-image">
-                                    <img src={CoverImage}/>
-                                </div>
-                                <div class="avatar">
-                                    <img src={Avatar} />
-                                </div>
-                                <div class="infor-user">
-                                    <div>
-                                        <div class="username">
-                                            <span>Phan Vũ</span>
-                                        </div>
-                                        <div class="followers">
-                                            <span>1 Người theo dõi</span>
-                                        </div>
-                                        <div class="btn-follow">
-                                            <button > Theo dõi</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-lg-2 col-sm-4">
-                        <div class="infor-card">
-                            <a href="#">
-                                <div class="cover-image">
-                                    <img src={CoverImage}/>
-                                </div>
-                                <div class="avatar">
-                                    <img src={Avatar} />
-                                </div>
-                                <div class="infor-user">
-                                    <div>
-                                        <div class="username">
-                                            <span>Phan Vũ</span>
-                                        </div>
-                                        <div class="followers">
-                                            <span>1 Người theo dõi</span>
-                                        </div>
-                                        <div class="btn-follow">
-                                            <button > Theo dõi</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-lg-2 col-sm-4">
-                        <div class="infor-card">
-                            <a href="#">
-                                <div class="cover-image">
-                                    <img src={CoverImage}/>
-                                </div>
-                                <div class="avatar">
-                                    <img src={Avatar} />
-                                </div>
-                                <div class="infor-user">
-                                    <div>
-                                        <div class="username">
-                                            <span>Phan Vũ</span>
-                                        </div>
-                                        <div class="followers">
-                                            <span>1 Người theo dõi</span>
-                                        </div>
-                                        <div class="btn-follow">
-                                            <button > Theo dõi</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-lg-2 col-sm-4">
-                        <div class="infor-card">
-                            <a href="#">
-                                <div class="cover-image">
-                                    <img src={CoverImage}/>
-                                </div>
-                                <div class="avatar">
-                                    <img src={Avatar} />
-                                </div>
-                                <div class="infor-user">
-                                    <div>
-                                        <div class="username">
-                                            <span>Phan Vũ</span>
-                                        </div>
-                                        <div class="followers">
-                                            <span>1 Người theo dõi</span>
-                                        </div>
-                                        <div class="btn-follow">
-                                            <button > Theo dõi</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-lg-2 col-sm-4">
-                        <div class="infor-card">
-                            <a href="#">
-                                <div class="cover-image">
-                                    <img src={CoverImage}/>
-                                </div>
-                                <div class="avatar">
-                                    <img src={Avatar} />
-                                </div>
-                                <div class="infor-user">
-                                    <div>
-                                        <div class="username">
-                                            <span>Phan Vũ</span>
-                                        </div>
-                                        <div class="followers">
-                                            <span>1 Người theo dõi</span>
-                                        </div>
-                                        <div class="btn-follow">
-                                            <button > Theo dõi</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class = "row mt-2">
-                    <div class="col-md-3 col-sm-6 col-lg-2 col-sm-4">
-                        <div class="infor-card">
-                            <a href="#">
-                                <div class="cover-image">
-                                    <img src={CoverImage}/>
-                                </div>
-                                <div class="avatar">
-                                    <img src={Avatar} />
-                                </div>
-                                <div class="infor-user">
-                                    <div>
-                                        <div class="username">
-                                            <span>Phan Vũ</span>
-                                        </div>
-                                        <div class="followers">
-                                            <span>1 Người theo dõi</span>
-                                        </div>
-                                        <div class="btn-follow">
-                                            <button > Theo dõi</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-lg-2 col-sm-4">
-                        <div class="infor-card">
-                            <a href="#">
-                                <div class="cover-image">
-                                    <img src={CoverImage}/>
-                                </div>
-                                <div class="avatar">
-                                    <img src={Avatar} />
-                                </div>
-                                <div class="infor-user">
-                                    <div>
-                                        <div class="username">
-                                            <span>Phan Vũ</span>
-                                        </div>
-                                        <div class="followers">
-                                            <span>1 Người theo dõi</span>
-                                        </div>
-                                        <div class="btn-follow">
-                                            <button > Theo dõi</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-lg-2 col-sm-4">
-                        <div class="infor-card">
-                            <a href="#">
-                                <div class="cover-image">
-                                    <img src={CoverImage}/>
-                                </div>
-                                <div class="avatar">
-                                    <img src={Avatar} />
-                                </div>
-                                <div class="infor-user">
-                                    <div>
-                                        <div class="username">
-                                            <span>Phan Vũ</span>
-                                        </div>
-                                        <div class="followers">
-                                            <span>1 Người theo dõi</span>
-                                        </div>
-                                        <div class="btn-follow">
-                                            <button > Theo dõi</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-lg-2 col-sm-4">
-                        <div class="infor-card">
-                            <a href="#">
-                                <div class="cover-image">
-                                    <img src={CoverImage}/>
-                                </div>
-                                <div class="avatar">
-                                    <img src={Avatar} />
-                                </div>
-                                <div class="infor-user">
-                                    <div>
-                                        <div class="username">
-                                            <span>Phan Vũ</span>
-                                        </div>
-                                        <div class="followers">
-                                            <span>1 Người theo dõi</span>
-                                        </div>
-                                        <div class="btn-follow">
-                                            <button > Theo dõi</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-lg-2 col-sm-4">
-                        <div class="infor-card">
-                            <a href="#">
-                                <div class="cover-image">
-                                    <img src={CoverImage}/>
-                                </div>
-                                <div class="avatar">
-                                    <img src={Avatar} />
-                                </div>
-                                <div class="infor-user">
-                                    <div>
-                                        <div class="username">
-                                            <span>Phan Vũ</span>
-                                        </div>
-                                        <div class="followers">
-                                            <span>1 Người theo dõi</span>
-                                        </div>
-                                        <div class="btn-follow">
-                                            <button > Theo dõi</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-lg-2 col-sm-4">
-                        <div class="infor-card">
-                            <a href="#">
-                                <div class="cover-image">
-                                    <img src={CoverImage}/>
-                                </div>
-                                <div class="avatar">
-                                    <img src={Avatar} />
-                                </div>
-                                <div class="infor-user">
-                                    <div>
-                                        <div class="username">
-                                            <span>Phan Vũ</span>
-                                        </div>
-                                        <div class="followers">
-                                            <span>1 Người theo dõi</span>
-                                        </div>
-                                        <div class="btn-follow">
-                                            <button > Theo dõi</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                                </a>
+                            </div>
+                        </div>)
+                    })
+                }
                 </div>
             </div>   
         );

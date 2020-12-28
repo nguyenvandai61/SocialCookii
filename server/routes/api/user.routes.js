@@ -21,7 +21,9 @@ jwtOptions.secretOrKey = 'mysecretword';
 
 router.get('/', (req, res)=> userController.getAllUser(req, res))
 router.get('/userInfo/:id', (req, res)=> userController.getUserInfo(req, res))
+router.get('/search/q=:searchValue', (req, res) => userController.search(req, res))
 router.get('/:id', (req,res)=> userController.getUser(req, res))
+
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res)=> {
     if (Array.isArray(req.body))
         return userController.createUsers(req, res)
@@ -30,7 +32,6 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res)=> 
 router.post(
     '/login', 
     (req, res) => {
-        console.log(req.body);
         return userController.checkLogin(req, res);
     }
 );

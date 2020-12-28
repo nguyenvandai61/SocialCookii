@@ -42,7 +42,7 @@ class Masonry extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
+        
     }
 
 
@@ -59,7 +59,7 @@ class Masonry extends Component {
     }
 
     render() {
-        const {listPosts} = this.state
+        const {listPosts} = this.state;
         return (
                 <div style={{margin: "15px"}}>
                     <section className="section">

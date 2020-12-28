@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Logo from '../../cookii-logo.png';
 import { Link } from 'react-router-dom';
-import {getDetailInfoUser, getIdFromJwtToken} from '../../controller/UserJwtController'
+import { getDetailInfoUser, getIdFromJwtToken } from '../../controller/UserJwtController'
 import './Header.css';
+
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -12,23 +13,34 @@ class Header extends Component {
             dropdown: false,
             user: {
                 avatar: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
-            }
+            },
+            query: ""
         }
         this.onSearch = this.onSearch.bind(this)
     }
 
     onSearch(e) {
-        window.location.href = "/searchUser";
+        const node = ReactDOM.findDOMNode(this);
+        let query = node.querySelector("#search-bar input").value
+        if (query == "") return;
+        window.location.href = "/searchUser/q=" + query;
+    }
+
+    getTextQuery = () => {
+        const node = ReactDOM.findDOMNode(this);
+        if (!node) return;
+        let query = node.querySelector("#search-bar input").value;
+        return query;
     }
     searchBy = (e) => {
         const node = ReactDOM.findDOMNode(this);
-        node.querySelector("#dropdownMenuButton").innerHTML = e.target.innerText; 
+        node.querySelector("#dropdownMenuButton").innerHTML = e.target.innerText;
     }
 
     clearQuery = (e) => {
         const node = ReactDOM.findDOMNode(this);
         console.log(node.querySelector("#search-bar input"));
-        node.querySelector("#search-bar input").value = ""; 
+        node.querySelector("#search-bar input").value = "";
     }
 
     barsClickHandler = (e) => {
@@ -51,17 +63,21 @@ class Header extends Component {
         e.target.classList.remove("hover-effect");
     }
     componentWillMount() {
-        console.log("willmount")
-        getDetailInfoUser().then(detailInfoUser => {
-            console.log(detailInfoUser);
-            this.setState({user: detailInfoUser});
-        });
+
     }
     componentDidMount() {
-        
+    }
+    componentWillReceiveProps(props) {
+        this.setState({ user: props.user });
+    }
+
+    onSearchTextChange = (e) => {
+        this.setState({query: e.target.value})
+        this.props.getQuery(e.target.value);
     }
     render() {
-        const { user } = this.state
+        const { user } = this.state;
+        console.log(user);
         return (
             <header>
                 <div id="logo-wrapper">
@@ -87,10 +103,17 @@ class Header extends Component {
                 </div>
                 <div id="search-bar">
                     <div className="search-box">
-                        <button id="search-btn" onClick={this.onSearch}>
-                            <i class="fas fa-search"></i>
-                        </button>
-                        <input type="text" placeholder="Tìm kiếm" />
+                        <Link
+                            to={{
+                                pathname: "/searchUser/q="+this.state.query,
+                                
+                            }}
+                        >
+                            <button id="search-btn">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </Link>
+                        <input type="text" placeholder="Tìm kiếm" onChange={this.onSearchTextChange}/>
                         <button id="clear-query-btn" onClick={this.clearQuery}>
                             <i class="fas fa-times"></i>
                         </button>
@@ -117,7 +140,7 @@ class Header extends Component {
                     <div className="header-btn" onMouseOver={this.mouseOverElement} onMouseOut={this.mouseOutElement}>
                         <Link to="/personalInfo">
                             <button>
-                                <img id="avatar" src={user.avatar} />
+                                <img id="avatar" src={user ? user.avatar : ""} />
                             </button>
                         </Link>
                     </div>
