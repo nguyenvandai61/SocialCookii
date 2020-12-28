@@ -2,6 +2,11 @@ var express = require('express');
 const postController = require('../../controller/post.controller');
 const passport = require('passport');
 var router = express.Router();
+
+router.post('/likePost', (req,res)=> {
+    console.log(req.body);
+    return postController.likePost(req, res);
+})
 router.post(
     '/',
     passport.authenticate('jwt', {session: false}),
@@ -36,7 +41,6 @@ router.get(
 //  router.get('/hashtag/:hashtagname', (req, res) => {
 //     return postController.getPostByHashTag(req, res);
 // })
-
 
 router.get('/hashtag/:hashtagname', (req, res) => {
     return postController.getPostByTagname(req, res);

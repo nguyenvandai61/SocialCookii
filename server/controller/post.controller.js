@@ -60,6 +60,16 @@ const searchPost = (req, res) => {
             return res.status(500).json(err)
         return res.status(200).json(data);
     });
+};
+
+const likePost = (req, res) => {
+    console.log(req.body);
+    let postId = req.body.postId;
+    let likeUserId = req.body.likeUserId;
+    return PostService.likePost(postId, likeUserId).then((data, err) => {
+        if (err) return res.status(500).json(err);
+        return res.status(200).json(data);
+    })
 }
 
 module.exports = {
@@ -68,5 +78,6 @@ module.exports = {
     getPost,
     getAllPost,
     deletePost,
-    searchPost
+    searchPost,
+    likePost
 }

@@ -20,6 +20,11 @@ class Header extends Component {
         }
         this.onSearch = this.onSearch.bind(this)
     }
+    homeClickHandler = () => {
+        
+        window.location.href = "/";
+        this.setState({query: ""});
+    }
     
     onSearch(e) {
         const node = ReactDOM.findDOMNode(this);

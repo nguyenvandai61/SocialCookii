@@ -66,9 +66,18 @@ const deletePost = (req, res) => {
     })
 }
 
-const searchTitle = (query) => {
-  return Post.find({
-    title: new RegExp(query)
+const likePost = (postId, likeUserId) => {
+  console.log(postId);
+  console.log(likeUserId);
+  return Post.findOne({
+    _id: postId
+  }, (err, model) => {
+    if (model.likeUserIds.indexOf(likeUserId) !== -1) {
+      model.likeUserIds.pull(likeUserId);
+    } else {
+      model.likeUserIds.addToSet(likeUserId);
+    }
+    model.save();
   })
 }
 module.exports = {
@@ -77,6 +86,7 @@ module.exports = {
     getPost,
     getAllPost,
     getPostByHashTag,
+    likePost,
     deletePost,
     getPostByTagname
 }
