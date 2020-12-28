@@ -33,6 +33,8 @@ class DetailPost extends Component {
                 likeUserIds:[],
                 isRepliedComment: true
             },
+            nLikePost: 0,
+            hasLikePost: false,
             isFollowed : false,
             listUserCache: []
         }
@@ -193,10 +195,9 @@ class DetailPost extends Component {
             console.log(data);
             this.setState({ post: data })
             this.fetchUserInfo(data.createdBy).then(user => {
-                console.log(user.username);
                 data.createdBy = user;
-                console.log(data);
-                this.setState({ post: data })
+                this.setState({ post: data, nLikePost: data.likeUserIds.length })
+                this.setState({hasLikePost: data.likeUserIds.indexOf(getIdFromJwtToken()) !== -1})
                 return data;
             });
         })
@@ -236,7 +237,38 @@ class DetailPost extends Component {
         }
         return Math.floor(seconds) + " seconds";
       }
+    clickBtnLikeHandler = (e) => {
+        let userId = getIdFromJwtToken();
+        // Check whether Liked post
+        let {nLikePost, hasLikePost} = this.state;
+        if (hasLikePost) {
+            console.log(e.target);
+            nLikePost--;
+        } else {
+            nLikePost++;
+        }
 
+        this.setState({nLikePost: nLikePost, hasLikePost: !hasLikePost});
+        
+        let postId = window.location.pathname.split('/')[2];
+        let token = localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).token : "";
+        // Like or Unlike post
+        fetch('/api/post/likePost', {
+            method: "POST",
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': 'bearer '+ token
+            },
+            body: JSON.stringify({
+                postId: postId,
+                likeUserId: userId
+            })
+        }).then(res => {
+            if (res.status == 200) {
+                return res.json()
+            }
+        }).then(data => console.log(data));
+    }
     componentWillMount() {
         // this.loadDefaultPost();
         this.fetchPost();
@@ -255,8 +287,7 @@ class DetailPost extends Component {
         const { comment } = this.state;
         const { repliedComment } = this.state;
         const { thumbnails, author, comments } = this.state.post;    
-        const { post, isFollowed } = this.state;
-        console.log(post);
+        const { post, isFollowed, nLikePost, hasLikePost } = this.state;
         let userId = getIdFromJwtToken();
         return (
             <div className="detail-post-container">
@@ -305,11 +336,11 @@ class DetailPost extends Component {
 
 
                     </div>
-                    <div className="button-like">
+                    <div className="button-like" onClick={this.clickBtnLikeHandler}>
                         <i className="fas fa-heart"></i>
-                        <span>Yêu thích</span>  &ensp;
+                        <span>{hasLikePost?"Không thích":"Thích"}</span>  &ensp;
                     </div> <br />
-                    <span>{post.likeUserIds.length} Lượt yêu thích</span>
+                    <span>{nLikePost} Lượt yêu thích</span>
                     
                     <div>                          
                         {/* <form> */}
