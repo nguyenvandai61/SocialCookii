@@ -8,7 +8,7 @@ li {
     display: inline-grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     padding: 20px;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     border-radius: 5px;
 }
 
@@ -478,4 +478,8 @@ li {
 
 .comment-reply {
 	margin-left: 70px;
+}
+
+.related-posts{
+	margin-top: 100px;
 }

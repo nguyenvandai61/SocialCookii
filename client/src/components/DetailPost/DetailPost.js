@@ -4,7 +4,7 @@ import './DetailPost.css';
 import avatar from '../../image/avatars/avatar.jpg'
 import { fetchFollow, getIdFromJwtToken } from '../../controller/UserJwtController'
 
-class DetailPost extends Component {
+class DetailPost extends Component {    
     constructor(props) {
         super(props);
         this.state = {
@@ -38,7 +38,7 @@ class DetailPost extends Component {
         }
         this.onFollow = this.onFollow.bind(this)
         this.onComment = this.onComment.bind(this)
-        this.onRepliedComment = this.onRepliedComment.bind(this)
+        //this.onRepliedComment = this.onRepliedComment.bind(this)
         this.onTextBoxComment = this.onTextBoxComment.bind(this);
         this.onTextBoxRepliedComment = this.onTextBoxRepliedComment.bind(this);
         // userName = localStorage.getItem('userName');
@@ -64,9 +64,10 @@ class DetailPost extends Component {
             newComment.postId = postId
             newComment.createdAt = Date.now()
             newComment.content = event.target.value;
+            console.log("message" + newComment.content);
             return { repliedComment: newComment }
         })
-        console.log("Comment" + this.state.comment)
+        console.log("Comment" + this.state.repliedComment)
     }
 
     onFollow(e) {
@@ -110,8 +111,10 @@ class DetailPost extends Component {
     }
 
 
-    onRepliedComment(e){
-        e.preventDefault();
+    onRepliedComment(comment) {
+        console.log("Press button replied");
+        console.log("comment" + this.state.repliedComment.content)
+        // //e.preventDefault();
         let token = localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).token : "";
         let body = this.state.repliedComment;
         fetch('/api/comment/', {
@@ -125,9 +128,9 @@ class DetailPost extends Component {
             console.log(res);
             if (res.status == 200) {
                 res.json().then(data => {
-                    console.log("result",data.content)
                     this.setState({repliedComment: data})
-                    this.fetchPost()
+                    this.UpdateRepliedComment(comment, data)
+                    //this.fetchPost()
                 })
             }
             else {
@@ -136,9 +139,29 @@ class DetailPost extends Component {
         })
     }
 
-
-    UpdateRepliedComment(comment){
-        
+    UpdateRepliedComment = (comment, repliedComment) => {
+        comment.repliedCommentId.push(repliedComment._id);
+        let token = localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).token : "";
+        let body = comment;
+        fetch('/api/comment/' + comment._id, {
+            method: "PUT",
+            headers: { 
+                'Content-Type': 'application/json', 
+                'Authorization': 'bearer '+ token
+            },
+            body: JSON.stringify(body)
+        }).then(res => {
+            console.log(res);
+            if (res.status == 200) {
+                res.json().then(data => {
+                    console.log("repliedComment: " + data.content)
+                    this.fetchPost();
+                })
+            }
+            else {
+                console.log("error")
+            }
+        })
     }
 
     // Get UserInfor
@@ -184,6 +207,36 @@ class DetailPost extends Component {
         document.querySelector(".big-thumbnail").querySelector("img").src = e.target.src;
         console.log(e.target.src);
     }
+
+
+    timeSince = (date) =>{
+
+        var seconds = Math.floor((new Date() - date) / 1000);
+      
+        var interval = seconds / 31536000;
+      
+        if (interval > 1) {
+          return Math.floor(interval) + " years";
+        }
+        interval = seconds / 2592000;
+        if (interval > 1) {
+          return Math.floor(interval) + " months";
+        }
+        interval = seconds / 86400;
+        if (interval > 1) {
+          return Math.floor(interval) + " days";
+        }
+        interval = seconds / 3600;
+        if (interval > 1) {
+          return Math.floor(interval) + " hours";
+        }
+        interval = seconds / 60;
+        if (interval > 1) {
+          return Math.floor(interval) + " minutes";
+        }
+        return Math.floor(seconds) + " seconds";
+      }
+
     componentWillMount() {
         // this.loadDefaultPost();
         this.fetchPost();
@@ -206,7 +259,7 @@ class DetailPost extends Component {
         console.log(post);
         let userId = getIdFromJwtToken();
         return (
-
+            <div className="detail-post-container">
             <div className="detail-post">
                 <div className="left">
                     <div className="big-thumbnail frame">
@@ -259,7 +312,7 @@ class DetailPost extends Component {
                     <span>{post.likeUserIds.length} Lượt yêu thích</span>
                     
                     <div>                          
-                        <form>
+                        {/* <form> */}
                             <div className="cmt">
                                 <input 
                                     type="text" 
@@ -267,9 +320,9 @@ class DetailPost extends Component {
                                     onChange={this.onTextBoxComment}
                                     value={comment.content}
                                     /> <br />
-                                <button type="submit" onClick={this.onComment}>Send</button>
+                                <button onClick={this.onComment}>Send</button>
                             </div>
-                        </form>        
+                        {/* </form>         */}
                     </div>
                     <div className="comment-wrapper">
                         {/* <div>
@@ -326,7 +379,7 @@ class DetailPost extends Component {
                                                                         onChange={this.onTextBoxRepliedComment}
                                                                         value={repliedComment.content}
                                                                         /> <br />
-                                                                    <button type="submit" onClick={this.onRepliedComment}>Send</button>
+                                                                    <button type="submit" onClick={() => this.onRepliedComment(comment)}>Send</button>
                                                                 </div>
                                                             </form>        
                                                         </div>
@@ -346,6 +399,7 @@ class DetailPost extends Component {
                                                                             <h6 className={"comment-name " + (replyComment.userId._id == post.createdBy._id ? 'by-author' : '')}>
                                                                                 <a href="">{replyComment.userId.username}</a>
                                                                             </h6>
+                                                                            
                                                                         </div>
                                                                         
                                                                         <div className="comment-content">
@@ -371,7 +425,8 @@ class DetailPost extends Component {
                     </div>
                 </div>
             </div>
-
+            
+            </div>
         );
     }
 }
