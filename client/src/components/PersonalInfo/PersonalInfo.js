@@ -39,6 +39,7 @@ class PersonalInfo extends Component {
                         <img src={user.avatar} alt="img" style={{ height: "130px", width: "130px" }} />
                     </div>
                     <h2>{user.fullname}</h2>
+                    <p>@{user.username}</p>
                     <p>{user.email}</p>
                         <div class="avatarcontainer">
                     <div class="hover">

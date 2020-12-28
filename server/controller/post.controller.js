@@ -53,7 +53,6 @@ const deletePost = (req, res) => {
 }
 
 const searchPost = (req, res) => {
-    console.log(req.query.q);
     const keySearch = req.query.q;
     let query = { $text: { $search: keySearch } };
     return PostService.getPost(query).then((data, err) => {

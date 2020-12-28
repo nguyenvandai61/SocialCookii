@@ -22,12 +22,14 @@ import SearchUser from './components/SearchUser/SearchUser';
 import Layout from './components/Layout/Layout';
 let children = {
   "/": Masonry,
-  "/searchUser/q=:searchValue": SearchUser,
+  "/searchUser": SearchUser,
+  "/searchPost": Masonry,
   "/personalInfo": PersonalInfo,
   "/editPersonalInfo": EditPersonalInfo,
   "/addPost": AddPost,
   "/post/:id": DetailPost,
   "/friends": Friend,
+
 }
 function App() {
   return (

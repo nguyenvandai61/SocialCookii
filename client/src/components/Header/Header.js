@@ -9,21 +9,23 @@ import './Header.css';
 class Header extends Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             dropdown: false,
             user: {
                 avatar: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
             },
-            query: ""
+            query: "",
+            searchBy: "Post"
         }
         this.onSearch = this.onSearch.bind(this)
     }
-
+    
     onSearch(e) {
         const node = ReactDOM.findDOMNode(this);
         let query = node.querySelector("#search-bar input").value
         if (query == "") return;
-        window.location.href = "/searchUser/q=" + query;
+        window.location.href = "/searchUser?q=" + query;
     }
 
     getTextQuery = () => {
@@ -34,13 +36,20 @@ class Header extends Component {
     }
     searchBy = (e) => {
         const node = ReactDOM.findDOMNode(this);
-        node.querySelector("#dropdownMenuButton").innerHTML = e.target.innerText;
+        let searchByTemp = e.target.innerText;
+        node.querySelector("#dropdownMenuButton").innerHTML = searchByTemp;
+        
+        // console.log(e.target.getAttribute("value"));
+        // this.setState({searchBy: });
+        
+        this.setState({searchBy: e.target.getAttribute("value")})
     }
 
     clearQuery = (e) => {
         const node = ReactDOM.findDOMNode(this);
         console.log(node.querySelector("#search-bar input"));
         node.querySelector("#search-bar input").value = "";
+        this.setState({query: ""});
     }
 
     barsClickHandler = (e) => {
@@ -77,7 +86,8 @@ class Header extends Component {
     }
     render() {
         const { user } = this.state;
-        console.log(user);
+        console.log(this.state.searchBy);
+        let searchLink =  "/search"+ this.state.searchBy +"?q="+this.state.query;
         return (
             <header>
                 <div id="logo-wrapper">
@@ -104,10 +114,7 @@ class Header extends Component {
                 <div id="search-bar">
                     <div className="search-box">
                         <Link
-                            to={{
-                                pathname: "/searchUser/q="+this.state.query,
-                                
-                            }}
+                            to={searchLink}
                         >
                             <button id="search-btn">
                                 <i class="fas fa-search"></i>
@@ -123,9 +130,9 @@ class Header extends Component {
                             Tất cả các ghim
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#" onClick={this.searchBy}>Bài viết</a>
-                            <a class="dropdown-item" href="#" onClick={this.searchBy}>Mọi người</a>
-                            <a class="dropdown-item" href="#" onClick={this.searchBy}>Videos</a>
+                            <a class="dropdown-item" onClick={this.searchBy} value="Post">Bài viết</a>
+                            <a class="dropdown-item" onClick={this.searchBy} value="User">Mọi người</a>
+                            <a class="dropdown-item" onClick={this.searchBy} value="Video">Videos</a>
                         </div>
                     </div>
 

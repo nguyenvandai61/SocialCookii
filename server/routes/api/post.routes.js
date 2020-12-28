@@ -12,8 +12,9 @@ router.post(
         return await postController.createPost(req, res);
     })
 router.get('/',
-    passport.authenticate('jwt', {session: false}),
+    // passport.authenticate('jwt', {session: false}),
     (req, res) => {
+        console.log(req.query.q);
         if (req.query.q == null) {
             return postController.getAllPost(req, res);
         }
@@ -35,6 +36,7 @@ router.get(
 //  router.get('/hashtag/:hashtagname', (req, res) => {
 //     return postController.getPostByHashTag(req, res);
 // })
+
 
 router.get('/hashtag/:hashtagname', (req, res) => {
     return postController.getPostByTagname(req, res);

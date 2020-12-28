@@ -65,6 +65,12 @@ const deletePost = (req, res) => {
         return res.status(200).send(response);
     })
 }
+
+const searchTitle = (query) => {
+  return Post.find({
+    title: new RegExp(query)
+  })
+}
 module.exports = {
     createPost, 
     updatePost,

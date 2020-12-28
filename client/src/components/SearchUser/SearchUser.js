@@ -38,7 +38,8 @@ class SearchUser extends Component {
     }
     componentDidMount() {
         console.log("didmount");
-        let q = window.location.pathname.split('/')[2].substring(2);
+        let q = window.location.search.substring(3);
+        console.log(q);
         if (q == "") return;
         this.queryUser(q);
     }
