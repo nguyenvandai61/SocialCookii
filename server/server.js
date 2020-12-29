@@ -34,7 +34,7 @@ app.all('*', function (req, res, next) {
         next();
     }
 });
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, '..', 'client/build')));
 
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
@@ -56,7 +56,7 @@ mongoose.connect(config.mongoose.uri, {
 //         res.sendFile(path.resolve(__dirname, '../client/build/', 'index.html'));
 // });
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/build/', 'index.html'))
+    res.sendFile(path.resolve(__dirname, '..', 'client/build/', 'index.html'))
   });
 app.use(function(err, req, res, next) {
     console.log(err);
