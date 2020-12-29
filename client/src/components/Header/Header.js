@@ -21,7 +21,6 @@ class Header extends Component {
         this.onSearch = this.onSearch.bind(this)
     }
     homeClickHandler = () => {
-        
         window.location.href = "/";
         this.setState({query: ""});
     }
@@ -150,7 +149,7 @@ class Header extends Component {
                         <button><i className="fas fa-comment-dots"></i></button>
                     </div>
                     <div className="header-btn" onMouseOver={this.mouseOverElement} onMouseOut={this.mouseOutElement}>
-                        <Link to="/personalInfo">
+                        <Link to={"/user/"+getIdFromJwtToken()}>
                             <button>
                                 <img id="avatar" src={user ? user.avatar : ""} />
                             </button>

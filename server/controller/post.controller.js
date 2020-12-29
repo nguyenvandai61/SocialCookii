@@ -22,7 +22,6 @@ const createPost = async (req, res) => {
     })
     post.createdBy = {};
     post.createdBy._id = req.user.id;
-    console.log("IDDD"+post.createdBy._id);
 
     return await PostService.createPost(post).then((newPost, err) => {
         if (err) return res.status(500).send(err);
@@ -33,13 +32,23 @@ const updatePost = (req, res) => {
     return PostService.updatePost(query, newPost);
 }
 const getPost = (req, res) => {
-    let query = {_id: req.params.id};
-    console.log(req.params.id);
-    return postService.getPost(query).then((data,err) => {
-        console.log(data);
+    console.log("GET POST");
+    return PostService.getPost(req.query).then((data,err) => {
+        console.log(data.createdBy);
         if(err) return res.status(500).send(err);
         if(data == null) return res.status(404).json({ message: "Cannot find post" });
-        return res.status(200).json(data)
+        return res.status(200).json(data);
+    })
+}
+
+const getPostById = (req, res) => {
+    console.log("GET POST BY ID");
+    const paramId = req.params.id;
+    return PostService.getPost({_id: paramId}).then((data,err) => {
+        console.log(data.createdBy);
+        if(err) return res.status(500).send(err);
+        if(data == null) return res.status(404).json({ message: "Cannot find post" });
+        return res.status(200).json(data);
     })
 }
 const getAllPost = (req, res) => {
@@ -79,5 +88,6 @@ module.exports = {
     getAllPost,
     deletePost,
     searchPost,
+    getPostById,
     likePost
 }

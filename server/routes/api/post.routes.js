@@ -19,7 +19,11 @@ router.post(
 router.get('/',
     // passport.authenticate('jwt', {session: false}),
     (req, res) => {
-        console.log(req.query.q);
+        console.log('aa')
+        console.log(req.query);
+        if (req.query.createdBy) {
+            return postController.getPost(req, res);
+        }
         if (req.query.q == null) {
             return postController.getAllPost(req, res);
         }
@@ -35,7 +39,7 @@ router.get(
     // passport.authenticate('jwt', { session: false }),
     (req, res) => {
         console.log("Authen success");
-        return postController.getPost(req, res);
+        return postController.getPostById(req, res);
     })
 
 //  router.get('/hashtag/:hashtagname', (req, res) => {
