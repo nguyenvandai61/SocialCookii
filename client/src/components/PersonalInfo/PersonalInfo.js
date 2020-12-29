@@ -66,7 +66,10 @@ class PersonalInfo extends Component {
                 </div>
                 </div>
                 <div class="edit">
-                    <a href="/editPersonalInfo"><i class="fas fa-pen"></i></a>
+                    <a href="/editPersonalInfo">
+                        <i class="fas fa-pen"></i>
+                        <span >Chỉnh sửa thông tin cá nhân</span>
+                    </a>
                 </div>
                 
                 <h2 align="center">Bài viết lưu trữ</h2>

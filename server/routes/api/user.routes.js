@@ -45,7 +45,7 @@ router.post('/register', (req, res) => userController.checkRegister(req, res))
 router.post('/follow', (req, res) => userController.follow(req, res))
 
 router.put('/', (req, res)=> userController.updateUser)
-router.put('/:id', (req, res) => {
+router.put('/:id', passport.authenticate('jwt', { session: false }),(req, res) => {
     return userController.updateUser(req, res);
 })
 router.delete('/', (req, res)=> {

@@ -49,7 +49,10 @@
     padding: 5px;
     border-right: 5px solid rgb(247, 139, 100);
 }
-
+.grid-item {
+    text-align: left;
+    margin-left: 30px;
+}
 .edit-personal-info .avatar-wrapper {
     display: inline-block;
     position: relative;
@@ -72,3 +75,13 @@
     padding: 5px;
 }
 
+.help-block{
+    color: #ff0808;
+    font-size: smaller;
+}
+
+
+.control-label {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
