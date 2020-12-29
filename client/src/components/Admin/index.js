@@ -25,10 +25,14 @@ class index extends Component {
         }
     }
     getUserInfo = () => {
+        
+        let token = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).token : "";
         fetch('/api/user/', {
             method: "GET",
-            headers: { 'Content-Type': 'application/json' },
-
+            headers: { 
+                'Content-Type': 'application/json', 
+                'Authorization': 'bearer '+ token
+            },
         }).then(res => {
             console.log(res);
             if (res.status == 200) {
@@ -45,9 +49,14 @@ class index extends Component {
         })
     }
     getPostInfo = () => {
+        
+        let token = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).token : "";
         fetch('/api/post/', {
             method: "GET",
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json', 
+                'Authorization': 'bearer '+ token
+            },
         }).then(res => {
             console.log(res);
             if (res.status == 200) {
@@ -69,6 +78,11 @@ class index extends Component {
         this.getUserInfo();
         this.getPostInfo();
         this.forceUpdate();
+    }
+
+    exitHandler = () => {
+        localStorage.removeItem("user");
+        window.location.href = "/login";
     }
     componentWillMount() {
 
@@ -121,7 +135,7 @@ class index extends Component {
         
         console.log(renderCurrentU);
         return (
-            <div>
+            <div className="admin-page">
 
                 {/* <!--Navbar Stars--> */}
                 <nav class="navbar navbar-expand-md navbar-light">
@@ -235,7 +249,7 @@ class index extends Component {
                             <div class="modal-footer">
                                 <button class="btn btn-success" data-dismiss="modal">Save Changes</button>
                                 <Link to="/login">
-                                    <button class="btn btn-danger" data-dismiss="modal">Log out</button>
+                                    <button class="btn btn-danger" data-dismiss="modal" onClick={this.exitHandler}>Log out</button>
                                 </Link>
                             </div>
                         </div>
@@ -332,7 +346,7 @@ class index extends Component {
                                 <div class="row ">
                                     <div class="col-xl-6 col-12 mb-4 mb-xl-0">
                                         <h2 class="text-muted text-center mb-5">Users</h2>
-                                        <table class="table table-striped bg-light text-center">
+                                        <table style={{color: "black"}} class="table table-striped bg-light text-center">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
@@ -442,327 +456,9 @@ class index extends Component {
 
 
 
-                <section class="mt-5">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
-                                <div class="row mb-4">
-                                    <div class="col-xl-6 col-12">
-                                        <div class="bg-dark p-4 text-white rounded">
-                                            <h4 class="mb-5">Conversion Rates</h4>
-                                            <h6 class="mb-3">Google Chrome</h6>
-                                            <div class="progress mb-4" style={{ height: "20px" }}>
-                                                <div class="progress-bar progress-bar-striped font-weight-bold" style={{ width: "82%" }}>
-                                                    82%
-                                    </div>
-                                            </div>
-                                            <h6 class="mb-3">Mozila Firefox</h6>
-                                            <div class="progress mb-4" style={{ height: "20px" }}>
-                                                <div class="progress-bar progress-bar-striped font-weight-bold bg-success"
-                                                    style={{ width: "90%" }}>
-                                                    90%
-                                    </div>
-                                            </div>
-
-                                            <h6 class="mb-3">Safari</h6>
-                                            <div class="progress mb-4" style={{ height: "20px" }}>
-                                                <div class="progress-bar progress-bar-striped font-weight-bold bg-success"
-                                                    style={{ width: "77%" }}>
-                                                    77%
-                                    </div>
-                                            </div>
-                                            <h6 class="mb-3">IDE</h6>
-                                            <div class="progress mb-4" style={{ height: "20px" }}>
-                                                <div class="progress-bar progress-bar-striped font-weight-bold bg-warning"
-                                                    style={{ width: "11%" }}>
-                                                    12%
-                                    </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-12">
-                                        <h4 class="text-muted mb-3 p-3">Tasks:</h4>
-                                        <div class="container-fluid bg-white">
-                                            <div class="row  mb-4 task-border align-items-center">
-                                                <div class="col-1">
-                                                    <input type="checkbox" checked />
-                                                </div>
-                                                <div class="col-sm-9 col-8">
-                                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia, corporis.
-                                    </div>
-                                                <div class="col-1">
-                                                    <a href="" data-toggle="tooltip" title="<h6>Edit</h6>" data-html="true"
-                                                        data-placement="top">
-                                                        <i class="fas fa-edit fa-lg text-success"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="col-1">
-                                                    <a href="" data-toggle="tooltip" title="<h6>Delete</h6>" data-html="true"
-                                                        data-placement="top">
-                                                        <i class="fas fa-trash-alt fa-lg text-danger"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="container-fluid bg-white">
-                                            <div class="row mb-4 task-border align-items-center">
-                                                <div class="col-1">
-                                                    <input type="checkbox" checked />
-                                                </div>
-                                                <div class="col-sm-9 col-8">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, nesciunt?
-                                    </div>
-                                                <div class="col-1">
-                                                    <a href="" data-toggle="tooltip" title="<h6>Edit</h6>" data-html="true"
-                                                        data-placement="true">
-                                                        <i class="fas fa-edit fa-lg text-success"></i></a>
-                                                </div>
-                                                <div class="col-1">
-                                                    <a href="" data-toggle="tooltip" title="<h6>Delete</h6>" data-html="true"
-                                                        data-placement="true">
-                                                        <i class="fas fa-trash-alt fa-lg text-danger"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
 
 
-                                        <div class="container-fluid bg-white">
-                                            <div class="row mb-4 task-border align-items-center">
-                                                <div class="col-1">
-                                                    <input type="checkbox" checked />
-                                                </div>
-                                                <div class="col-sm-9 col-8">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, nesciunt.
-                                    </div>
-                                                <div class="col-1">
-                                                    <a href="" data-toggle="tooltip" data-html="true" data-placement="top"
-                                                        title="<h6>Edit</h6>">
-                                                        <i class="fas fa-edit fa-lg text-success"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="col-1">
-                                                    <a href="" data-toggle="tooltip" data-html="true" data-placement="top"
-                                                        title="<h6>Delete">
-                                                        <i class="fas fa-trash alt fa-lg text-danger"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="container-fluid bg-white">
-                                            <div class="row mb-4 task-border align-items-center">
-                                                <div class="col-1">
-                                                    <input type="checkbox" checked />
-                                                </div>
-                                                <div class="col-sm-9 col-8">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, nesciunt.
-                                    </div>
-                                                <div class="col-1">
-                                                    <a href="" data-toggle="tooltip" data-html="true" data-placement="top"
-                                                        title="<h6>Edit</h6>">
-                                                        <i class="fas fa-edit fa-lg text-success"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="col-1">
-                                                    <a href="" data-toggle="tooltip" data-html="true" data-placement="top"
-                                                        title="<h6>Delete">
-                                                        <i class="fas fa-trash alt fa-lg text-danger"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="container-fluid bg-white">
-                                            <div class="row mb-4 task-border align-items-center">
-                                                <div class="col-1">
-                                                    <input type="checkbox" checked />
-                                                </div>
-                                                <div class="col-sm-9 col-8">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, nesciunt.
-                                    </div>
-                                                <div class="col-1">
-                                                    <a href="" data-toggle="tooltip" data-html="true" data-placement="top"
-                                                        title="<h6>Edit</h6>">
-                                                        <i class="fas fa-edit fa-lg text-success"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="col-1">
-                                                    <a href="" data-toggle="tooltip" data-html="true" data-placement="top"
-                                                        title="<h6>Delete">
-                                                        <i class="fas fa-trash alt fa-lg text-danger"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-
-
-                <section>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
-                                <div class="row">
-                                    <div class="col-xl-7">
-                                        <h4 class="text-muted mb-4">Recent Customer Activites</h4>
-                                        <div id="accordion">
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <button class="btn btn-block bg-dark text-light text-left"
-                                                        data-toggle="collapse" data-target="#collapseone">
-                                                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                                                            class="mr-3 rounded" height="50" width="50" alt="" />
-                                            John Posted A Comment
-                                        </button>
-                                                </div>
-                                                <div class="collapse" id="collapseone" data-parent="#accordion">
-                                                    <div class="card-body">
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum natus
-                                                        distinctio aliquam autem nulla! Quis in nemo voluptatum eos autem?
-                                        </div>
-                                                </div>
-                                            </div>
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <button class="btn btn-dark btn-block text-light text-left"
-                                                        data-toggle="collapse" data-target="#collapsetwo">
-                                                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                                                            width="50" height="50" class="rounded mr-3" alt="" />
-                                            Bush Posted A Comment
-                                        </button>
-                                                </div>
-                                                <div class="collapse" id="collapsetwo" data-parent="#accordion">
-                                                    <div class="card-body">
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos perspiciatis
-                                                        eaque dolor eum nihil minima incidunt alias omnis id earum.
-                                        </div>
-                                                </div>
-                                            </div>
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <button class="btn btn-dark btn-block text-light text-left"
-                                                        data-toggle="collapse" data-target="#collapsethree">
-                                                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                                                            width="50" height="50" class="mr-3 rounded" alt="" />
-                                            Bueon Posted A Comment
-                                        </button>
-                                                </div>
-                                                <div class="collapse" id="collapsethree" data-parent="#accordian">
-                                                    <div class="card-body">
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, illum
-                                                        laudantium. Voluptatum, repellat aspernatur veritatis in ad dignissimos
-                                                        aliquam qui?
-                                        </div>
-                                                </div>
-                                            </div>
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <button class="btn btn-dark btn-block text-light text-left"
-                                                        data-toggle="collapse" data-target="#collapsethree">
-                                                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                                                            width="50" height="50" class="mr-3 rounded" alt="" />
-                                            Lyon Posted A Comment
-                                        </button>
-                                                </div>
-                                                <div class="collapse" id="collapsethree" data-parent="#accordian">
-                                                    <div class="card-body">
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, illum
-                                                        laudantium. Voluptatum, repellat aspernatur veritatis in ad dignissimos
-                                                        aliquam qui?
-                                        </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <button class="btn btn-dark btn-block text-light text-left"
-                                                        data-toggle="collapse" data-target="#collapsethree">
-                                                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                                                            width="50" height="50" class="mr-3 rounded" alt="" />
-                                            Miam Posted A Comment
-                                        </button>
-                                                </div>
-                                                <div class="collapse" id="collapsethree" data-parent="#accordian">
-                                                    <div class="card-body">
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, illum
-                                                        laudantium. Voluptatum, repellat aspernatur veritatis in ad dignissimos
-                                                        aliquam qui?
-                                        </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-xl-5 mt-5">
-                                        <div class="card-rounded">
-                                            <div class="card-body">
-                                                <h5 class="text-muted text-center mb-2">Quick Status Post</h5>
-                                                <ul class="list-inline text-center py-3">
-                                                    <li class="list-inline-item">
-                                                        <a href=""><i class="fas fa-pencil-alt text-success"></i>
-                                                            <span class="h6 text-muted">Status</span></a>
-                                                    </li>
-                                                    <li class="list-inline-item py-3">
-                                                        <a href=""><i class="fas fa-camera text-primary"></i>
-                                                            <span class="h6 text-muted">Camera</span></a>
-                                                    </li>
-                                                    <li class="list-inline-item py-3">
-                                                        <a href=""><i class="fas fa-map-marker-alt text-primary"></i>
-                                                            <span class="h6 text-muted">CheckIn</span></a>
-                                                    </li>
-                                                </ul>
-                                                <form action="">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control py-2"
-                                                            placeholder="What's Your Status" />
-                                                        <button
-                                                            class="mt-3 py-2 mb-4 btn btn-primary btn-block font-weight-bold text-uppercase text-whtie">Submit
-                                                Post</button>
-                                                    </div>
-                                                </form>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="card bg-light">
-                                                            <i
-                                                                class="far fa-calendar-alt m-auto fa-8x text-warning d-block py-3"></i>
-                                                            <div class="card-body">
-                                                                <div
-                                                                    class="card-text text-center text-dark font-weight-bold text-uppercase">
-                                                                    Thursday,March 21
-                                                    </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="card bg-light pb-3">
-                                                            <i class="far fa-clock fa-8x d-block text-danger py-3 m-auto"></i>
-                                                            <div class="card-body">
-                                                                <div
-                                                                    class="card-text text-uppercase text-center text-dark font-weight-bold">
-                                                                    11:03 AM
-                                                    </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
+             
 
                 <footer class="bg-dark text-white">
                     <div class="container-fluid mt-5">

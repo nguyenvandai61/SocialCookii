@@ -179,7 +179,14 @@ class DetailPost extends Component {
     // Get UserInfor
     fetchUserInfo = async (id) => {
         console.log(id);
-        return await fetch("/api/user/userInfo/" + id).then(res => {
+        let token = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).token : "";
+        return await fetch("/api/user/userInfo/" + id, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'bearer ' + token
+            }
+        }
+        ).then(res => {
             console.log(res);
             return res.json();
         }).then(user => {
