@@ -22,7 +22,6 @@ const createPost = async (req, res) => {
     })
     post.createdBy = {};
     post.createdBy._id = req.user.id;
-    console.log("IDDD"+post.createdBy._id);
 
     return await PostService.createPost(post).then((newPost, err) => {
         if (err) return res.status(500).send(err);
@@ -43,6 +42,7 @@ const getPost = (req, res) => {
 }
 
 const getPostById = (req, res) => {
+    console.log("GET POST BY ID");
     const paramId = req.params.id;
     return PostService.getPost({_id: paramId}).then((data,err) => {
         console.log(data.createdBy);

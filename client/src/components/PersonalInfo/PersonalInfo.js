@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Masonry from '../Masonry/Masonry'
 import './PersonalInfo.css'
 import { getDetailInfoUser , getDetailInfoUserById, getIdFromJwtToken} from '../../controller/UserJwtController';
+import ListItem from '../ListItem/ListItem';
 
 var token = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).token : "";
 var headerObject = {
@@ -22,7 +23,8 @@ class PersonalInfo extends Component {
                 username: "",
                 _id: ""
             },
-            isMyPage: false
+            isMyPage: false,
+            listOwnPost: []
         }
     }
 
@@ -33,13 +35,13 @@ class PersonalInfo extends Component {
                 this.setState({user: detailUserInfo});
             }
         });
+        let userId = getIdFromJwtToken();
         this.setState({userId: getIdFromJwtToken()});
 
         let userInfoId = window.location.pathname.split('/')[2];
-
         // Check whether is my Page
-        this.setState({isMyPage: userInfoId == this.state.userId})
-        return fetch('/api/user/userInfo/' + userInfoId, {
+        this.setState({isMyPage: userInfoId == userId})
+        fetch('/api/user/userInfo/' + userInfoId, {
             method: "GET",
             headers: headerObject,
         })
@@ -48,7 +50,8 @@ class PersonalInfo extends Component {
                     console.log(res)
                     res.json().then(data => {
                         this.setState({userInfo: data});
-                        return data;
+                        console.log(data);
+                        this.fetchMyPost(data._id);
                     })
                 }
                 else {
@@ -59,10 +62,28 @@ class PersonalInfo extends Component {
     }
     componentWillReceiveProps(props) {
         this.setState({user: props.user}); 
+
     }
 
-    fetchMyPost = () => {
-
+    fetchMyPost = (id) => {
+        let url = '/api/post?createdBy='+id;
+        console.log(url);
+        fetch(url, {
+            method: "GET",
+            headers: headerObject,
+        })
+            .then(res => {
+                if (res.status == 200) {
+                    console.log(res)
+                    res.json().then(data => {
+                        console.log(data);
+                        this.setState({listOwnPost: data});
+                    })
+                }
+                else {
+        
+                }
+            });
     }
 
     render() {
@@ -77,10 +98,16 @@ class PersonalInfo extends Component {
             
             myPostDiv = 
                 <div className="my-post">
-                    <h2>{this.state.isMyPage? "Bài viết của tôi" : "Bài viết của "+userInfo.fullname}</h2>
-                    <Masonry />
+                    <h2>Bài viết của tôi</h2>
+                    <ListItem listOwnPost={this.state.listOwnPost}/>
                 </div>
             
+        } else {
+            myPostDiv = 
+                <div className="my-post">
+                    <h2>Bài viết của {userInfo.fullname}</h2>
+                    <ListItem listOwnPost={this.state.listOwnPost}/>
+                </div>
         }
         return (
             <div className="personal-info">
