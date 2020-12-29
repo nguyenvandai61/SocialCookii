@@ -110,7 +110,7 @@ class Login extends Component {
                                 </div>
                                 <form>
                                     <div class="pom-agile">
-                                        <input placeholder="E-mail"
+                                        <input placeholder="User Name"
                                             name="username"
                                             class="user"
                                             type="text"
@@ -135,11 +135,16 @@ class Login extends Component {
                                         <div>
                                             {!isSuccess ? <div className="error-message">{message}</div> : <Redirect to='dashboard' />}
                                         </div>
-                                        Don't have account? <Link to='register'>Register here</Link>
+                                        
                                         <h6><a href="#">Forgot Password?</a></h6>
                                         <div class="right-w3l">
-                                            <button onClick={this.onSubmit}>Submit</button>
+                                            <button onClick={this.onSubmit}>Login</button>
                                         </div>
+
+                                        <div class = "link-register">
+                                            Don't have account? <Link to='register'>Register here</Link>
+                                        </div>
+                                        
                                     </div>
                                 </form>
                             </div>
