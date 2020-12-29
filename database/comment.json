@@ -1,0 +1,122 @@
+[{
+  "_id": {
+    "$oid": "5fcb4885dac53933fca13c33"
+  },
+  "repliedCommentId": [],
+  "likeUserIds": [],
+  "content": "Ngon qua",
+  "createdAt": {
+    "$date": "2020-11-08T01:11:18.965Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fcb48d691e56d3f6843d32e"
+  },
+  "repliedCommentId": [],
+  "likeUserIds": [],
+  "content": "Ngon qua",
+  "createdAt": {
+    "$date": "2020-11-08T01:11:18.965Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe31164a71bc52c201d4187"
+  },
+  "repliedCommentId": [
+    {
+      "$oid": "5fe9e17f48f23f2a006946ee"
+    },
+    {
+      "$oid": "5fe9e65b2cc66e242cf362a2"
+    }
+  ],
+  "likeUserIds": [],
+  "content": "dfdfdsđ",
+  "createdAt": {
+    "$date": "2020-12-23T09:44:00.491Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe31181a71bc52c201d4189"
+  },
+  "repliedCommentId": [],
+  "likeUserIds": [],
+  "content": "dfdfdsđ",
+  "createdAt": {
+    "$date": "2020-12-23T09:44:00.491Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe32177ddc6041024fa37b3"
+  },
+  "repliedCommentId": [],
+  "likeUserIds": [],
+  "content": "nbnbn",
+  "createdAt": {
+    "$date": "2020-12-23T10:52:38.800Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe9e17f48f23f2a006946ee"
+  },
+  "repliedCommentId": [],
+  "likeUserIds": [
+    {
+      "$oid": "5fd60961d013493ea42d08e2"
+    }
+  ],
+  "content": "Cảm ơn",
+  "createdAt": {
+    "$date": "2020-12-28T13:45:34.561Z"
+  },
+  "__v": 1
+},{
+  "_id": {
+    "$oid": "5fe9e65b2cc66e242cf362a2"
+  },
+  "repliedCommentId": [],
+  "likeUserIds": [],
+  "content": "Hello",
+  "createdAt": {
+    "$date": "2020-12-28T14:06:18.051Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fea86182370a64f00f9c691"
+  },
+  "repliedCommentId": [],
+  "likeUserIds": [],
+  "content": "Hello",
+  "createdAt": {
+    "$date": "2020-12-29T01:27:50.458Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fea9d1c54412a1640523c01"
+  },
+  "repliedCommentId": [],
+  "likeUserIds": [],
+  "content": "dsdsd",
+  "createdAt": {
+    "$date": "2020-12-29T03:06:04.052Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5feaa7c9f161312d1c8d45fc"
+  },
+  "repliedCommentId": [],
+  "likeUserIds": [],
+  "content": "Ngon",
+  "createdAt": {
+    "$date": "2020-12-29T03:51:35.205Z"
+  },
+  "__v": 0
+}]

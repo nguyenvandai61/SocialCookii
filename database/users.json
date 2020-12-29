@@ -1,67 +1,80 @@
 [{
   "_id": {
-    "$oid": "5fc227da32654e3b98b58df9"
+    "$oid": "5fcb4886dac53933fca13c37"
   },
+  "followed": [],
+  "following": [
+    "5fd60961d013493ea42d08e2",
+    "5fd6192a3af2f51bb88df996"
+  ],
   "username": "dai",
   "password": "123",
-  "email": "crystallifestyle05@gmail.com",
-  "phone": "+8437603215",
-  "birthday": "2020-11-18",
-  "gender": "",
+  "role": "admin",
+  "fullname": "Đại Nguyễn",
+  "avatar": "image/default/avatar/koala.jpg",
   "__v": 0
 },{
   "_id": {
-    "$oid": "5fc2282867043b2e6ccefa05"
+    "$oid": "5fd60961d013493ea42d08e2"
   },
+  "followed": [
+    "5fcb4886dac53933fca13c37",
+    "5fe235f57b775d1784a15d44"
+  ],
+  "following": [
+    "5fd6192a3af2f51bb88df996"
+  ],
+  "username": "user1",
+  "fullname": "Văn Đại",
+  "password": "123",
+  "avatar": "image/default/avatar/avatardefault.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fd6192a3af2f51bb88df996"
+  },
+  "followed": [
+    "5fd60961d013493ea42d08e2",
+    "5fcb4886dac53933fca13c37"
+  ],
+  "following": [],
+  "username": "dainguyen",
+  "password": "123",
+  "avatar": "image/default/avatar/avatardefault.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fd61b815e627a10d453f60c"
+  },
+  "followed": [],
+  "following": [],
+  "username": "user2",
+  "fullname": "Đại Nguyễn",
+  "password": "123",
+  "avatar": "image/default/avatar/avatardefault.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fe235f57b775d1784a15d44"
+  },
+  "followed": [],
+  "following": [
+    "5fd60961d013493ea42d08e2"
+  ],
   "username": "vu",
+  "fullname": "Phan Vũ",
   "password": "123",
-  "email": "vuphan@gmail.com",
-  "phone": "+8437603216",
-  "birthday": "2020-11-18",
-  "gender": "Nam",
+  "avatar": "image/default/avatar/avatardefault.png",
   "__v": 0
 },{
   "_id": {
-    "$oid": "5fc2284067043b2e6ccefa06"
+    "$oid": "5feaa7a3f161312d1c8d45fb"
   },
-  "username": "duong",
-  "password": "123",
-  "email": "thuyduong@gmail.com",
-  "phone": "+8437603216",
-  "birthday": "2020-11-18",
-  "gender": "Nữ",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5fc2285067043b2e6ccefa07"
-  },
-  "username": "cong",
-  "password": "123",
-  "email": "thucong@gmail.com",
-  "phone": "+8437603216",
-  "birthday": "2020-11-18",
-  "gender": "Nữ",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5fc2286767043b2e6ccefa08"
-  },
-  "username": "trung",
-  "password": "123",
-  "email": "trungchau@gmail.com",
-  "phone": "+8437603216",
-  "birthday": "2020-11-18",
-  "gender": "Nam",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5fc2287367043b2e6ccefa09"
-  },
-  "username": "admin",
-  "password": "123",
-  "email": "crystallifestyle05@gmail.com",
-  "phone": "+8437603215",
-  "birthday": "2020-11-18",
-  "gender": "",
+  "followed": [],
+  "following": [],
+  "username": "trungchau",
+  "fullname": "Châu Việt Trung",
+  "password": "1111",
+  "avatar": "image/default/avatar/avatardefault.png",
   "__v": 0
 }]
