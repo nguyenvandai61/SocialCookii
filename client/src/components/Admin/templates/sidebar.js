@@ -73,7 +73,7 @@ class templates extends Component {
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link text-white p-2 mb-2 sidebar-link"><i
-                            class="fas fa-chart-line fa-lg mr-3 text-white"></i>Analystics</a>
+                            class="fas fa-chart-line fa-lg mr-3 text-white"></i>Comments</a>
                     </li>
 
                 </ul>

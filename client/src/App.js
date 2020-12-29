@@ -12,7 +12,7 @@ import Login from './components/Login/Login';
 import Masonry from './components/Masonry/Masonry';
 import Register from './components/Register/Register';
 import UserManager from  './components/Admin/Users/UserManager';
-
+import EditUser from './components/Admin/Users/EditUser';
 import {
   BrowserRouter as Router,
   Switch,
@@ -67,6 +67,9 @@ function App() {
           </Route>
           <Route exact path="/admin">
             <Admin />
+          </Route>
+          <Route path="/admin/user/edit">
+            <EditUser />
           </Route>
           <Route path="/admin/user">
             <UserManager />

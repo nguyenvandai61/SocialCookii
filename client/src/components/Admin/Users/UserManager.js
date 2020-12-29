@@ -69,7 +69,7 @@ class indexUser extends Component {
     changeUserPage = () => {
 
     }
-    loadData =() => {
+    loadData = () => {
         this.getUserInfo();
         this.getPostInfo();
         this.forceUpdate();
@@ -107,26 +107,31 @@ class indexUser extends Component {
         let currentUsers = users.data.slice(indexOfFirst, indexOfLast);
         console.log(currentUsers)
         let renderCurrentU = currentUsers.map((user, index) => {
-            const {username, password, role} = user;
+            const { username, password, role } = user;
             return (<tr>
-                <td>{indexOfFirst+index+1}</td>
+                <td>{indexOfFirst + index + 1}</td>
                 <td>{username}</td>
                 <td>{password}</td>
                 <td>{role}</td>
-                <td><button class="btn btn-primary btn-sm">Message</button></td>
+                <td>
+                    <Link to="/admin/user/edit">
+                        <a href="" title="" class="btn btn-primary"><i class="fa fa-edit "></i> Sửa</a>
+                    </Link>
+                    <a href="" title="" class="btn btn-danger"><i class="fa fa-pencil"></i>Xóa</a>
+                </td>
             </tr>)
         })
         let nPage = Math.ceil(users.size / users.pagination.nPerPage);
         let renderUsersPagi = [];
         for (let i = 0; i < nPage; i++)
             renderUsersPagi.push(
-            <li class="page-item active"><a href="#" class="page-link py-2 px-3">{i+1}</a></li>
+                <li class="page-item active"><a href="#" class="page-link py-2 px-3">{i + 1}</a></li>
             )
-        
+
         console.log(renderCurrentU);
         return (
             <div>
-                <Header/>
+                <Header />
 
 
                 {/* <!-- Modal starts Here --> */}
@@ -152,15 +157,13 @@ class indexUser extends Component {
 
 
 
-                
+
 
 
                 <section>
                     <div class="container-fluid mt-5">
                         <div class="row">
-                        <div class="col-sm-6">
-                            <AddUser/>
-                        </div>
+                            
                             <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
                                 <div class="row ">
                                     <div class="col-xl-6 col-12 mb-4 mb-xl-0">
@@ -184,7 +187,7 @@ class indexUser extends Component {
                                                 <span>&laquo;</span>
                                             </a></li>
                                             {
-                                                
+
                                             }
                                             <li class="page-item active"><a href="#" class="page-link py-2 px-3">1</a></li>
                                             <li class="page-item"><a href="#" class="page-link py-2 px-3">2</a></li>
@@ -201,18 +204,18 @@ class indexUser extends Component {
                         </div>
                     </div>
                 </section>
-                                            
-                <Footer/>
+
+                <Footer />
 
 
 
 
 
 
-                
 
 
-                
+
+
             </div>
         );
     }

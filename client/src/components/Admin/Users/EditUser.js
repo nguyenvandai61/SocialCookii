@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import {
     Link
 } from 'react-router-dom';
-import '../../Admin/style.css'
+import '../../Admin/style.css';
+import '../../Admin/Users/User.css';
 
 import Sidebar from '../templates/Sidebar';
 import Footer from '../templates/footer';
 import Header from '../templates/Header';
-class AddUser extends Component {
+class EditUser extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,15 +29,7 @@ class AddUser extends Component {
             }
         }
     }
-    getUserInfo = () => {
-
-    }
-    getPostInfo = () => {
-
-    }
-    changeUserPage = () => {
-
-    }
+    
     loadData = () => {
 
     }
@@ -92,53 +85,28 @@ class AddUser extends Component {
                         </div>
                     </div>
                 </div>
-                <div id="page-wrapper">
-
-                    <div id="page-inner">
-                       
-                            <div class="col-md-12">
-                                <h2>Thêm User</h2>
-                            </div>
-                        
-
-                        <hr />
-                        <div class="row" >
-                            <div class="col-md-12">
-
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-
-                                                <form role="form" method="post" action="">
-
-                                                    <div class="form-group">
-                                                        <label>Username</label>
-                                                        <input type="text" name="user" class="form-control" />
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Password</label>
-                                                        <input type="text" name="pass" class="form-control" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Full name</label>
-                                                        <input type="text" name="fullname" class="form-control" />
-                                                    </div>
-
-                                                    <button type="submit" name="submit" class="btn btn-success btn-md">Thêm</button>
-                                                </form>
-                                            </div>
+                <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form role="form" method="post" action="">
+                                        <div class="form-group">
+                                            <label>Username</label>
+                                            <input type="text" name="user" class="form-control" value="" />
                                         </div>
-                                    </div>
-                                </div>
 
+                                        <div class="form-group">
+                                            <label>Password</label>
+                                            <input type="text" name="pass" class="form-control" value="" />
+                                        </div>
+                                      
+                                       
+                                        <button type="submit" name="submit" class="btn btn-success btn-md">Sửa</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-
                     </div>
-
-                </div>
                 <Footer />
 
             </div>
@@ -148,4 +116,4 @@ class AddUser extends Component {
 
 
 
-export default AddUser;
+export default EditUser;
