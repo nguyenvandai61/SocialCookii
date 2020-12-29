@@ -45,14 +45,15 @@ class Login extends Component {
     onSuccessLogin = (role) => {
         console.log(this.props);
         // this.props.history = [];
+        console.log(role);
         if (role == "admin") {
             window.location.href = "/admin";
             // useHistory().push("/admin");
             // this.props.history.push("/admin");
         }
         else {
-
-            window.location.href = "/";
+            
+            // window.location.href = "/";
             // this.props.history.push("/");
         }
     }

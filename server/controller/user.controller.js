@@ -90,7 +90,7 @@ const checkLogin = (req, res) => {
             var payload = { id: user.id };
             var token = jwt.sign(payload, opts.secretOrKey)
             console.log("token" + token);
-            return res.status(200).json({ message: "ok", _id: user._id, token: token });
+            return res.status(200).json({ message: "ok", _id: user._id, token: token, role: user.role });
         } else {
             return res.status(401).json({ message: "invalid credentials" });
         }
