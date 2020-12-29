@@ -102,7 +102,9 @@ class DetailPost extends Component {
             if (res.status == 200) {
                 res.json().then(data => {
                     console.log("result",data.content)
-                    this.setState({comment: data})
+                    const {comment} = this.state;
+                    comment.content = "";
+                    this.setState({comment: comment})
                     this.fetchPost()
                 })
             }
@@ -130,7 +132,9 @@ class DetailPost extends Component {
             console.log(res);
             if (res.status == 200) {
                 res.json().then(data => {
-                    this.setState({repliedComment: data})
+                    const {repliedComment} = this.state;
+                    repliedComment.content = "";
+                    this.setState({repliedComment: repliedComment})
                     this.UpdateRepliedComment(comment, data)
                     //this.fetchPost()
                 })
@@ -217,25 +221,25 @@ class DetailPost extends Component {
         var interval = seconds / 31536000;
       
         if (interval > 1) {
-          return Math.floor(interval) + " years";
+          return Math.floor(interval) + " years ago";
         }
         interval = seconds / 2592000;
         if (interval > 1) {
-          return Math.floor(interval) + " months";
+          return Math.floor(interval) + " months ago";
         }
         interval = seconds / 86400;
         if (interval > 1) {
-          return Math.floor(interval) + " days";
+          return Math.floor(interval) + " days ago";
         }
         interval = seconds / 3600;
         if (interval > 1) {
-          return Math.floor(interval) + " hours";
+          return Math.floor(interval) + " hours ago";
         }
         interval = seconds / 60;
         if (interval > 1) {
-          return Math.floor(interval) + " minutes";
+          return Math.floor(interval) + " minutes ago";
         }
-        return Math.floor(seconds) + " seconds";
+        return Math.floor(seconds) + " seconds ago";
       }
     clickBtnLikeHandler = (e) => {
         let userId = getIdFromJwtToken();
@@ -401,8 +405,9 @@ class DetailPost extends Component {
                                                         <a data-toggle="collapse" href={"#collapseReply" + index} role="button" aria-expanded="false" aria-controls={"collapseReply" + index}>
                                                             <i className="fa fa-reply"></i>
                                                         </a>
+                                                        <span>{this.timeSince(comment.createdAt)}</span>
                                                         <div className="collapse" id={"collapseReply" + index}>                          
-                                                            <form>
+                                                            {/* <form> */}
                                                                 <div className="cmt">
                                                                     <input 
                                                                         type="text" 
@@ -410,9 +415,9 @@ class DetailPost extends Component {
                                                                         onChange={this.onTextBoxRepliedComment}
                                                                         value={repliedComment.content}
                                                                         /> <br />
-                                                                    <button type="submit" onClick={() => this.onRepliedComment(comment)}>Send</button>
+                                                                    <button onClick={() => this.onRepliedComment(comment)}>Send</button>
                                                                 </div>
-                                                            </form>        
+                                                            {/* </form>         */}
                                                         </div>
                                                     </div>
                                                     
@@ -441,6 +446,7 @@ class DetailPost extends Component {
                                                                 <div className="interaction">
                                                                     <span></span>
                                                                     <i className="fa fa-heart"></i>
+                                                                    <span>{this.timeSince(replyComment.createdAt)}</span>
                                                                 </div>
                                                             </div>
                                                         )
