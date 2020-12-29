@@ -18,6 +18,7 @@ class Register extends Component {
         }
 
         this.onTextBoxUsername = this.onTextBoxUsername.bind(this);
+        this.onTextBoxFullname = this.onTextBoxFullname.bind(this);
         this.onTextBoxPassword = this.onTextBoxPassword.bind(this);
         this.onTextBoxRepeatPassword = this.onTextBoxRepeatPassword.bind(this);
         this.onTextBoxEmail = this.onTextBoxEmail.bind(this);
@@ -42,6 +43,14 @@ class Register extends Component {
             return {user: newUser}
         })
         console.log(this.state.username);
+    }
+    
+    onTextBoxFullname(event){ 
+        this.setState((prevState) => {
+            let newUser = Object.assign({}, prevState.user);
+            newUser.fullname = event.target.value;
+            return {user: newUser}
+        })
     }
     onTextBoxPassword(event){
         this.setState((prevState) => {
@@ -104,6 +113,7 @@ class Register extends Component {
         console.log('clicked');
         const {
             username,
+            fullname,
             password,
             email,
             phone,
@@ -115,12 +125,13 @@ class Register extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               username: username,
+              fullname: fullname,
               password: password,
               email: email,
               phone: phone,
               birthday: birthday,
               gender: gender,
-              avatar: "/default/",
+              avatar: "image/default/avatar/avatardefault.png",
               followed: [],
               following: []
             })
@@ -173,6 +184,7 @@ class Register extends Component {
     render() {
         const {
             username,
+            fullname,
             password,
             email,
             phone,
@@ -205,6 +217,17 @@ class Register extends Component {
                                             type="text" 
                                             onChange={this.onTextBoxUsername}
                                             value={username}/>
+                                </div>
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                    </div>
+                                    <input  name="fullname" 
+                                            class="form-control" 
+                                            placeholder="Fullname" 
+                                            type="text" 
+                                            onChange={this.onTextBoxFullname}
+                                            value={fullname}/>
                                 </div>
                                 <div class="form-group input-group">
                                     <div class="input-group-prepend">

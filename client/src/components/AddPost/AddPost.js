@@ -56,7 +56,6 @@ class AddPost extends Component {
 
     // get data from ckeditor 5
     onCashange  = data => { 
-        console.log( "Called" );
         this.setState({
             description : data.getData()
         })
@@ -75,15 +74,17 @@ class AddPost extends Component {
         this.setState({
             createdAt: Date.now()
         })
+        let token = localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).token : "";
+        
         let body = this.state;
-        body.createdBy = {id: "5fc3bb629e921808d0bb4304"}
-        console.log(body)
         fetch('/api/post/', {
             method: "POST",
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json', 
+                'Authorization': 'bearer '+ token
+            },
             body: JSON.stringify(body)
         }).then(res => {
-            console.log(res);
             if (res.status == 200) {
                 document.querySelector('.success-create-post').style.display = 'block';
                 res.json().then(data => {
@@ -176,7 +177,6 @@ class AddPost extends Component {
                                     data="<p>Mô tả món ăn và công thức cho mọi người</p>"
                                     onReady={ editor => {
                                         // You can store the "editor" and use when it is needed.
-                                        console.log( 'Editor is ready to use!', editor );
                                     } }                                
                                     onChange={ ( event, editor ) => {
                                         const data = editor.getData();

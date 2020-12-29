@@ -18,11 +18,6 @@ class Question extends Component {
     componentWillReceiveProps(nextProps) {
 
     }
-
-    shouldComponentUpdate(nextProps, nextState) {
-
-    }
-
     componentWillUpdate(nextProps, nextState) {
 
     }

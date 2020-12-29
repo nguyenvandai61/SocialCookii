@@ -16,5 +16,14 @@ router.get('/image/posts/:file', (req,res) =>{
     console.log("lala");
     res.sendFile(fileLocation);
   });
+
+// route middleware để kiểm tra một user đã đăng nhập hay chưa?
+function isLoggedIn(req, res, next) {
+    // Nếu một user đã xác thực, cho đi tiếp
+    if (req.isAuthenticated())
+        return next();
+    // Nếu chưa, đưa về trang chủ
+    res.redirect('/');
+}
   
 module.exports = router;

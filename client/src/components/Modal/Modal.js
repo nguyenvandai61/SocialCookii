@@ -18,7 +18,6 @@ class Modal extends Component {
         var btn = document.getElementsByClassName(modalObj.buttonName)[0];
         // Get the <span> element that closes the modal
         var span = document.getElementById(modalObj.buttonName+"-close");
-        console.log(span);
         // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
             modal.style.display = "none";
@@ -26,10 +25,6 @@ class Modal extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
 
     }
 

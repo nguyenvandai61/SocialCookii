@@ -6,11 +6,20 @@ const createPost = (post) => {
     return newPost.save();
 }
 const getAllPost = () => {
-    return Post.find();
+    return Post.find()
 }
 
 const getPost = (query) => {
-    return Post.find(query)
+  return Post.find(query)
+    .populate({
+      path: 'comments',
+      populate: [
+        { path: 'userId' },
+        { path: 'repliedCommentId', 
+          populate : { path: 'userId'}
+        }
+      ]
+    });
 }
 
 const getPostByHashTag = (req, res) => {
@@ -37,7 +46,6 @@ const getPostByTagname = (req, res) => {
 }
 const updatePost = (req, res) => {
     const content = req.body;
-    console.log(content);
     Post.findOneAndUpdate(req.params.id, content, {new: true},function(err, doc) {
       if (err) return res.status(500).send(err);
       const response = {
@@ -57,12 +65,28 @@ const deletePost = (req, res) => {
         return res.status(200).send(response);
     })
 }
+
+const likePost = (postId, likeUserId) => {
+  console.log(postId);
+  console.log(likeUserId);
+  return Post.findOne({
+    _id: postId
+  }, (err, model) => {
+    if (model.likeUserIds.indexOf(likeUserId) !== -1) {
+      model.likeUserIds.pull(likeUserId);
+    } else {
+      model.likeUserIds.addToSet(likeUserId);
+    }
+    model.save();
+  })
+}
 module.exports = {
     createPost, 
     updatePost,
     getPost,
     getAllPost,
     getPostByHashTag,
+    likePost,
     deletePost,
     getPostByTagname
 }

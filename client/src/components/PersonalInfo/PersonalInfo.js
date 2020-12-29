@@ -1,49 +1,37 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Header from '../Header/Header';
 import Masonry from '../Masonry/Masonry'
-import Avatar from '../../avatar.jpg'
 import './PersonalInfo.css'
+import { getDetailInfoUser } from '../../controller/UserJwtController';
 class PersonalInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {
             user: {
-                username: "dai",
-                password: "123",
-                fullname: "Đại nguyễn",
-                email: "vandai@gmail.com",
-                avatar: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
-                nfollowing: 5,
-                nfollowed: 7
+                avatar: "",
+                fullname: "",
+                nfollowed: 0,
+                nfollowing: 0,
+                username: "",
+                _id: ""
             }
         }
     }
 
-    componentWillMount() {
-    }
-
     componentDidMount() {
-
+        getDetailInfoUser().then(detailUserInfo => {
+            if (detailUserInfo) {
+                this.setState({user: detailUserInfo})
+            }
+        });
     }
-
-    componentWillReceiveProps(nextProps) {
-
-    }
-    componentWillUpdate(nextProps, nextState) {
-
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-
-    }
-
-    componentWillUnmount() {
-
+    componentWillReceiveProps(props) {
+        this.setState({user: props.user}); 
     }
 
     render() {
-        const { user } = this.state;
+        const { user } = this.props;
+        console.log(user);
         return (
             <div className="personal-info">
                 <div align="center" className="avatar">
@@ -51,6 +39,7 @@ class PersonalInfo extends Component {
                         <img src={user.avatar} alt="img" style={{ height: "130px", width: "130px" }} />
                     </div>
                     <h2>{user.fullname}</h2>
+                    <p>@{user.username}</p>
                     <p>{user.email}</p>
                         <div class="avatarcontainer">
                     <div class="hover">

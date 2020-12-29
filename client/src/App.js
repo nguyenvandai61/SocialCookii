@@ -11,63 +11,58 @@ import AddPost from './components/AddPost/AddPost';
 import Login from './components/Login/Login';
 import Masonry from './components/Masonry/Masonry';
 import Register from './components/Register/Register';
+import searchUser from './components/SearchUser/SearchUser';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
 } from "react-router-dom";
+import SearchUser from './components/SearchUser/SearchUser';
+import Layout from './components/Layout/Layout';
+let children = {
+  "/": Masonry,
+  "/searchUser": SearchUser,
+  "/searchPost": Masonry,
+  "/personalInfo": PersonalInfo,
+  "/editPersonalInfo": EditPersonalInfo,
+  "/addPost": AddPost,
+  "/post/:id": DetailPost,
+  "/friends": Friend,
+
+}
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/">
-            <Headers />
-            <Masonry />
-            <AdditionalBtns />
-          </Route>
-          <Route path="/personalInfo">
-            <Headers />
-            <PersonalInfo />
-            <AdditionalBtns />
-          </Route>
-          <Route path="/editPersonalInfo">
-            <Headers />
-            <EditPersonalInfo />
-            <AdditionalBtns />
-          </Route>
-          <Route path="/addPost">
-            <Headers />
-            <AddPost />
-            <AdditionalBtns />
-          </Route>
-          <Route path="/detailPost">  
-            <Headers />
-            <DetailPost />
-            <AdditionalBtns />
-          </Route>
-          <Route path="/post/:id">  
-            <Headers />
-            <DetailPost />
-            <AdditionalBtns />
-          </Route>
-          <Route path="/friends">
-            <Headers />
-            <Friend />
-            <AdditionalBtns />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/admin">
-            <Admin />
-          </Route>
+          {
+            Object.entries(children).map((child) => {
+              const key = child[0], children = child[1];
+              if (key == "/") {
+                return <Route exact path={key}>
+                  <Layout children={children} />
+                </Route>
+              }
+              return (
+                <Route path={key}>
+                  <Layout children={children} />
+                </Route>
+              )
+            })
+          }
         </Switch>
+        <Route path="/admin">
+          <Admin />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/register">
+          <Register />
+        </Route>
       </Router>
+
     </div>
   );
 }

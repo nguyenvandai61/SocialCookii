@@ -6,10 +6,24 @@ const apiRouter = require('./routes/api/index.routes');
 const config = require('./config');
 const app = express();
 const path = require('path');
-const router = require('./routes/index.routes');
+
+const jwt = require("jsonwebtoken");
+const passport = require('passport');
+
+
 const port = process.env.PORT || 5000;
 app.use(bodyParser.json({limit: '10mb', extended: true}))
 app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
+
+
+app.use(passport.initialize())
+app.use(passport.session());
+// Add the line below, which you're missing:
+// require('./config/auth.config')(passport);
+require('./config/jwtAuth.config')(passport);
+
+
+
 app.all('*', function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -36,13 +50,11 @@ mongoose.connect(config.mongoose.uri, {
         console.log('Error connecting to database');
     });
 
-let pa =path.resolve(__dirname+'/assets/image/posts');
 app.use('/', express.static(__dirname+"../client/build"));
 
-// app.use(express.static('../client/build'));
-// Handle React routing, return all requests to React app
-console.log("production")
-console.log(path.resolve(__dirname, '../client/build/', 'index.html'))
+app.use(function(err, req, res, next) {
+    console.log(err);
+});
 app.get('/*', function (req, res) {
     res.sendFile(path.resolve(__dirname, '../client/build/', 'index.html'));
 });

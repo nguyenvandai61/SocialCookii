@@ -7,7 +7,7 @@ const CommentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Post'
   },
-  UserId: {
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
@@ -25,12 +25,15 @@ const CommentSchema = new mongoose.Schema({
   },
   repliedCommentId: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'Comment'
   }],
   likeUserIds: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }],
+  isRepliedComment: {
+    type: Boolean
+  }
 
 
 });
