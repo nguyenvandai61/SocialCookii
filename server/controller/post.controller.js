@@ -58,7 +58,13 @@ const getAllPost = (req, res) => {
 }
 
 const deletePost = (req, res) => {
-    return PostService.deletePost(query);
+    let param = req.params.id;
+    console.log("Delete post");
+    return PostService.deletePost(param).then((data, err) => {
+        if (err)
+            return res.status(500).json(err)
+        return res.status(200).json(data);
+    });
 }
 
 const searchPost = (req, res) => {

@@ -57,19 +57,11 @@ const updatePost = (req, res) => {
     });
   }
 
-const deletePost = (req, res) => {
-    Post.findByIdAndDelete(req.params.id, (err, doc) => {
-        if(err) return res.status(500).send(err);
-        const response = {
-            message: "Post successfully deleted"
-        };
-        return res.status(200).send(response);
-    })
+const deletePost = (id) => {
+    return Post.findByIdAndDelete(id);
 }
 
 const likePost = (postId, likeUserId) => {
-  console.log(postId);
-  console.log(likeUserId);
   return Post.findOne({
     _id: postId
   }, (err, model) => {

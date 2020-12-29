@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './DetailPost.css';
 import avatar from '../../image/avatars/avatar.jpg'
-import { fetchFollow, getIdFromJwtToken } from '../../controller/UserJwtController'
+import { fetchFollow, getIdFromJwtToken } from '../../controller/UserJwtController';
 
 class DetailPost extends Component {    
     constructor(props) {
@@ -40,7 +40,8 @@ class DetailPost extends Component {
             nLikePost: 0,
             hasLikePost: false,
             isFollowed : false,
-            listUserCache: []
+            listUserCache: [],
+            isMyPost: false
         }
         this.onFollow = this.onFollow.bind(this)
         this.onComment = this.onComment.bind(this)
@@ -208,6 +209,7 @@ class DetailPost extends Component {
                 data.createdBy = user;
                 this.setState({ post: data, nLikePost: data.likeUserIds.length })
                 this.setState({hasLikePost: data.likeUserIds.indexOf(getIdFromJwtToken()) !== -1})
+                this.setState({isMyPost: data.createdBy._id == getIdFromJwtToken()});
                 return data;
             });
         })
@@ -312,6 +314,26 @@ class DetailPost extends Component {
         //     }
         // }).then(data => console.log(data));
     }
+    deletePost = () => {
+        console.log("deletePost");
+        let token = localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).token : "";
+        console.log(this.state.post._id);
+        fetch('/api/post/'+this.state.post._id, {
+            method: "DELETE",
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': 'bearer '+ token
+            }
+        }).then(res => {
+            console.log(res);
+            if (res.status == 200) {
+                return res.json()
+            }
+        }).then(data => {
+            console.log(data)
+            window.location.href = "/user/"+getIdFromJwtToken();
+        });
+    }
     componentWillMount() {
         // this.loadDefaultPost();
         this.fetchPost();
@@ -325,12 +347,17 @@ class DetailPost extends Component {
         this.setState({user: props.user}); 
     }
     
-
     render() {
         const { comment } = this.state;
         const { repliedComment } = this.state;
         const { thumbnails, author, comments } = this.state.post;    
-        const { post, isFollowed, nLikePost, hasLikePost } = this.state;
+        const { post, isFollowed, nLikePost, hasLikePost, isMyPost } = this.state;
+        let operationDiv = isMyPost?
+                    <div>
+                        <button type="button" class="btn btn-secondary" >Sửa</button>
+                        <button type="button" class="btn btn-danger" onClick={this.deletePost}>Xóa</button>
+                    </div>
+                :"";        
         let userId = getIdFromJwtToken();
         return (
             <div className="detail-post-container">
@@ -355,6 +382,7 @@ class DetailPost extends Component {
                 </div>
                 <div className="right">
                     <h1>{post.title}</h1>
+                    {operationDiv}
                     <div style={{ wordBreak: 'break-word', display: 'inline-block' }} className="editor" dangerouslySetInnerHTML={{ __html: post.description }} />
                     <div className="info">
                         <Link to={"/user/"+post.createdBy._id}>
