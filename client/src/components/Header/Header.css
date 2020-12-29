@@ -1,51 +1,124 @@
 @import url('https://fonts.googleapis.com/css?family=Arvo');
-
+html, body{
+    background-color: white;
+}
 header {
     display: grid;
-    grid-template-columns: 60px auto auto 500px 200px 100px;
-    grid-column-gap: 10px;
-    overflow: hidden;
-    
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
-    font-family: 'Arvo', monospace;
+    grid-template-columns: 5% 12% 14% auto 15% 5%;
+    grid-column-gap: 0px;
+    font-family: 'Arvo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: large;
+    margin-top: 15px;
 }
+
 header>div {
     margin: auto 0;
     display: inline-grid;
     padding: 5px;
+    padding: 10px;
+    width: 90%;
 }
+
 .hover-effect {
     background: #262730;
     color: #fff;
     border-radius: 25px;
+    text-align: center;
 }
-button:focus {outline:0;}
+
+button:focus {
+    outline: 0;
+}
 button {
     border: none;
+    cursor: pointer;
 }
+
 /* logo */
+
 #logo-wrapper {
+    
 }
+
 #logo-wrapper img {
     width: 100%;
 }
-#home p {
+
+header p {
     margin: auto;
     padding: 10px;
     width: 90%;
-}
-#search-bar input{
-    font-size: 1.5em;
     
+    cursor: pointer;
 }
+
+#search-bar{
+    display: flex;
+    background-color: rgb(243, 240, 243);
+    border-radius: 30px;
+    justify-content: space-between;
+}
+
+#search-bar input {
+    font-size: 1em;
+    border-radius: 30px;
+    padding: 5px;
+    background-color: rgb(243, 240, 243);
+    padding-left: 10px;
+    width: 100%;
+    border: none;
+}
+
+#search-bar input:focus {
+    outline: none;
+}
+.search-box{
+    border-right: solid rgb(179, 174, 174) 0.5px;
+    width: 75%;
+    display: flex;
+}
+.optional-search> button{
+    background:none !important;
+    border: none;
+    height: 100% !important;
+    color: rgb(114, 112, 112);
+}
+.btn:focus{
+    outline: none !important;
+    box-shadow: none !important;
+    color: black !important;
+}
+.optional-search > button:hover{
+    border: none;
+    color: rgb(63, 62, 62);
+}
+.dropdown-menu {
+    margin-top: 15px !important;
+    border-radius: 15px;
+}
+.dropdown-item {
+    padding: 15px !important;
+}
+
+#close-search-btn {
+    margin: 2px 10px 0 0;
+    border-radius: 20px;
+    background: none;
+}
+
+#search-btn i {
+    font-size: 1.5em;
+}
+
 #header-btns {
     display: inline-block;
 }
+
 .header-btn {
     display: inline-block;
     overflow: hidden;
 }
+
 .header-btn button {
     padding: 0;
     border-radius: 25px;
@@ -53,16 +126,52 @@ button {
     height: 50px;
     font-size: 1.5em;
     overflow: hidden;
+    margin-right: 10px;
 }
+
 #avatar {
-    background-size:cover;
+    background-size: cover;
     width: inherit;
     height: inherit;
 }
+
+#options {
+    position: relative;
+    display: inline-block;
+}
+
 #options ul {
     display: none;
+    margin: 0;
+    padding: 0;
+    /* To remove default left padding */
 }
+
 #options button {
-    
     font-size: 1.5em;
+}
+
+#options .dropdown {
+    position: absolute;
+    right: 0px;
+    top: 70px;
+    background-color: #626567;
+    width: 250px;
+    z-index: 2;
+    
+    border-radius: 15px;
+}
+
+#options .dropdown li {
+    list-style-type: none;
+    color: white;
+    border-bottom: solid 1px #eee;
+}
+
+#options .dropdown li p {
+    padding-left: 25px;
+}
+
+.show-element {
+    display: inline-block !important;
 }

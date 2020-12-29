@@ -56,7 +56,7 @@ class DetailPost extends Component {
             newComment.content = event.target.value;
             return { comment: newComment }
         })
-        console.log("Comment" + this.state.comment.content)
+        console.log("Comment" + this.state.comment)
     }
 
     onTextBoxRepliedComment(event) {
@@ -90,7 +90,6 @@ class DetailPost extends Component {
         e.preventDefault();
         let token = localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).token : "";
         let body = this.state.comment;
-        console.log(body)
         fetch('/api/comment/', {
             method: "POST",
             headers: { 
@@ -103,10 +102,7 @@ class DetailPost extends Component {
             if (res.status == 200) {
                 res.json().then(data => {
                     console.log("result",data.content)
-                    const {comment} = this.state;
-                    comment.content = "";
-                    this.setState({comment: comment})
-                    //this.setState({comment: data})
+                    this.setState({comment: data})
                     this.fetchPost()
                 })
             }
@@ -134,10 +130,7 @@ class DetailPost extends Component {
             console.log(res);
             if (res.status == 200) {
                 res.json().then(data => {
-                    const {repliedComment} = this.state;
-                    repliedComment.content = "";
-                    this.setState({repliedComment: repliedComment})
-                    //this.setState({repliedComment: data})
+                    this.setState({repliedComment: data})
                     this.UpdateRepliedComment(comment, data)
                     //this.fetchPost()
                 })
@@ -404,13 +397,12 @@ class DetailPost extends Component {
                                                     </div>
                                                     <div className="interaction">
                                                         <span></span>
-                                                        <i className="fa fa-heart" title="Bày tỏ cảm xúc"></i>
+                                                        <i className="fa fa-heart"></i>
                                                         <a data-toggle="collapse" href={"#collapseReply" + index} role="button" aria-expanded="false" aria-controls={"collapseReply" + index}>
-                                                            <i className="fa fa-reply" title="Phản hồi"></i>
+                                                            <i className="fa fa-reply"></i>
                                                         </a>
-                                                        <span>{this.timeSince(comment.createdAt)}</span>
                                                         <div className="collapse" id={"collapseReply" + index}>                          
-                                                            {/* <form> */}
+                                                            <form>
                                                                 <div className="cmt">
                                                                     <input 
                                                                         type="text" 
@@ -418,9 +410,9 @@ class DetailPost extends Component {
                                                                         onChange={this.onTextBoxRepliedComment}
                                                                         value={repliedComment.content}
                                                                         /> <br />
-                                                                    <button onClick={() => this.onRepliedComment(comment)}>Send</button>
+                                                                    <button type="submit" onClick={() => this.onRepliedComment(comment)}>Send</button>
                                                                 </div>
-                                                            {/* </form>         */}
+                                                            </form>        
                                                         </div>
                                                     </div>
                                                     
@@ -448,8 +440,7 @@ class DetailPost extends Component {
                                                                 </div>
                                                                 <div className="interaction">
                                                                     <span></span>
-                                                                    <i className="fa fa-heart" title="Bày tỏ cảm xúc"></i>
-                                                                    <span>{this.timeSince(replyComment.createdAt)}</span>
+                                                                    <i className="fa fa-heart"></i>
                                                                 </div>
                                                             </div>
                                                         )

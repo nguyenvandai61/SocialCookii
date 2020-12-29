@@ -2,20 +2,51 @@ var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-const userSchema = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
   title: {
+    type: String
+  },
+  description: {
+    type: String
+  },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  createdAt: {
+    type: Date,
+  },
+  deletedAt: {
+    type: Date,
+  },
+  editedAt: {
+    type: Date,
+  },
+  thumbnails: {
+    type: Array
+  },
+  recipe: {
+    type: String
+  },
+  videos: {
+    type: []
+  },
+  comments: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Comment"
+  }],
+  likeUserIds: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  }],
+  state: {
     type: String,
-    required: true,
   },
-  content: {
-      type: String,
-      required: true,
-  },
-  comments: {
-    type: Array,
-    required: true,
-  }
+  hashtagIds: [{
+    type: mongoose.Schema.Types.ObjectId,
+      ref: "Hashtag"
+  }],
 });
 
-
-module.exports = mongoose.model('User', userSchema)
+PostSchema.index({title: 'text'});
+module.exports = mongoose.model('Post', PostSchema)

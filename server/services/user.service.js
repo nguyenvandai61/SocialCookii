@@ -1,73 +1,113 @@
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
 var User = require('../models/user.model');
-
-const getUser = (req, res) => {
-  User.find(req.query, (err, data) => {
-    if (err) return res.status(500).send(err);
-    res.json({"data": data});
-  })
+const getUser = (query) => {
+  return User.find(query);
+}
+const getUserById = (id) => {
+  return User.findById(id);
+}
+const getUserInfo = (id) => {
+  console.log(id);
+  return User.aggregate([
+    {
+      $match: {_id: ObjectId(id) }
+    }, 
+    {
+      $project: {
+        "_id": 1,
+        "username": 1,
+        "fullname": 1,
+        "nfollowed": {$size: '$followed'},
+        "nfollowing": {$size: '$following'},
+        "avatar": 1,
+      }
+    },
+    { $limit: 1 }
+  ]);
 }
 
+const getAllUser = (req, res) => {
+  return User.find({})
+}
 
-
-const createUser = (res, user) => {
+const createUser = (user) => {
   const newUser = new User(user);
-  newUser.save(err => {  
-    console.log(err)
-    if (err) return res.status(500).send(err);
-    return res.status(200).json(newUser);
-  });
+  return newUser.save();
 }
 
 const createUsers = (req, res) => {
   let arr = req.body;
-  
-  User.insertMany([...arr], (err, docs) => {  
+
+  User.insertMany([...arr], (err, docs) => {
     console.log(err)
     if (err) return res.status(500).send(err);
     return res.status(200).json(docs);
   });
 }
+const getUserByName = (name) => {
+  return User.findOne({ username: name });
+}
 
-
-
-
-
-const updateUser = (res, query, newData) => {
+const updateUser = (req, res) => {
   const content = req.body;
-  User.findOneAndUpdate(content.query, content.newData, function(err) {
+  console.log(req.params)
+  console.log(req.query)
+  User.findByIdAndUpdate(req.params.id, content, function (err, doc) {
     if (err) return res.status(500).send(err);
     const response = {
-        message: "User successfully updated"
+      message: "User successfully updated"
     };
-    return res.status(200).send(response);
+    return res.status(200).json({ "data": doc });
   });
+}
+const following = (following, followed) => {
+  return User.findOneAndUpdate(
+    { _id: following }, 
+    { $push: { following: followed} });
+}
+const followed = (following, followed) => {
+  return User.findOneAndUpdate(
+      { _id: followed }, 
+      { $push: { followed: following} })
+}
+const unfollowing = (following, followed) => {
+  return User.findOneAndUpdate(
+    { _id: following }, 
+    { $pull: {following: followed} });
+}
+const unfollowed = (following, followed) => {
+  return User.findOneAndUpdate(
+      { _id: followed }, 
+      { $pull: { followed: following} })
 }
 
 const deleteUser = (res, query) => {
-   User.deleteOne(query, (err, data) => {
-    if (err) return res.status(500).send(err);
-    const response = {
-        message: "User successfully deleted"
-    };
-    return res.status(200).send(response);
-  })
+  return User.deleteOne(query)
 }
 
 const deleteAllUsers = (req, res) => {
-  User.deleteMany({}, (err, data) => {
-    if (err) return res.status(500).send(err);
-    const response = {
-        message: "All questions successfully deleted"
-    };
-    return res.status(200).send(response);
+  return User.deleteMany({});
+}
+const searchName = (query) => {
+  return User.find({
+    username: new RegExp(query)
   })
 }
-
 module.exports = {
   getUser,
+  getUserInfo,
+  getUserById,
+  getUserByName,
+  getAllUser,
   createUser,
   createUsers,
   updateUser,
   deleteUser,
-  deleteAllUsers
+  deleteAllUsers,
+  following,
+  followed,
+  unfollowing,
+  unfollowed,
+  searchName,
 }

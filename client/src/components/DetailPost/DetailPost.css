@@ -111,16 +111,6 @@ li {
 	margin-top: 10px;
 }
 
-.cmt > button {
-	margin-left: 10px;
-	border-radius: 20px;
-	padding: 10px;
-}
-
-.cmt > button:hover {
-	background-color: rgb(212, 212, 211);
-}
-
 .cmt input {
     width: 400px;
 	border: 1px solid gray;
@@ -480,10 +470,6 @@ li {
 
 .interaction {
 	margin-left: 85px;
-}
-
-.interaction > span{
-	margin-left: 10px;
 }
 
 .interaction > i{

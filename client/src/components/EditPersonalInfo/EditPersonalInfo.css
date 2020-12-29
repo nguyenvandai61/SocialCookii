@@ -1,0 +1,74 @@
+.edit-personal-info .content {
+    width: 80%;
+    margin: auto 50px;
+    display: grid;
+    grid-template-columns: auto auto ;
+
+     padding: 10px;
+}
+.edit-personal-info  .grid2{
+    display: grid;
+    grid-template-columns: auto auto ;
+}
+.edit-personal-info  .grid3{
+    display: grid;
+    grid-template-columns: auto auto ;
+}
+.edit-personal-info .grid2 input{
+    border: 2px solid;
+    border-radius: 12px;
+    text-align: center;
+    margin: 5px;
+}
+.edit-personal-info  .change{
+    border: 2px solid;
+    border-radius: 12px;
+    background-color:lightgrey;
+}
+.edit-personal-info  .info input{
+    border: 1px solid;
+    border-radius: 12px;
+    height: 40px;
+    width: 100%;
+} 
+.edit-personal-info {
+    background-color: rgb(196, 194, 194);
+}
+.edit-personal-info .grid-item:first-child{
+    background-color: rgb(255, 255, 255);
+    padding: 5px;
+}
+
+.edit-personal-info .grid-item:first-child p{
+    box-sizing: inherit;
+    color: black;
+    padding: 5px;
+}
+.edit-personal-info .grid-item:first-child p:hover{
+    color: black;
+    padding: 5px;
+    border-right: 5px solid rgb(247, 139, 100);
+}
+
+.edit-personal-info .avatar-wrapper {
+    display: inline-block;
+    position: relative;
+}
+.edit-personal-info .avatar-img-wrapper {
+    display: inline-block;
+    border-radius: 50%;
+    background-color: aliceblue;
+    overflow: hidden;
+}
+
+.edit-personal-info .change{
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+    border: none;
+    font-size: 1.2em;
+    background-color: rgb(247, 85, 27);
+    color: white;
+    padding: 5px;
+}
+

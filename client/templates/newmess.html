@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <style>
+            .content{
+                margin-left: 800px;
+                display: grid;
+                grid-template-columns: auto auto ;
+                padding: 10px;
+            }
+
+            .grid2{
+                display: grid;
+                grid-template-columns: auto auto ;
+            }
+
+            button {
+                padding: 0;
+                border-radius: 17px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5em;
+                overflow: hidden;
+            }
+
+            .search-box {
+                position: absolute;
+                top: 15%;
+                margin-left: 10px;
+            }
+
+            .chat-box {
+                position: absolute;
+                top: 65%;
+                margin-left: 100px;
+                border-radius: 20px;
+                transform: translate(-50%,-50%);
+                background: pink;
+                height:40px;
+                padding: 10px;
+                
+                border: 2px outset navy;
+            }
+            .chat-txt {
+                border: none;
+                outline: none;
+                background: none;
+                float: left;
+                color: white;
+            }
+
+            .grid3{
+                display: grid;
+                grid-template-columns: auto auto ;
+            }
+            .grid2 input{
+                border: 2px solid;
+                border-radius: 12px;
+                background-color:lightgrey;
+                height: 30px;
+                text-align: center;
+                margin-top: 50px;
+            }
+            
+            h1 {
+                text-align: center;
+            }        
+            a {
+                text-decoration: none;
+            }   
+        </style>
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    </head>
+    <body>
+        
+        <div class="content">
+               
+            <div class="grid-item">
+                <div class="grid2">
+                    <div>
+                        <h2>Tin nhắn mới</h2>
+                    </div>
+                    <div class="grid2">
+                        <a href="inbox.html"><button>Hủy</button> </a>
+                        
+                    </div>
+                </div>
+                <div class = "search-box">
+                    <span class="icon"><i class="fa fa-search"></i></span>
+                    <input type="text" class = "search-txt" id="search" placeholder="Nhập tên hoặc email" />
+                </div>  
+
+                <div class = "chat-box">
+                    <span class="icon"><i class="fa fa-search"></i></span>
+                    <input type="text" class = "chat-txt" id="search" placeholder="Gửi tin nhắn" />
+                </div>  
+
+            </div>
+      
+        </div>
+        
+    </body>
+</html>
