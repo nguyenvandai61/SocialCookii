@@ -34,6 +34,8 @@ app.all('*', function (req, res, next) {
         next();
     }
 });
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
 // set up mongoose
@@ -50,11 +52,12 @@ mongoose.connect(config.mongoose.uri, {
         console.log('Error connecting to database');
     });
 
-app.get('/', function (req, res) {
-        res.sendFile(path.resolve(__dirname, '../client/build/', 'index.html'));
-});
-app.use('/*', express.static(__dirname+"../client/build"));
-
+// app.get('/', function (req, res) {
+//         res.sendFile(path.resolve(__dirname, '../client/build/', 'index.html'));
+// });
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname+'../client/build/index.html'));
+  });
 app.use(function(err, req, res, next) {
     console.log(err);
 });
