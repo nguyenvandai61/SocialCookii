@@ -9,11 +9,13 @@ class Register extends Component {
             user: {
                 username: '',
                 password: '',
+                fullname: '',
                 email: '',
                 phone: '',
                 birthday: '',
                 gender: '',
-                role: ''
+                role: 'user',
+                avatar: "image/default/avatar/avatardefault.png",
             }
         }
 
@@ -111,30 +113,11 @@ class Register extends Component {
     onSubmit(e){
         e.preventDefault();
         console.log('clicked');
-        const {
-            username,
-            fullname,
-            password,
-            email,
-            phone,
-            birthday,
-            gender,
-          } = this.state.user;
+        const {user} = this.state;
           fetch('/api/user/register', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              username: username,
-              fullname: fullname,
-              password: password,
-              email: email,
-              phone: phone,
-              birthday: birthday,
-              gender: gender,
-              avatar: "image/default/avatar/avatardefault.png",
-              followed: [],
-              following: []
-            })
+            body: JSON.stringify(user)
           }).then(res => {
               console.log(res);
               if (res.status == 200) {
