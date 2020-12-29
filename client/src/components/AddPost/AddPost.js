@@ -115,10 +115,10 @@ class AddPost extends Component {
         return (
             <div className="container new-post">
                 <div class="alert alert-success success-create-post" role="alert">
-                    This is a success alert—check it out!
+                    Đăng bài thành công!
                     </div>
                 <div class="alert alert-danger fail-create-post" role="alert">
-                    This is a danger alert—check it out!
+                    Đăng bài thất bại!
                 </div>
                 <div className="row mt-2">
                     <div className="col-md-6 new-post-left">
@@ -160,10 +160,6 @@ class AddPost extends Component {
                     </div>
                     <div className="col-md-6 new-post-right">
                         <div className="container card-right">
-                            <div className="user">
-                                <img src={Avatar} alt="img" height="50px" width="50px" className="avatar" />
-                                <span>Phan Vu</span>
-                            </div>
                             <div className="title-right">
                                 <input type="text" placeholder="Tạo tiêu đề"
                                     name="title"

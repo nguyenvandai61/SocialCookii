@@ -88,12 +88,15 @@ class PersonalInfo extends Component {
 
     render() {
         const {userId, userInfo } = this.state;
+        // TODO: Hơi cồng kềnh
+        let imageSrc=(userInfo.avatar.indexOf("data") !== -1)? "":"/";
         let editPersonalInfoLink = "";
         let myPostDiv = "";
         if (userId == userInfo._id) {
             editPersonalInfoLink = 
                 <div className="edit">
-                    <a href="/editPersonalInfo"><i class="fas fa-pen"></i></a>
+                    <a href="/editPersonalInfo"><i class="fas fa-pen"></i>
+                        <span >Chỉnh sửa thông tin cá nhân</span></a>
                 </div>;
             
             myPostDiv = 
@@ -113,7 +116,7 @@ class PersonalInfo extends Component {
             <div className="personal-info">
                 <div align="center" className="avatar">
                     <div id="avatar-frame">
-                        <img src={"/"+userInfo.avatar} alt="img" style={{ height: "130px", width: "130px" }} />
+                        <img src={imageSrc+userInfo.avatar} alt="img" style={{ height: "130px", width: "130px" }} />
                     </div>
                     <h2>{userInfo.fullname}</h2>
                     <p>@{userInfo.username}</p>
@@ -142,15 +145,7 @@ class PersonalInfo extends Component {
                     </div>
                 </div>
                 </div>
-                <div class="edit">
-                    <a href="/editPersonalInfo">
-                        <i class="fas fa-pen"></i>
-                        <span >Chỉnh sửa thông tin cá nhân</span>
-                    </a>
-                </div>
                 
-                <h2 align="center">Bài viết lưu trữ</h2>
-                <Masonry />
                 {editPersonalInfoLink}
 
                 {myPostDiv}

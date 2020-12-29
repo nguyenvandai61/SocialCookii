@@ -4,7 +4,7 @@ const DB_PASSWORD = process.env.DB_PASSWORD;
 const pass = "qk0K2M2nlYAlqTrq";
 module.exports = {
     mongoose: {
-      uri: process.env.MONGODB_URI || 'mongodb+srv://teamanmy:qk0K2M2nlYAlqTrq@cluster0.jojjg.mongodb.net/cookii'
+      uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/cookii'
     },
     
     jwtSecret: JWTSECRET

@@ -15,6 +15,7 @@ class ListItem extends Component {
                                 data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>" data-pinterest-text="Pin it" data-tweet-text="share on twitter ">
                                 <Link to={"/post/"+post._id}>
                                     <img class="img-responsive" src={"/"+post.thumbnails[0]} />
+                                    <span>{post.title}</span>
                                 </Link>
                             </li>
 
