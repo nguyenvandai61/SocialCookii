@@ -209,7 +209,7 @@ class Register extends Component {
                             <form>
                                 <div class="form-group input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                        <span class="input-group-text"> <i class="fa fa-user-circle"></i> </span>
                                     </div>
                                     <input  name="userName" 
                                             class="form-control" 
@@ -255,18 +255,18 @@ class Register extends Component {
 
                                 <div class="form-group input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                                        <span class="input-group-text"> <i class="fa fa-venus-mars"></i> </span>
                                     </div>
                                     <select onChange={this.onChangeSelect} value={gender} name="gender" class="custom-select" style={{maxWidth: "120px"}}>
-                                        <option selected="">Nam</option>
-                                        <option value="1">Nữ</option>
-                                        <option value="2">Khác</option>
+                                        <option selected="">Male</option>
+                                        <option value="1">Female</option>
+                                        <option value="2">Other</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                        <span class="input-group-text"> <i class="fa fa-birthday-cake"></i> </span>
                                     </div>
                                     <input 
                                         name="birthday" 
@@ -303,7 +303,9 @@ class Register extends Component {
                                 <div>
                                     <button type="submit" onClick={this.onSubmit} class="btn btn-primary btn-block"> Create Account  </button>
                                 </div>
-                                <p class="text-center">Have an account? <a href="/login">Log In</a> </p>
+                                <div class = "switch-login">
+                                    <p class="text-center">Have an account? <a href="/login">Log In</a> </p>
+                                </div>
                             </form>
                         </article>
                     </div>
