@@ -101,8 +101,20 @@ class AddPost extends Component {
         console.log("load image");
         var thumbnailsWrapper = document.getElementsByClassName('thumbnails')[0];
         if (!thumbnailsWrapper) return;
-        let thumbnails = event.target.files;
-        this.getThumbnailsObj(thumbnails);
+        var thumbnailsFile = event.target.files;
+        this.getThumbnailsObj(thumbnailsFile);
+    }
+
+    cancelImage = (e) => {
+        
+        console.log(e.target.getAttribute("value"));
+        let thumbnails = this.state.thumbnails;
+        let theFileList = document.querySelector(".files input").files;
+        let a = Array.from(theFileList)
+        a.splice(e.target.getAttribute("value"), 1);
+        theFileList = a;
+        thumbnails.splice(e.target.getAttribute("value"), 1);
+        this.setState({thumbnails: thumbnails});
     }
 
     render() {
@@ -128,9 +140,12 @@ class AddPost extends Component {
                                     onChange={this.loadImageFile} />
                             </div>
                         </form>
-                        <div className="big-thumbnail frame">
-                            {
-                                (tbs[0]) ? (<img src={tbs[0]} />) : ''
+                            <div className="big-thumbnail frame">
+                        { (tbs[0]) ? 
+                                (<div style={{width: "100%", height: "100%"}}>
+                                    <img src={tbs[0]} />
+                                    <i className="fas fa-times" onClick={this.cancelImage} value={0}></i>
+                                </div>)  :''
                             }
                         </div>
                         <div className="thumbnails">
@@ -139,7 +154,7 @@ class AddPost extends Component {
                                     if (index > 0 && image) {
                                         return (<div className="thumbnail" key={index}>
                                             <img src={image} />
-                                            <i className="fas fa-times"></i>
+                                            <i className="fas fa-times" onClick={this.cancelImage} value={index}></i>
                                         </div>)
                                     }
                                 })

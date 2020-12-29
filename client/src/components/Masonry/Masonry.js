@@ -98,7 +98,7 @@ class Masonry extends Component {
                             {listPosts.map((post, index) => 
                                 <Link to={"/post/"+post._id} key = {index}>
                                     <div className="card card-style brick">
-                                        <img src={"/"+post.thumbnails[0]} />
+                                        <img src={post.thumbnails[0]} />
                                         <div className="item__details">
                                             {post.title}
                                         </div>

@@ -373,7 +373,7 @@ class DetailPost extends Component {
                     <div className="left">
                         <div className="big-thumbnail frame">
                             {
-                                (post.thumbnails) ? (<img src={"/" + post.thumbnails[0]} />) : ''
+                                (post.thumbnails) ? (<img src={post.thumbnails[0]} />) : ''
                             }
                         </div>
                         <div className="thumbnails">
@@ -381,7 +381,7 @@ class DetailPost extends Component {
                                 post.thumbnails.map((thumbnail, index) => {
                                     if (thumbnail) {
                                         return (<div className="thumbnail" key={index}>
-                                            <img src={"/" + thumbnail} onClick={this.replaceImage} />
+                                            <img src={thumbnail} onClick={this.replaceImage} />
                                         </div>)
                                     }
                                 })
@@ -460,7 +460,7 @@ class DetailPost extends Component {
                                                 <div className="comment-main-level">
                                                     <div className="comment-box">
                                                         <div className="comment-head">
-                                                            <div className="comment-avatar"><img src={"/" + comment.userId.avatar} alt="" /></div>
+                                                            <div className="comment-avatar"><img src={(comment.userId.avatar.indexOf("data")!==-1?"":"/") + comment.userId.avatar} alt="" /></div>
                                                             {/* <div className="comment-avatar"><img src={avatar} alt="" /></div> */}
                                                             <div className="comment-infor">
                                                                 <div>
@@ -478,7 +478,7 @@ class DetailPost extends Component {
                                                         </div>
                                                         <div className="interaction">
                                                             <span>{comment.likeUserIds.length}</span>
-                                                            <i className="fa fa-heart"></i>
+                                                            <i className="fa fa-heart" value={comment._id}></i>
                                                             <a data-toggle="collapse" href={"#collapseReply" + index} role="button" aria-expanded="false" aria-controls={"collapseReply" + index}>
                                                                 <i className="fa fa-reply"></i>
                                                             </a>
@@ -505,7 +505,7 @@ class DetailPost extends Component {
                                                                 return (
                                                                     <div className="comment-box comment-reply" key={index}>
                                                                         <div className="comment-head">
-                                                                            <div className="comment-avatar"><img src={"/" + replyComment.userId.avatar} alt="" /></div>
+                                                                            <div className="comment-avatar"><img src={(replyComment.userId.avatar.indexOf("data")!==1?"":"/")+ replyComment.userId.avatar} alt="" /></div>
                                                                             {/* <div className="comment-avatar"><img src={avatar} alt="" /></div> */}
                                                                             <div className="comment-infor">
                                                                                 <div>
