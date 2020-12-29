@@ -53,12 +53,12 @@ const updateUser = (req, res) => {
   const content = req.body;
   console.log(req.params)
   console.log(req.query)
-  User.findByIdAndUpdate(req.params.id, content, function (err, doc) {
+  User.findByIdAndUpdate(req.params.id, content,{new:true}, function (err, doc) {
     if (err) return res.status(500).send(err);
     const response = {
       message: "User successfully updated"
     };
-    return res.status(200).json({ "data": doc });
+    return res.status(200).json(doc);
   });
 }
 const following = (following, followed) => {
