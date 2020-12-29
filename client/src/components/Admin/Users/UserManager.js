@@ -7,7 +7,7 @@ import '../../Admin/style.css'
 
 import Header from '../templates/Header';
 import Footer from '../templates/footer';
-import AddUser from './AddUser'
+import AddUser from './AddUser';
 class indexUser extends Component {
     constructor(props) {
         super(props);

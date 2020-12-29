@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SideBar from './Sidebar'
 
-class templates extends Component {
+class Header extends Component {
     constructor(props) {
         super(props);
 
@@ -95,8 +95,8 @@ class templates extends Component {
     }
 }
 
-templates.propTypes = {
+Header.propTypes = {
 
 };
 
-export default templates;
+export default Header;
