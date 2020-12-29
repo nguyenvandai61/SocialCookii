@@ -34,8 +34,17 @@ const updatePost = (req, res) => {
 }
 const getPost = (req, res) => {
     console.log("GET POST");
-
     return PostService.getPost(req.query).then((data,err) => {
+        console.log(data.createdBy);
+        if(err) return res.status(500).send(err);
+        if(data == null) return res.status(404).json({ message: "Cannot find post" });
+        return res.status(200).json(data);
+    })
+}
+
+const getPostById = (req, res) => {
+    const paramId = req.params.id;
+    return PostService.getPost({_id: paramId}).then((data,err) => {
         console.log(data.createdBy);
         if(err) return res.status(500).send(err);
         if(data == null) return res.status(404).json({ message: "Cannot find post" });
@@ -79,5 +88,6 @@ module.exports = {
     getAllPost,
     deletePost,
     searchPost,
+    getPostById,
     likePost
 }

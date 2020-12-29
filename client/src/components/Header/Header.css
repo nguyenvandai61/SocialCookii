@@ -109,6 +109,12 @@ header p {
 #search-btn i {
     font-size: 1.5em;
 }
+<<<<<<< HEAD
+=======
+#search-btn {
+    margin-top: 0.3em;
+}
+>>>>>>> c39820ef758e55e81ec1f489c6f5f2d86eb80a7f
 
 #header-btns {
     display: inline-block;

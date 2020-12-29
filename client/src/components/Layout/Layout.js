@@ -41,7 +41,22 @@ class Layout extends Component {
             })
     }
     componentDidUpdate() {
-       
+       if (this.state.user.avatar == "") {
+        let id = getIdFromJwtToken();
+        console.log(id)
+        fetch('api/user/userInfo/' + id, {
+            method: "GET",
+            headers: headerObject,
+        })
+            .then(res => {
+                if (res.status == 200) {
+                    res.json().then(data => {
+                        this.setState({ user: data })
+                        return data;
+                    })
+                }
+            })
+       }
     }
     render() {
         let props = this.state;

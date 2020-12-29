@@ -39,7 +39,7 @@ router.get(
     // passport.authenticate('jwt', { session: false }),
     (req, res) => {
         console.log("Authen success");
-        return postController.getPost(req, res);
+        return postController.getPostById(req, res);
     })
 
 //  router.get('/hashtag/:hashtagname', (req, res) => {

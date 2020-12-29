@@ -37,7 +37,7 @@ export function fetchFollow(follower, followed) {
 }
 
 export function getIdFromJwtToken() {
-    if (!JwtParser.parseJwt(token)) return;
+    if (!JwtParser.parseJwt(token)) return; 
     let id = JwtParser.parseJwt(token).id;
     return id;
 }

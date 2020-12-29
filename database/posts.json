@@ -1,96 +1,55 @@
 [{
   "_id": {
-    "$oid": "5fd046b5828ab84884d410b2"
+    "$oid": "5feaf028e82f8300740c541c"
   },
   "thumbnails": [
-    "image/posts/base-image-16074850945500.jpeg",
-    "image/posts/base-image-16074850945661.png"
+    "image/posts/base-image-16092324095930.jpeg",
+    "image/posts/base-image-16092324096201.jpeg"
   ],
   "videos": [],
   "comments": [],
-  "likeUserIds": [],
-  "hashtagIds": [],
-  "createdAt": null,
-  "title": "Nước mắm tươi ngon",
-  "description": "Ngon",
-  "recipe": "sdfsdfdsf",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5fc3bb629e921808d0bb4304"
-  },
-  "thumbnails": [
-    "image/posts/base-image-16066629898070.png",
-    "image/posts/base-image-16066629898361.png"
-  ],
-  "videos": [],
-  "comments": [
+  "likeUserIds": [
     {
-      "_id": {
-        "$oid": "5fc3bb629e921808d0bb4304"
-      },
-      "content": "Ngon đấy",
-      "replyComments": [
-        {
-          "_id": {
-            "$oid": "5fc3bb629e921808d0bb4304"
-          },
-          "content": "Ngon mà :))"
-        }
-      ]
+      "$oid": "5fe235f57b775d1784a15d44"
     }
   ],
-  "likeUserIds": [],
-  "hashtagIds": [],
-  "createdAt": null,
-  "title": "Thịt ngon",
-  "description": "Thịt ngon lắm",
-  "recipe": "sdfsdfsdfsdfsdf",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5fc3bbf39e921808d0bb4305"
-  },
-  "thumbnails": [
-    "image/posts/base-image-16066631354712.png",
-    "image/posts/base-image-16066631355050.png",
-    "image/posts/base-image-16066631355291.png"
-  ],
-  "videos": [],
-  "comments": [],
-  "likeUserIds": [],
-  "hashtagIds": [],
-  "createdAt": null,
-  "title": "Bánh xèo",
-  "description": "Món bành xèo siêu ngon",
-  "recipe": "Bột mì",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5fc3bc249e921808d0bb4306"
-  },
-  "thumbnails": [
-    "image/posts/base-image-16066631925911.jpeg",
-    "image/posts/base-image-16066631926022.jpeg",
-    "image/posts/base-image-16066631926070.jpeg"
-  ],
-  "videos": [],
-  "comments": [],
-  "likeUserIds": [],
   "hashtagIds": [],
   "createdAt": null,
   "title": "Món xào",
-  "description": "Siêu ngon",
-  "recipe": "Cà rốt",
+  "description": "<p>Thơm ngon</p>",
+  "recipe": "",
+  "createdBy": {
+    "$oid": "5fcb4886dac53933fca13c37"
+  },
+  "__v": 3
+},{
+  "_id": {
+    "$oid": "5feaf04ce82f8300740c541d"
+  },
+  "thumbnails": [
+    "image/posts/base-image-16092324431570.png"
+  ],
+  "videos": [],
+  "comments": [],
+  "likeUserIds": [],
+  "hashtagIds": [],
+  "createdAt": null,
+  "title": "Nước mắm siêu ngon",
+  "description": "<p>Ngon lắm</p>",
+  "recipe": "",
+  "createdBy": {
+    "$oid": "5fcb4886dac53933fca13c37"
+  },
   "__v": 0
 },{
   "_id": {
-    "$oid": "5fc8560babc7aa24b0435549"
+    "$oid": "5feaf078e82f8300740c541e"
   },
   "thumbnails": [
-    "image/posts/base-image-16069647190120.png",
-    "image/posts/base-image-16069647190481.png",
-    "image/posts/base-image-16069647190762.png"
+    "image/posts/base-image-16092324985870.png",
+    "image/posts/base-image-16092324986261.png",
+    "image/posts/base-image-16092324986603.png",
+    "image/posts/base-image-16092324986822.png"
   ],
   "videos": [],
   "comments": [],
@@ -98,92 +57,49 @@
   "hashtagIds": [],
   "createdAt": null,
   "title": "Bánh xèo",
-  "description": "Bánh thơm và ngon",
-  "recipe": "Trứng, tôm, thịt",
+  "description": "",
+  "recipe": "",
+  "createdBy": {
+    "$oid": "5fe235f57b775d1784a15d44"
+  },
   "__v": 0
 },{
   "_id": {
-    "$oid": "5fc85636abc7aa24b043554a"
+    "$oid": "5feaf08ce82f8300740c541f"
   },
   "thumbnails": [
-    "image/posts/base-image-16069647658060.jpeg",
-    "image/posts/base-image-16069647658251.jpeg",
-    "image/posts/base-image-16069647658482.jpeg"
+    "image/posts/base-image-16092325196350.jpeg",
+    "image/posts/base-image-16092325196621.jpeg"
   ],
   "videos": [],
   "comments": [],
   "likeUserIds": [],
   "hashtagIds": [],
   "createdAt": null,
-  "title": "Thịt xốt chanh",
-  "description": "Béo ngậy",
-  "recipe": "Thịt, xúc xích",
+  "title": "Xúc xích",
+  "description": "",
+  "recipe": "",
+  "createdBy": {
+    "$oid": "5fe235f57b775d1784a15d44"
+  },
   "__v": 0
 },{
   "_id": {
-    "$oid": "5fc85ec0abc7aa24b043554b"
+    "$oid": "5feaf0a5e82f8300740c5420"
   },
   "thumbnails": [
-    "image/posts/base-image-16069669499930.jpeg",
-    "image/posts/base-image-16069669500171.jpeg"
+    "image/posts/base-image-16092325454370.png"
   ],
   "videos": [],
   "comments": [],
   "likeUserIds": [],
   "hashtagIds": [],
   "createdAt": null,
-  "title": "Xào cà rốt",
-  "description": "Giòn",
-  "recipe": "Cà rốt",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5fd07e90f1c6413254329855"
+  "title": "Tôm",
+  "description": "",
+  "recipe": "",
+  "createdBy": {
+    "$oid": "5fe235f57b775d1784a15d44"
   },
-  "thumbnails": [
-    "image/posts/base-image-16074994015570.png"
-  ],
-  "videos": [],
-  "comments": [],
-  "likeUserIds": [],
-  "hashtagIds": [],
-  "createdAt": null,
-  "title": "sádfa",
-  "description": "sdfsdfdsf",
-  "recipe": "sdfsdfdsfdsf",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5fd082b0053809361477c2e6"
-  },
-  "thumbnails": [
-    "image/posts/base-image-16075003970720.jpeg",
-    "image/posts/base-image-16075003970791.png"
-  ],
-  "videos": [],
-  "comments": [
-    {
-      "_id": {
-        "$oid": "5fc3bb629e921808d0bb4304"
-      },
-      "content": "Ngon đấy",
-      "replyComments": [
-        {
-          "_id": {
-            "$oid": "5fc3bb629e921808d0bb4304"
-          },
-          "content": "Ngon mà :))"
-        }
-      ]
-    }
-  ],
-  "likeUserIds": [],
-  "hashtagIds": [],
-  "createdAt": {
-    "$date": "2020-12-09T07:53:21.837Z"
-  },
-  "title": "dfdfd",
-  "description": "sdfsdfs",
-  "recipe": "sdfsdfsdf",
   "__v": 0
 }]
