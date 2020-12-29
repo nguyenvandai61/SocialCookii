@@ -2,7 +2,6 @@
 var UserService = require('../services/user.service');
 var jwt = require('jsonwebtoken');
 var ExtractJwt = require('passport-jwt').ExtractJwt;
-const bcrypt = require('bcrypt');
 
 
 
