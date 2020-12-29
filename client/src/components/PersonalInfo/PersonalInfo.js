@@ -2,45 +2,95 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Masonry from '../Masonry/Masonry'
 import './PersonalInfo.css'
-import { getDetailInfoUser } from '../../controller/UserJwtController';
+import { getDetailInfoUser , getDetailInfoUserById, getIdFromJwtToken} from '../../controller/UserJwtController';
+
+var token = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).token : "";
+var headerObject = {
+    'Content-Type': 'application/json',
+    'Authorization': 'bearer '+token
+}
 class PersonalInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {
+            userId: "",
+            userInfo: {
                 avatar: "",
                 fullname: "",
                 nfollowed: 0,
                 nfollowing: 0,
                 username: "",
                 _id: ""
-            }
+            },
+            isMyPage: false
         }
     }
 
     componentDidMount() {
         getDetailInfoUser().then(detailUserInfo => {
+            console.log(detailUserInfo);
             if (detailUserInfo) {
-                this.setState({user: detailUserInfo})
+                this.setState({user: detailUserInfo});
             }
         });
+        this.setState({userId: getIdFromJwtToken()});
+
+        let userInfoId = window.location.pathname.split('/')[2];
+
+        // Check whether is my Page
+        this.setState({isMyPage: userInfoId == this.state.userId})
+        return fetch('/api/user/userInfo/' + userInfoId, {
+            method: "GET",
+            headers: headerObject,
+        })
+            .then(res => {
+                if (res.status == 200) {
+                    console.log(res)
+                    res.json().then(data => {
+                        this.setState({userInfo: data});
+                        return data;
+                    })
+                }
+                else {
+        
+                }
+            });
+        
     }
     componentWillReceiveProps(props) {
         this.setState({user: props.user}); 
     }
 
+    fetchMyPost = () => {
+
+    }
+
     render() {
-        const { user } = this.props;
-        console.log(user);
+        const {userId, userInfo } = this.state;
+        let editPersonalInfoLink = "";
+        let myPostDiv = "";
+        if (userId == userInfo._id) {
+            editPersonalInfoLink = 
+                <div className="edit">
+                    <a href="/editPersonalInfo"><i class="fas fa-pen"></i></a>
+                </div>;
+            
+            myPostDiv = 
+                <div className="my-post">
+                    <h2>{this.state.isMyPage? "Bài viết của tôi" : "Bài viết của "+userInfo.fullname}</h2>
+                    <Masonry />
+                </div>
+            
+        }
         return (
             <div className="personal-info">
                 <div align="center" className="avatar">
                     <div id="avatar-frame">
-                        <img src={user.avatar} alt="img" style={{ height: "130px", width: "130px" }} />
+                        <img src={"/"+userInfo.avatar} alt="img" style={{ height: "130px", width: "130px" }} />
                     </div>
-                    <h2>{user.fullname}</h2>
-                    <p>@{user.username}</p>
-                    <p>{user.email}</p>
+                    <h2>{userInfo.fullname}</h2>
+                    <p>@{userInfo.username}</p>
+                    <p>{userInfo.email}</p>
                         <div class="avatarcontainer">
                     <div class="hover">
                         <div class="icon-twitter"></div>
@@ -54,23 +104,20 @@ class PersonalInfo extends Component {
 						<span>Tweets</span>
                             </li>
                             <li>
-                            {user.nfollowed}
+                            {userInfo.nfollowed}
 						<span>Followers</span>
                             </li>
                             <li>
-                            {user.nfollowing}
+                            {userInfo.nfollowing}
 						<span>Following</span>
                             </li>
                         </ul>
                     </div>
                 </div>
                 </div>
-                <div class="edit">
-                    <a href="/editPersonalInfo"><i class="fas fa-pen"></i></a>
-                </div>
-                
-                <h2 align="center">Bài viết lưu trữ</h2>
-                <Masonry />
+                {editPersonalInfoLink}
+
+                {myPostDiv}
             </div>
         );
     }

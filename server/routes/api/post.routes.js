@@ -19,7 +19,11 @@ router.post(
 router.get('/',
     // passport.authenticate('jwt', {session: false}),
     (req, res) => {
-        console.log(req.query.q);
+        console.log('aa')
+        console.log(req.query);
+        if (req.query.createdBy) {
+            return postController.getPost(req, res);
+        }
         if (req.query.q == null) {
             return postController.getAllPost(req, res);
         }

@@ -27,6 +27,7 @@ let children = {
   "/personalInfo": PersonalInfo,
   "/editPersonalInfo": EditPersonalInfo,
   "/addPost": AddPost,
+  "/user/:id": PersonalInfo,
   "/post/:id": DetailPost,
   "/friends": Friend,
 

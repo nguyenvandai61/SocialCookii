@@ -12,6 +12,10 @@ router.post('/',
             return commentController.createComment(req, res);
         return await commentController.createComment(req, res);
     })
+router.post('/likeComment',
+(req, res) => {
+    return commentController.likeComment(req, res);
+})
 
 router.get('/',
     passport.authenticate('jwt', {session: false}),
@@ -31,7 +35,9 @@ router.put('/:id',
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
         return commentController.updateComment(req, res);
-    })
+    });
+
+
 
 
 

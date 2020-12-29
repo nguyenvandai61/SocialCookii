@@ -50,10 +50,20 @@ const getCommnent = (req, res) => {
         return res.status(200).json(data)
     })
 }
+
+const likeComment = (req, res) => {
+    let commentId = req.body.commentId;
+    let likeUserId = req.body.likeUserId;
+    return commentService.likeComment(commentId, likeUserId).then((data, err) => {
+        if (err) return res.status(500).json(err);
+        return res.status(200).json(data);
+    })
+}
 module.exports = {
     createComment,
     updateComment,
     deleteComment,
     getAllComment,
-    getCommnent
+    getCommnent,
+    likeComment
 }

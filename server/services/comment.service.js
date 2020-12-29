@@ -53,9 +53,25 @@ const getCommnent = (query) => {
     });
 }
 
+const likeComment = (commentId, likeUserId) => {
+    console.log(commentId);
+    console.log(likeUserId);
+    return Comment.findOne({
+        _id: commentId
+      }, (err, model) => {
+        if (model.likeUserIds.indexOf(likeUserId) !== -1) {
+          model.likeUserIds.pull(likeUserId);
+        } else {
+          model.likeUserIds.addToSet(likeUserId);
+        }
+        model.save();
+      })
+}
+
 module.exports = {
     createComment,
     updateComment,
     deleteComment,
-    getCommnent
+    getCommnent,
+    likeComment
 }

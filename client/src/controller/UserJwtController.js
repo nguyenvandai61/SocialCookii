@@ -37,6 +37,7 @@ export function fetchFollow(follower, followed) {
 }
 
 export function getIdFromJwtToken() {
+    if (!JwtParser.parseJwt(token)) return;
     let id = JwtParser.parseJwt(token).id;
     return id;
 }
@@ -44,12 +45,33 @@ export function getIdFromJwtToken() {
 export function getDetailInfoUser() {
     console.log("getdetail")
     let id = getIdFromJwtToken();
-    return fetch('api/user/userInfo/' + id, {
+    return fetch('/api/user/userInfo/' + id, {
         method: "GET",
         headers: headerObject,
     })
         .then(res => {
             if (res.status == 200) {
+                res.json().then(data => {
+                    console.log(data)
+                    return data;
+                })
+            }
+            else {
+    
+            }
+        })
+}
+
+export function getDetailInfoUserById(id) {
+    console.log("get other id");
+    console.log(id)
+    return fetch('/api/user/userInfo/' + id, {
+        method: "GET",
+        headers: headerObject,
+    })
+        .then(res => {
+            if (res.status == 200) {
+                console.log(res)
                 res.json().then(data => {
                     console.log(data)
                     return data;

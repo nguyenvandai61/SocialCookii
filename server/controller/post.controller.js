@@ -33,13 +33,13 @@ const updatePost = (req, res) => {
     return PostService.updatePost(query, newPost);
 }
 const getPost = (req, res) => {
-    let query = {_id: req.params.id};
-    console.log(req.params.id);
-    return postService.getPost(query).then((data,err) => {
-        console.log(data);
+    console.log("GET POST");
+
+    return PostService.getPost(req.query).then((data,err) => {
+        console.log(data.createdBy);
         if(err) return res.status(500).send(err);
         if(data == null) return res.status(404).json({ message: "Cannot find post" });
-        return res.status(200).json(data)
+        return res.status(200).json(data);
     })
 }
 const getAllPost = (req, res) => {

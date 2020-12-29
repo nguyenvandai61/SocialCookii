@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './DetailPost.css';
 import avatar from '../../image/avatars/avatar.jpg'
@@ -11,7 +12,10 @@ class DetailPost extends Component {
             post: {
                 thumbnails: [],
                 likeUserIds: [],
-                comments: []
+                comments: [],
+                createdBy: {
+                    id: ""
+                }
             },
             comment:{
                 postId : "",
@@ -269,6 +273,39 @@ class DetailPost extends Component {
             }
         }).then(data => console.log(data));
     }
+
+    likeComment() {
+        // let userId = getIdFromJwtToken();
+        // // Check whether Liked post
+        // let {nLikePost, hasLikePost} = this.state;
+        // if (hasLikePost) {
+        //     console.log(e.target);
+        //     nLikeComment--;
+        // } else {
+        //     nLikeComment++;
+        // }
+
+        // this.setState({nLikePost: nLikePost, hasLikePost: !hasLikePost});
+        
+        // let postId = window.location.pathname.split('/')[2];
+        // let token = localStorage.getItem("user")? JSON.parse(localStorage.getItem("user")).token : "";
+        // // Like or Unlike post
+        // fetch('/api/comment/likeComment', {
+        //     method: "POST",
+        //     headers: { 
+        //         'Content-Type': 'application/json',
+        //         'Authorization': 'bearer '+ token
+        //     },
+        //     body: JSON.stringify({
+        //         commentId: commentId,
+        //         likeUserId: userId
+        //     })
+        // }).then(res => {
+        //     if (res.status == 200) {
+        //         return res.json()
+        //     }
+        // }).then(data => console.log(data));
+    }
     componentWillMount() {
         // this.loadDefaultPost();
         this.fetchPost();
@@ -314,10 +351,12 @@ class DetailPost extends Component {
                     <h1>{post.title}</h1>
                     <div style={{ wordBreak: 'break-word', display: 'inline-block' }} className="editor" dangerouslySetInnerHTML={{ __html: post.description }} />
                     <div className="info">
-                        <div className="col-sm-9 post-avatar">
-                            <img src={post.createdBy ? "/"+post.createdBy.avatar : ""} alt="" height="60px" width="60px" className="avatar" />
-                            <h4>{post.createdBy ? post.createdBy.username : ""}</h4>
-                        </div>
+                        <Link to={"/user/"+post.createdBy._id}>
+                            <div className="col-sm-9 post-avatar">
+                                <img src={post.createdBy ? "/"+post.createdBy.avatar : ""} alt="" height="60px" width="60px" className="avatar" />
+                                <h4>{post.createdBy ? post.createdBy.username : ""}</h4>
+                            </div>
+                        </Link>
 
                         {
 
@@ -396,7 +435,7 @@ class DetailPost extends Component {
                                                         
                                                     </div>
                                                     <div className="interaction">
-                                                        <span></span>
+                                                        <span>{comment.likeUserIds.length}</span>
                                                         <i className="fa fa-heart"></i>
                                                         <a data-toggle="collapse" href={"#collapseReply" + index} role="button" aria-expanded="false" aria-controls={"collapseReply" + index}>
                                                             <i className="fa fa-reply"></i>
@@ -439,7 +478,7 @@ class DetailPost extends Component {
                                                                     </div>    
                                                                 </div>
                                                                 <div className="interaction">
-                                                                    <span></span>
+                                                                    <span>{replyComment.likeUserIds.length}</span>
                                                                     <i className="fa fa-heart"></i>
                                                                 </div>
                                                             </div>

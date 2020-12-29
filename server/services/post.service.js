@@ -10,6 +10,7 @@ const getAllPost = () => {
 }
 
 const getPost = (query) => {
+  console.log(query);
   return Post.find(query)
     .populate({
       path: 'comments',
