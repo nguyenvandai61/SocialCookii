@@ -6,9 +6,9 @@ import {
 import '../../Admin/style.css';
 import '../../Admin/Users/User.css';
 
-import Sidebar from '../templates/Sidebar';
+import Sidebar from '../templates/sidebar';
 import Footer from '../templates/footer';
-import Header from '../templates/Header';
+import Header from '../templates/header';
 class EditUser extends Component {
     constructor(props) {
         super(props);

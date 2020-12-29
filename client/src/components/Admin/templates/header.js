@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SideBar from './Sidebar'
+import SideBar from './sidebar'
 
 class Header extends Component {
     constructor(props) {

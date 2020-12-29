@@ -12,7 +12,9 @@ import Login from './components/Login/Login';
 import Masonry from './components/Masonry/Masonry';
 import Register from './components/Register/Register';
 import UserManager from  './components/Admin/Users/UserManager';
+import PostManager from './components/Admin/PostManager/PostManager'
 import EditUser from './components/Admin/Users/EditUser';
+import DetailReportedPost from './components/Admin/PostManager/DetailReportedPost'
 import {
   BrowserRouter as Router,
   Switch,
@@ -73,6 +75,12 @@ function App() {
           </Route>
           <Route path="/admin/user">
             <UserManager />
+          </Route>
+          <Route path="/admin/reportedPosts">
+            <PostManager />
+          </Route>
+          <Route path="/admin/post-manager/detailReportedPost">
+            <DetailReportedPost />
           </Route>
         </Switch>
       </Router>

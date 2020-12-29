@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 import './style.css'
 
-import Sidebar from './templates/Sidebar';
+import Sidebar from './templates/sidebar';
 import Footer from './templates/footer';
 class index extends Component {
     constructor(props) {

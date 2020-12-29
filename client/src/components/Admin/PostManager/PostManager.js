@@ -8,57 +8,34 @@ import '../../Admin/style.css'
 import Header from '../templates/header';
 import Footer from '../templates/footer';
 //import AddUser from './AddUser';
-class indexUser extends Component {
+class indexPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: {
+            reportedPosts: {
                 size: 0,
                 data: [],
                 pagination: {
                     current: 1,
                     nPerPage: 6
                 }
-            },
-            hashtags: {
-                size: 0
-            },
-            posts: {
-                size: 0
             }
+            
         }
     }
-    getUserInfo = () => {
-        fetch('/api/user/', {
-            method: "GET",
-            headers: { 'Content-Type': 'application/json' },
-
-        }).then(res => {
-            console.log(res);
-            if (res.status == 200) {
-                res.json().then(data => {
-                    let users = { ...this.state.users }
-                    users.size = data.length;
-                    users.data = data;
-                    this.setState({ users: users })
-                })
-            }
-            else {
-
-            }
-        })
-    }
+    
     getPostInfo = () => {
-        fetch('/api/post/', {
+        fetch('/api/post', {
             method: "GET",
             headers: { 'Content-Type': 'application/json' },
         }).then(res => {
             console.log(res);
             if (res.status == 200) {
                 res.json().then(data => {
-                    let posts = { ...this.state.posts }
+                    let posts = { ...this.state.reportedPosts }
                     posts.size = data.length;
-                    this.setState({ posts: posts })
+                    posts.data = data;
+                    this.setState({ reportedPosts: posts })
                 })
             }
             else {
@@ -66,11 +43,10 @@ class indexUser extends Component {
             }
         })
     }
-    changeUserPage = () => {
+    changePostPage = () => {
 
     }
     loadData = () => {
-        this.getUserInfo();
         this.getPostInfo();
         this.forceUpdate();
     }
@@ -100,35 +76,37 @@ class indexUser extends Component {
     }
 
     render() {
-        let { users, hashtags, posts } = this.state;
-        console.log(users);
-        const indexOfLast = users.pagination.current * users.pagination.nPerPage;
-        const indexOfFirst = indexOfLast - users.pagination.nPerPage;
-        let currentUsers = users.data.slice(indexOfFirst, indexOfLast);
-        console.log(currentUsers)
-        let renderCurrentU = currentUsers.map((user, index) => {
-            const { username, password, role } = user;
+        let { reportedPosts } = this.state;
+        console.log(reportedPosts);
+        const indexOfLast = reportedPosts.pagination.current * reportedPosts.pagination.nPerPage;
+        const indexOfFirst = indexOfLast - reportedPosts.pagination.nPerPage;
+        let currentPosts = reportedPosts.data.slice(indexOfFirst, indexOfLast);
+        console.log(currentPosts)
+        let renderReportedPosts = currentPosts.map((post, index) => {
+            const { _id, title, createdBy, createdAt } = post;
+            console.log("_id " + _id)
+            const url = "/admin/post-manager/detailReportedPost";
             return (<tr>
                 <td>{indexOfFirst + index + 1}</td>
-                <td>{username}</td>
-                <td>{password}</td>
-                <td>{role}</td>
+                <td>{title}</td>
+                <td>{createdBy}</td>
+                <td>{createdAt}</td>
                 <td>
-                    <Link to="/admin/user/edit">
-                        <a href="" title="" class="btn btn-primary"><i class="fa fa-edit "></i> Sửa</a>
+                    <Link to={url}>
+                        <a href="" title="" class="btn btn-primary"><i class="fa fa-edit "></i> Xem chi tiết</a>
                     </Link>
-                    <a href="" title="" class="btn btn-danger"><i class="fa fa-pencil"></i>Xóa</a>
+                    
                 </td>
             </tr>)
         })
-        let nPage = Math.ceil(users.size / users.pagination.nPerPage);
-        let renderUsersPagi = [];
+        let nPage = Math.ceil(reportedPosts.size / reportedPosts.pagination.nPerPage);
+        let renderPostsPagi = [];
         for (let i = 0; i < nPage; i++)
-            renderUsersPagi.push(
+            renderPostsPagi.push(
                 <li class="page-item active"><a href="#" class="page-link py-2 px-3">{i + 1}</a></li>
             )
 
-        console.log(renderCurrentU);
+        console.log(renderReportedPosts);
         return (
             <div>
                 <Header />
@@ -167,19 +145,19 @@ class indexUser extends Component {
                             <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
                                 <div class="row ">
                                     <div class="col-xl-6 col-12 mb-4 mb-xl-0">
-                                        <h2 class="text-muted text-center mb-5">Users</h2>
+                                        <h2 class="text-muted text-center mb-5">Reported Posts</h2>
                                         <table class="table table-striped bg-light text-center">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>Username</th>
-                                                    <th>Password</th>
-                                                    <th>Role</th>
+                                                    <th>STT</th>
+                                                    <th>Title</th>
+                                                    <th>Created by</th>
+                                                    <th>CreatedAt</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {renderCurrentU}
+                                                {renderReportedPosts}
                                             </tbody>
                                         </table>
                                         <ul class="pagination justify-content-center">
@@ -221,8 +199,8 @@ class indexUser extends Component {
     }
 }
 
-indexUser.propTypes = {
+indexPost.propTypes = {
 
 };
 
-export default indexUser;
+export default indexPost;

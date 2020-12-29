@@ -63,7 +63,9 @@ class templates extends Component {
                             class="fas fa-hashtag"></i>&emsp;Hashtags</a>
                     </li>
                     <li class="nav-item">
+                        <Link to="/admin/reportedPosts">
                         <a href="" class="nav-link text-white p-2 mb-2 sidebar-link"><i class="fas fa-copy"></i>&emsp;Posts</a>
+                        </Link>
                     </li>
                     <li class="nav-item">
                         <Link to="/admin/user">
