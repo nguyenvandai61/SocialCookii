@@ -50,13 +50,13 @@ mongoose.connect(config.mongoose.uri, {
         console.log('Error connecting to database');
     });
 
-app.use('/', express.static(__dirname+"../client/build"));
+app.get('/*', function (req, res) {
+        res.sendFile(path.resolve(__dirname, '../client/build/', 'index.html'));
+});
+app.use('/*', express.static(__dirname+"../client/build"));
 
 app.use(function(err, req, res, next) {
     console.log(err);
-});
-app.get('/*', function (req, res) {
-    res.sendFile(path.resolve(__dirname, '../client/build/', 'index.html'));
 });
 app.listen(port, () => console.log(`Listening on port ${port}`));
 

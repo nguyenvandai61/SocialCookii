@@ -25,6 +25,9 @@ class Layout extends Component {
 
     componentDidMount() {
         console.log("willmounts");
+        
+        let token = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")).token : "";
+        if (token === "") return;
         let id = getIdFromJwtToken();
         console.log(id)
         fetch('api/user/userInfo/' + id, {
