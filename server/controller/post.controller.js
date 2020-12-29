@@ -6,19 +6,20 @@ const userModel = require('../models/user.model');
 const createPost = async (req, res) => {
     let post = req.body;
     post.thumbnails = post.thumbnails.map(thumbnail => {
-        var decodedImg = Base64Image.decodeBase64Image(thumbnail.img.data);
-        var imageBuffer = decodedImg.data;
-        var type = decodedImg.type;
-        var extension = type.split('/')[1];
-        var fileName =  thumbnail.name+'.' + extension;
-        var newPath = 'assets/image/posts/';
-        try{
-            Base64Image.writeFile(newPath, fileName, imageBuffer);
-        }
-        catch(err){
-            console.error(err)
-        }
-        return 'image/posts/'+fileName;
+        // var decodedImg = Base64Image.decodeBase64Image(thumbnail.img.data);
+        // var imageBuffer = decodedImg.data;
+        // var type = decodedImg.type;
+        // var extension = type.split('/')[1];
+        // var fileName =  thumbnail.name+'.' + extension;
+        // var newPath = 'assets/image/posts/';
+        // try{
+        //     Base64Image.writeFile(newPath, fileName, imageBuffer);
+        // }
+        // catch(err){
+        //     console.error(err)
+        // }
+
+        return thumbnail.img.data;
     })
     post.createdBy = {};
     post.createdBy._id = req.user.id;
@@ -63,7 +64,7 @@ const deletePost = (req, res) => {
     return PostService.deletePost(param).then((data, err) => {
         if (err)
             return res.status(500).json(err)
-        return res.status(200).json(data);
+        return res.status(200).json("OK");
     });
 }
 
