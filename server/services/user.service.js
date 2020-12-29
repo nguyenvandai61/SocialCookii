@@ -20,6 +20,7 @@ const getUserInfo = (id) => {
         "fullname": 1,
         "nfollowed": {$size: '$followed'},
         "nfollowing": {$size: '$following'},
+        "followed": 1,
         "avatar": 1,
       }
     },
