@@ -343,6 +343,10 @@ class DetailPost extends Component {
             window.location.href = "/user/" + getIdFromJwtToken();
         });
     }
+
+    updatePostHandler = () => {
+        // window.location.href = "/editPost/"+this.state.post._id
+    }
     componentWillMount() {
         // this.loadDefaultPost();
         this.fetchPost();
@@ -369,7 +373,15 @@ class DetailPost extends Component {
         }
         let operationDiv = isMyPost ?
             <div>
-                <button type="button" class="btn btn-secondary" >Sửa</button>
+                <Link to={
+                    {
+                        pathname: "/editPost/"+this.state.post._id,
+                        detailPost: this.state.post
+                }}>
+                    <button type="button" class="btn btn-secondary" onClick={this.updatePostHandler}>
+                        Sửa
+                    </button>
+                </Link>
                 <button type="button" class="btn btn-danger" onClick={this.deletePost}>Xóa</button>
             </div>
             : "";

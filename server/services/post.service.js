@@ -45,16 +45,10 @@ const getPostByTagname = (req, res) => {
         return res.status(200).json(posts);
       });
 }
-const updatePost = (req, res) => {
-    const content = req.body;
-    Post.findOneAndUpdate(req.params.id, content, {new: true},function(err, doc) {
-      if (err) return res.status(500).send(err);
-      const response = {
-          message: "Post successfully updated"
-      };
-      console.log(doc.description);
-      return res.json(doc);
-    });
+const updatePost = (query, content) => {
+    
+    console.log("UPDATE POST");
+    return Post.findOneAndUpdate(query, content);
   }
 
 const deletePost = (id) => {
