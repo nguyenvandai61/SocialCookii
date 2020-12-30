@@ -20,6 +20,7 @@ import {
 } from "react-router-dom";
 import SearchUser from './components/SearchUser/SearchUser';
 import Layout from './components/Layout/Layout';
+import EditPost from './components/EditPost/EditPost';
 let children = {
   "/": Masonry,
   "/searchUser": SearchUser,
@@ -30,7 +31,7 @@ let children = {
   "/user/:id": PersonalInfo,
   "/post/:id": DetailPost,
   "/friends": Friend,
-
+  "/editPost/:id": EditPost
 }
 function App() {
   return (

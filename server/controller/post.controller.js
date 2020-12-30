@@ -30,7 +30,16 @@ const createPost = async (req, res) => {
     } );
 }
 const updatePost = (req, res) => {
-    return PostService.updatePost(query, newPost);
+    let query = req.body.query;
+    let newPost = req.body.newObj;
+    console.log(query);
+    return PostService.updatePost(query, newPost).then((data, err) => {
+        if (err) return res.status(500).send(err);
+      const response = {
+          message: "Post successfully updated"
+      };
+      return res.json(response);
+    });
 }
 const getPost = (req, res) => {
     console.log("GET POST");

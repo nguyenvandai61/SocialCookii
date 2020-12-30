@@ -72,6 +72,8 @@ li {
 	width: 90%;
 	display: block;
 	margin: auto;
+	margin-top: 10px;
+	margin-left: 20px;
 	padding: 10px;
 	box-shadow: 5px 10px 15px 10px grey;
 }

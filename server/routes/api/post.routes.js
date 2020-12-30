@@ -49,7 +49,7 @@ router.get(
 router.get('/hashtag/:hashtagname', (req, res) => {
     return postController.getPostByTagname(req, res);
 })
-router.put('/', (req, res) => postController.updatePost);
+router.post('/update', (req, res) => postController.updatePost(req, res));
 
 router.delete('/:id', (req, res) => {
     return postController.deletePost(req, res);
