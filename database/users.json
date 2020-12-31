@@ -2,10 +2,16 @@
   "_id": {
     "$oid": "5fcb4886dac53933fca13c37"
   },
-  "followed": [],
+  "followed": [
+    "5feb5f4fe3b6f70017d6f1a3",
+    "5fd60961d013493ea42d08e2",
+    "5febcb3c834396001781416d"
+  ],
   "following": [
     "5fd60961d013493ea42d08e2",
-    "5fd6192a3af2f51bb88df996"
+    "5fd6192a3af2f51bb88df996",
+    "5feb5f4fe3b6f70017d6f1a3",
+    "5febcb3c834396001781416d"
   ],
   "username": "dai",
   "password": "123",
@@ -22,7 +28,8 @@
     "5fe235f57b775d1784a15d44"
   ],
   "following": [
-    "5fd6192a3af2f51bb88df996"
+    "5fd6192a3af2f51bb88df996",
+    "5fcb4886dac53933fca13c37"
   ],
   "username": "user1",
   "fullname": "Văn Đại",
@@ -75,6 +82,71 @@
   "username": "trungchau",
   "fullname": "Châu Việt Trung",
   "password": "1111",
+  "avatar": "image/default/avatar/avatardefault.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5feb5f4fe3b6f70017d6f1a3"
+  },
+  "followed": [
+    "5fcb4886dac53933fca13c37"
+  ],
+  "following": [
+    "5fcb4886dac53933fca13c37",
+    "5febc8a0834396001781416c",
+    "5febcb3c834396001781416d"
+  ],
+  "username": "TranThuCong",
+  "password": "123456789",
+  "fullname": "Trần Thị Thu Công",
+  "role": "user",
+  "avatar": "image/default/avatar/avatardefault.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5febc8a0834396001781416c"
+  },
+  "followed": [
+    "5feb5f4fe3b6f70017d6f1a3"
+  ],
+  "following": [
+    "5febce933f486b0017597447"
+  ],
+  "username": "nguoila",
+  "password": "11111",
+  "fullname": "Người Lạ",
+  "role": "user",
+  "avatar": "image/default/avatar/avatardefault.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5febcb3c834396001781416d"
+  },
+  "followed": [
+    "5fcb4886dac53933fca13c37",
+    "5feb5f4fe3b6f70017d6f1a3"
+  ],
+  "following": [
+    "5fcb4886dac53933fca13c37"
+  ],
+  "username": "duong",
+  "password": "123123",
+  "fullname": "thuyduong",
+  "role": "user",
+  "avatar": "image/default/avatar/avatardefault.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5febce933f486b0017597447"
+  },
+  "followed": [
+    "5febc8a0834396001781416c"
+  ],
+  "following": [],
+  "username": "Vu26",
+  "password": "12345",
+  "fullname": "Phan Văn Vũ",
+  "role": "user",
   "avatar": "image/default/avatar/avatardefault.png",
   "__v": 0
 }]
