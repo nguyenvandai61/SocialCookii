@@ -1,6 +1,6 @@
 # Social Cookii - Food recipes social network
 ## Introduction
-This website was coding with MERN stack.
+This website was coded with MERN stack.
 Social Cookii is a food social network which share food recipes. This is a platform helping to introduce, popular your own dishes from simple to complex, from rustic to unique. So everyone can help each other to make a lot of delicious and attractive dishes through comments.
 
 ## Contributions
